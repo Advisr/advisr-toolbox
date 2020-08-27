@@ -15,9 +15,9 @@
  * @wordpress-plugin
  * Plugin Name:       Advisr Team Pages
  * Plugin URI:        https://advisr.com.au
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Create and configure your company's team members.
  * Version:           1.0.0
- * Author:            Ev Ooi
+ * Author:            Advisr.com.au
  * Author URI:        https://advisr.com.au
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

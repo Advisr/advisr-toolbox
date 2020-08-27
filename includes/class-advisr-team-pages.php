@@ -170,6 +170,11 @@ class Advisr_Team_Pages {
 		// Save/Update our plugin options
 		$this->loader->add_action('admin_init', $plugin_admin, 'options_update');
 
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_group_metaboxes' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_order_metaboxes' );
+
+		$this->loader->add_action( 'save_post', $plugin_admin, 'advisr_team_page_save_meta', 1, 2 );
+
 	}
 
 	/**
@@ -186,6 +191,7 @@ class Advisr_Team_Pages {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'init', $plugin_public, 'advisr_team_page_register_shortcodes' );
 	}
 
 	/**

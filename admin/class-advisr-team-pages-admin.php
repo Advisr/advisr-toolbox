@@ -120,6 +120,7 @@ class Advisr_Team_Pages_Admin {
 		$opts['hierarchical'] = FALSE;
 		$opts['map_meta_cap'] = TRUE;
 		$opts['menu_icon'] = 'dashicons-businessman';
+		$opts['supports'] = array( 'title', 'editor', 'thumbnail');
 		$opts['menu_position'] = 25;
 		$opts['public'] = TRUE;
 		$opts['publicly_querable'] = TRUE;
@@ -216,12 +217,122 @@ class Advisr_Team_Pages_Admin {
 		$valid['apikey'] = (isset($input['apikey']) && !empty($input['apikey'])) ? sanitize_text_field($input['apikey']) : '';
 		$valid['members-before'] = (isset($input['members-before']) && !empty($input['members-before'])) ? 1: 0;
 		$valid['members-after'] = (isset($input['members-after']) && !empty($input['members-after'])) ? 1 : 0;
-		// $valid['body_class_slug'] = (isset($input['body_class_slug']) && !empty($input['body_class_slug'])) ? 1 : 0;
-		// $valid['jquery_cdn'] = (isset($input['jquery_cdn']) && !empty($input['jquery_cdn'])) ? 1 : 0;
-		// $valid['cdn_provider'] = esc_url($input['cdn_provider']);
 
 		return $valid;
 	}
 
+	/**
+	 * Adds a metabox to the right side of the screen under the â€œPublishâ€ box
+	 */
+	public function add_group_metaboxes() {
+
+		function team_member_group_cb() {
+			global $post;
+	
+			// Nonce field to validate form request came from current site
+			wp_nonce_field( basename( __FILE__ ), 'event_fields' );
+	
+			// Get the group data if it's already been entered
+			$group = get_post_meta( $post->ID, 'group', true );
+	
+			// Output the field
+			echo '<p class="">Choose to group this member before or after Advisr brokers</p>
+				<select name="group" id="group" required class="widefat">
+					<option value="">Select one</option>
+					<option value="before" ' .  ($group == 'before' ? 'selected' : '') . '>Before brokers</option>
+					<option value="after" ' .  ($group == 'after' ? 'selected' : '') . '>After brokers</option>
+				</select>
+			';
+		}
+		
+		add_meta_box(
+			'group',
+			'Group',
+			'team_member_group_cb',
+			'advisr-team-member',
+			'side',
+			'default'
+		);
+	}
+
+	/**
+	 * Adds a metabox to the right side of the screen under the â€œPublishâ€ box
+	 */
+	public function add_order_metaboxes() {
+
+		/**
+		 * Output the HTML for the team member order metabox.
+		 */
+		function team_member_order_cb() {
+			global $post;
+
+			// Nonce field to validate form request came from current site
+			wp_nonce_field( basename( __FILE__ ), 'event_fields' );
+
+			// Get the order data if it's already been entered
+			$order = get_post_meta( $post->ID, 'order', true );
+
+			// Output the field
+			echo '<p>Specify order of this team member within the \'before brokers\' or \'after brokers\' group</p>
+				<input type="number" name="order" required placeholder="eg. 12" value="' . esc_textarea( $order )  . '" class="widefat">';
+		}
+
+		add_meta_box(
+			'order',
+			'Order',
+			'team_member_order_cb',
+			'advisr-team-member',
+			'side',
+			'default'
+		);
+	}
+	
+	/**
+	 * Save the metabox data
+	 */
+	public function advisr_team_page_save_meta( $post_id, $post ) {
+
+		// Return if the user doesn't have edit permissions.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return $post_id;
+		}
+
+		// Verify this came from the our screen and with proper authorization,
+		// because save_post can be triggered at other times.
+		if ( ! isset( $_POST['group'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
+			return $post_id;
+		}
+		if ( ! isset( $_POST['order'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
+			return $post_id;
+		}
+
+		// Now that we're authenticated, time to save the data.
+		// This sanitizes the data from the field and saves it into an array $events_meta.
+		$events_meta['group'] = esc_textarea( $_POST['group'] );
+		$events_meta['order'] = esc_textarea( $_POST['order'] );
+
+		// Cycle through the $events_meta array.
+		// Note, in this example we just have one item, but this is helpful if you have multiple.
+		foreach ( $events_meta as $key => $value ) :
+
+			// Don't store custom data twice
+			if ( 'revision' === $post->post_type ) {
+				return;
+			}
+
+			if ( get_post_meta( $post_id, $key, false ) ) {
+				// If the custom field already has a value, update it.
+				update_post_meta( $post_id, $key, $value );
+			} else {
+				// If the custom field doesn't have a value, add it.
+				add_post_meta( $post_id, $key, $value);
+			}
+
+			if ( ! $value ) {
+				// Delete the meta key if there's no value
+				delete_post_meta( $post_id, $key );
+			}
+		endforeach;
+	}
 
 }

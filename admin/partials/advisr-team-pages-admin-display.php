@@ -53,7 +53,7 @@
 		<br/>
 
 		<h3>Step 3</h3>
-		<p class="regular-text">Configure below.</p>
+		<p class="regular-text">Configure options:</p>
         <!-- Show internal team members before Advisr brokers -->
         <fieldset>
             <legend class="screen-reader-text"><span>Show internal team members before Advisr brokers</span></legend>
@@ -113,6 +113,9 @@
         </fieldset> -->
 
         <?php submit_button('Save changes', 'primary','submit', TRUE); ?>
+
+        <h3>Step 4</h3>
+		<p>Paste this code anywhere in your site: <code>[advisr-team-page]</code></p>
 
     </form>
 

@@ -172,6 +172,9 @@ class Advisr_Team_Pages {
 
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_group_metaboxes' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_order_metaboxes' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_role_metaboxes' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_mobile_metaboxes' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_telephone_metaboxes' );
 
 		$this->loader->add_action( 'save_post', $plugin_admin, 'advisr_team_page_save_meta', 1, 2 );
 

@@ -127,42 +127,39 @@ class Advisr_Team_Pages_Public {
 
 		$query = new WP_Query($args);
 
-		$users = [];
+		$team_members = [];
+		$result = '';
 
 		if($query->have_posts()) :
 
 			while($query->have_posts()) :
-				// render the widget <advisr-team-page>
 
 				$query->the_post() ;
-				array_push($users, array(
+				array_push($team_members, array(
 					'name' => get_the_title(),
 					'description' => get_the_content(),
-					'image' => get_the_post_thumbnail(),
+					// @TODO camelcase fields
+					'avatar_url' => get_the_post_thumbnail_url(get_the_ID(), 'medium'),
+					'role' => get_post_meta(get_the_ID(), 'role', true),
+					'mobile' => get_post_meta(get_the_ID(), 'mobile', true),
+					'telephone' => get_post_meta(get_the_ID(), 'telephone', true),
 					'group' => get_post_meta(get_the_ID(), 'group', true),
 					'order' => get_post_meta(get_the_ID(), 'order', true)
 				));
 
-			$result .= '<advisr-reviews api-token="ey0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5IiwianRpIjoiZDc2MGM2MzFlNGY1NTk5MjJmMjY4NWQxOGY1ODIyZDhiNDFhNzZkM2E5OWNlN2JhNjA0MmZmY2IxZTgwMzM5NGExNTlkMDYxMDRjODhkMmIiLCJpYXQiOjE1OTU4MjY1ODksIm5iZiI6MTU5NTgyNjU4OSwiZXhwIjoxNjI3MzYyNTg5LCJzdWIiOiIzMDM2Iiwic2NvcGVzIjpbXX0.JGDhNeKYUwtCyGBcINL2NENDUUMurFABDtsubam1MnxSxh9MHn9nSIK66zvFFpAiIAsyzGftSq1TB9xzutZPR8FT_oLg3ZZRHpdgeOyl42zRcWBXeqXUBBdOCVzr78Hn3Ztc-zAA8jhoifPNtGLlU6L0hWgl0h695Hht5SccFtZ8-cnSkyHyouI9MAuhwKoTNesTzmy7zQP2kvLU709bNpHDxbvnRs9ExrrTgyKgh11-7ujjSZZ77REZ99S1El9WozucfaXXM5zSNeqK8BYrL9tLjSuPgAYvHIBnhyzImJ2hlid_bJhwKQOruKUny_Wvr0jw0j1GKqitEWyy39mv_N8xWu00fwdeQMKhTv-cll1nIXwGiZmdArkffj-LY6jF8zgAb0NgWiuDnIi-c74NYQILXXGoC37KCCcF5LMkVnNVOyEC8k2eou0Myr_QJDmY64maRURnzVgEj1BUz4FJatty09azCP5fmg0QOcRMfnax_Xd7ZwCxaQpeECrSWA4c9h8lc-ao7ckveKrHzHtjKUM6FymJ_l_DGxXVHv02g1c_KXpLkm2TOh-6VxTcmNdff4UdrXgkyqBvOIgqmuGf4IBGN0CMgmTyqSOnkB6Kgo6xRZtiMCr6iPRp5mOvxa5QDnixqZk4Di9wEqUpsXJtvA0GdQ8vaPvnQ7o7PcK9dOU" include-styles="false" show-review-link="true"></advisr-reviews>';
-			$result .= '<div class="team-member-item">';
-			$result .= '<div class="team-member-poster">' . get_the_post_thumbnail() . '</div>';
-			$result .= '<div class="team-member-name">' . get_the_title() . '</div>';
-			$result .= '<div class="team-member-desc">' . get_the_content() . '</div>'; 
-			$result .= '<div class="team-member-group">' . get_post_meta(get_the_ID(), 'group', true) . '</div>'; 
-			$result .= '<div class="team-member-order">' . get_post_meta(get_the_ID(), 'order', true) . '</div>'; 
-			$result .= '</div>';
-
 			endwhile;
+
+			$result .= '<advisr-team-page></advisr-reviews>';
 
 			wp_reset_postdata();
 
 		endif;   
 				
 		$script_params = array(
-			'users' => $users,
+			'teamMembers' => $team_members,
 			'apikey' => $this->advisr_team_page_options['apikey'],
-			'membersBefore' => $this->advisr_team_page_options['members-before'],
-			'membersAfter' => $this->advisr_team_page_options['members-after'],
+			'membersBefore' => $this->advisr_team_page_options['members-before'] === 1 ? true : false,
+			'membersAfter' => $this->advisr_team_page_options['members-after']=== 1 ? true : false,
 		);
 
 		wp_localize_script( 'advisr-reviews', 'scriptParams', $script_params );

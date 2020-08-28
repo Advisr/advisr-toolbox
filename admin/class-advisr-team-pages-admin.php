@@ -222,7 +222,94 @@ class Advisr_Team_Pages_Admin {
 	}
 
 	/**
-	 * Adds a metabox to the right side of the screen under the â€œPublishâ€ box
+	 * Adds a metabox to the right side of the screen under the Publish box
+	 */
+	public function add_role_metaboxes() {
+
+		function team_member_role_cb() {
+			global $post;
+	
+			// Nonce field to validate form request came from current site
+			wp_nonce_field( basename( __FILE__ ), 'event_fields' );
+	
+			// Get the role data if it's already been entered
+			$role = get_post_meta( $post->ID, 'role', true );
+	
+			// Output the field
+			echo '<p>Enter team member\'s role</p>
+				<input type="text" name="role" placeholder="eg. Team leader" value="' . esc_textarea( $role )  . '" class="widefat">';
+		}
+		
+		add_meta_box(
+			'role',
+			'Role',
+			'team_member_role_cb',
+			'advisr-team-member',
+			'side',
+			'default'
+		);
+	}
+
+	/**
+	 * Adds a metabox to the right side of the screen under the Publish box
+	 */
+	public function add_mobile_metaboxes() {
+
+		function team_member_mobile_cb() {
+			global $post;
+	
+			// Nonce field to validate form request came from current site
+			wp_nonce_field( basename( __FILE__ ), 'event_fields' );
+	
+			// Get the mobile data if it's already been entered
+			$mobile = get_post_meta( $post->ID, 'mobile', true );
+	
+			// Output the field
+			echo '<p>Enter team member\'s mobile</p>
+				<input type="number" name="mobile" placeholder="eg. 0444 222 555" value="' . esc_textarea( $mobile )  . '" class="widefat">';
+		}
+		
+		add_meta_box(
+			'mobile',
+			'Mobile',
+			'team_member_mobile_cb',
+			'advisr-team-member',
+			'side',
+			'default'
+		);
+	}
+
+	/**
+	 * Adds a metabox to the right side of the screen under the Publish box
+	 */
+	public function add_telephone_metaboxes() {
+
+		function team_member_telephone_cb() {
+			global $post;
+	
+			// Nonce field to validate form request came from current site
+			wp_nonce_field( basename( __FILE__ ), 'event_fields' );
+	
+			// Get the telephone data if it's already been entered
+			$telephone = get_post_meta( $post->ID, 'telephone', true );
+	
+			// Output the field
+			echo '<p>Specify telephone of this team member within the \'before brokers\' or \'after brokers\' telephone</p>
+				<input type="number" name="telephone" placeholder="eg. 02 3333 9999" value="' . esc_textarea( $telephone )  . '" class="widefat">';
+		}
+		
+		add_meta_box(
+			'telephone',
+			'Telephone',
+			'team_member_telephone_cb',
+			'advisr-team-member',
+			'side',
+			'default'
+		);
+	}
+
+	/**
+	 * Adds a metabox to the right side of the screen under the Publish box
 	 */
 	public function add_group_metaboxes() {
 
@@ -256,7 +343,7 @@ class Advisr_Team_Pages_Admin {
 	}
 
 	/**
-	 * Adds a metabox to the right side of the screen under the â€œPublishâ€ box
+	 * Adds a metabox to the right side of the screen under the Publish box
 	 */
 	public function add_order_metaboxes() {
 
@@ -305,11 +392,23 @@ class Advisr_Team_Pages_Admin {
 		if ( ! isset( $_POST['order'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
 			return $post_id;
 		}
+		if ( ! isset( $_POST['role'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
+			return $post_id;
+		}
+		if ( ! isset( $_POST['mobile'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
+			return $post_id;
+		}
+		if ( ! isset( $_POST['telephone'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
+			return $post_id;
+		}
 
 		// Now that we're authenticated, time to save the data.
 		// This sanitizes the data from the field and saves it into an array $events_meta.
 		$events_meta['group'] = esc_textarea( $_POST['group'] );
 		$events_meta['order'] = esc_textarea( $_POST['order'] );
+		$events_meta['role'] = esc_textarea( $_POST['role'] );
+		$events_meta['mobile'] = esc_textarea( $_POST['mobile'] );
+		$events_meta['telephone'] = esc_textarea( $_POST['telephone'] );
 
 		// Cycle through the $events_meta array.
 		// Note, in this example we just have one item, but this is helpful if you have multiple.

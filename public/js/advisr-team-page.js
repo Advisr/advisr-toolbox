@@ -98,12 +98,15 @@ class AdvisrTeamPage extends HTMLElement {
 		// return only used properties
 		return {
 			id: item.id || '',
-			name: item.name,
+			name: item.name || '',
 			avatar_url: item.avatar_url || 'https://advisr.com.au/storage/users/default.png', // @TODO replace this further up the chain
-			mobile: item.mobile,
-			role: item.role,
+			mobile: item.mobile || '',
+			role: item.role || '',
 			profile_url: item.profile_url,
-			telephone: item.telephone,
+			telephone: item.telephone || '',
+			rating: item.rating || null,
+			description: item.description || '',
+			reviews: item.reviews || []
 		}
 	}
 
@@ -207,157 +210,105 @@ class AdvisrTeamPage extends HTMLElement {
 		if (mergedTeamMembers && mergedTeamMembers.length > 0) {
 			membersHtml += `<div class="container"><div class="row">`;
 			mergedTeamMembers.forEach((member) => {
+
 				membersHtml += `<div class="team-member-item col-12 col-sm-6 col-md-4 col-lg-3 mb-5">`;
 				const imageHtml = member.avatar_url ? `<div class="team-member-image embed-responsive embed-responsive-1by1 mb-4"><img src="${member.avatar_url}" class="image img-fluid embed-responsive-item"></div>` : '';
 				const nameHtml = member.name ? `<div class="team-member-name mb-4"><h2 class="name m-0">${member.name}</h2></div>` : '';
 				const roleHtml = member.role ? `<div class="team-member-role mb-2"><p class="role">${member.role}</p></div>` : '';
-				const mobileHtml = member.mobile ? `<div class="team-member-mobile mb-2"><p class="mobile d-flex align-items-center"><i class="fa fa-mobile"></i>&nbsp;${member.mobile}</p></div>` : '';
-				const telephoneHtml = member.telephone ? `<div class="team-member-telephone mb-2"><p class="telephone mobile d-flex align-items-center"><i class="fa fa-phone"></i>&nbsp;${member.telephone}</p></div>` : '';
 				const launchModalHtml = member.id ? `<a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a>` : '';
-				membersHtml += imageHtml  + nameHtml + roleHtml + mobileHtml + telephoneHtml + launchModalHtml;
+				membersHtml += imageHtml  + nameHtml + roleHtml + launchModalHtml;
 				membersHtml += '</div>';
 				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window">
-								<div class="bg-light position-relative">
-									<div class="container">
-										<div class="row justify-content-center">
-											<!-- Contact Form -->
-											<form class="js-validate card p-5 confirm-send-message" id="{{$user->slug}}" method="POST" action="{{ route('lead.store') }}" onsubmit="document.getElementById('submit-lead-button-{{$user->slug}}').disabled = true;document.getElementById('submit-lead-spinner-{{$user->slug}}').classList.remove('d-none');">
-												<div class="float-right">
-													<button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
-														<span aria-hidden="true">×</span>
-													</button>
-												</div>
-												<div class="text-center mb-4">
-													<h3 class="h4">Drop us a message</h3>
-													<p>Find the right solution</p>
-												</div>
+									<div class="bg-light position-relative">
+										<div class="container">
+											<div class="row justify-content-center">
+												<div class="col-12 p-5">
+													<div class="float-right">
+														<button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
+															<span aria-hidden="true">×</span>
+														</button>
+													</div>
+								
+													<div class="row">
+														<div class="col-lg-4 mb-7 mb-lg-0 pr-lg-5 ">
+															<div class="position-relative u-xl-avatar d-inline-block avatar-wrapper">
+																<img class="rounded-circle u-sm-avatar--bordered"
+																	style="width: 160px; height: 160px; object-fit: cover;"
+																	src="${member.avatar_url}">
+															</div>
+							
+							
+														</div>
+														<div class="col-lg-8 mb-7 mb-lg-0 pr-lg-5 ">
+															<!-- User Details -->
+															<div class="mb-0">
+																<div class="d-lg-flex align-items-center">
+																	<h2 class="h4 m-0 mb-2">${member.name}</h2> 
+																</div>
+																${member.role}
+																</div>
+															<!-- End User Details -->
+							
+															<!-- Collections -->
+															<ul class="list-inline d-flex align-items-center my-1 mx-0">
+																<li class="list-inline-item m-0">
+																	<div class="d-flex align-items-center" id="gotoReviews" style="cursor:pointer;">
+																	
+																		${this.getStarRatingHtml(member.rating)}
+							
+																		<div class="text-secondary ml-2">
+																		(${member.reviews ? member.reviews.length : 0} ${member.reviews.length === 1 ? 'review' : 'reviews'})
+																		</div>
+																	</div>
+																</li>
+															</ul>
+															<div class="my-3 d-flex justify-content-start">
+																<a class="text-primary click-mobile mr-3" href="tel:${member.mobile}">
+																	<i class="fa fa-mobile mr-1"></i> ${member.mobile}
+																</a>
+																<a class="text-primary click-telephone mr-3" href="tel:${member.telephone}">
+																	<i class="fa fa-phone mr-1"></i> ${member.telephone}
+																</a>
+															</div>
+															<div class="d-flex justify-content-start">
+																<a type="button" href="${member.profile_url}#reviews" class="btn btn-primary btn-sm mt-2 add-review mr-3 py-2 px-3">Write a Review
+																</a>
+																<a type="button" href="${member.profile_url}" class="btn btn-primary btn-sm mt-2 add-review py-2 px-3">Send a message
+																</a>
+															</div>
+															<p class="mt-3">${this.removeTags(member.description)}</p>
+														</div>
+													</div>
+							
+													<hr class="my-7">
+							
+													<div class="row">
+														<div class="col-12">
+															<div id="reviews" class=" mb-3">
+																<h3 class="h4 mt-2 mb-4 text-center">
+																	Reviews
+																	<span class="text-muted font-size-1">
+																		(${member.reviews ? member.reviews.length : 0} ${member.reviews.length === 1 ? 'review' : 'reviews'})
+																	</span>
+																</h3>
+																${this.getReviewsHtml(member.reviews)}
 
-												<div class="row mx-gutters-2">
-													<input type="hidden" name="userId" value="{{ $user->id }}">
-													<div class="col-md-6 mb-3">
-														<!-- Input -->
-														<label class="sr-only">First name</label>
-
-														<div class="js-form-message">
-															<div class="input-group">
-																<input type="text" class="form-control" name="firstName" placeholder="First name" aria-label="First name" required
-																	data-msg="Please enter your first name."
-																	data-error-class="u-has-error"
-																	data-success-class="u-has-success">
 															</div>
 														</div>
-														<!-- End Input -->
-													</div>
-
-													<div class="col-md-6 mb-3">
-														<!-- Input -->
-														<label class="sr-only">Last name</label>
-
-														<div class="js-form-message">
-															<div class="input-group">
-																<input type="text" class="form-control" name="lastName" placeholder="Last name" aria-label="Last name" required
-																	data-msg="Please enter your last name."
-																	data-error-class="u-has-error"
-																	data-success-class="u-has-success">
-															</div>
-														</div>
-														<!-- End Input -->
-													</div>
-
-													<div class="w-100"></div>
-
-													<div class="col-md-6 mb-3">
-														<!-- Input -->
-														<label class="sr-only">Email address</label>
-
-														<div class="js-form-message">
-															<div class="input-group">
-																<input type="text" class="form-control" name="email" id="email-field{{ $user->id }}" placeholder="Email address" aria-label="Email address" required
-																	data-msg="Please enter a valid email address."
-																	data-error-class="u-has-error"
-																	data-success-class="u-has-success"
-																	oninput="checkEmail('email-field{{ $user->id }}')">
-															</div>
-														</div>
-														<!-- End Input -->
-													</div>
-
-													<div class="col-md-6 mb-3">
-														<!-- Input -->
-														<label class="sr-only">Phone number</label>
-
-														<div class="js-form-message">
-															<div class="input-group">
-																<input type="text" class="form-control" name="phoneNumber" placeholder="Phone number"       aria-label="Company" required
-																	data-msg="Please enter phone number."
-																	data-error-class="u-has-error"
-																	data-success-class="u-has-success">
-															</div>
-														</div>
-														<!-- End Input -->
 													</div>
 												</div>
-
-												<!-- Input -->
-												<div class="mb-5">
-													<label class="sr-only">How can we help you?</label>
-
-													<div class="js-form-message input-group">
-														<textarea class="form-control" rows="4" name="description" placeholder="Hi there, I would like help with insurance for..." aria-label="Hi there, I would like help with insurance for..." required
-																data-msg="Please enter a reason."
-																data-error-class="u-has-error"
-																data-success-class="u-has-success"></textarea>
-													</div>
-												</div>
-												<!-- End Input -->
-
-												<!-- Checkbox -->
-												<div class="js-form-message mb-3">
-													<div class="custom-control custom-checkbox d-flex align-items-center text-muted">
-														<input type="checkbox" class="custom-control-input" id="termsCheckbox{{ $user->id }}" name="termsCheckbox" required
-															data-msg="Please accept our Terms and Conditions."
-															data-error-class="u-has-error"
-															data-success-class="u-has-success">
-														<label class="custom-control-label" for="termsCheckbox{{ $user->id }}">
-															<small>
-																I agree to the
-																<a class="link-muted" href="{{ config('app.url') }}/privacy-policy/#TermsAndConditions">Terms and Conditions</a>
-															</small>
-														</label>
-													</div>
-												</div>
-												<!-- End Checkbox -->
-
-												<!-- Checkbox -->
-												<div class="js-form-message mb-5" id="subscription-section{{ $user->id }}">
-													<div class="custom-control custom-checkbox d-flex align-items-center text-muted">
-														<input type="checkbox" class="custom-control-input" id="newsletterCheckbox{{ $user->id }}" name="newsletterCheckbox" value="{{ HubSpotSubscriptionService::SUBSCRIPTION_ADVISR_NEWSLETTER }}">
-														<label class="custom-control-label" for="newsletterCheckbox{{ $user->id }}">
-															<small>I want to receive the Advisr Business Insights Newsletter</small>
-														</label>
-													</div>
-												</div>
-												<!-- End Checkbox -->
-
-												<input type="hidden" name="recaptcha" id="recaptcha{{$user->id}}" value="">
-
-												<button type="submit" class="btn btn-primary transition-3d-hover submit-lead" id="submit-lead-button-{{$user->slug}}">
-													<span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="submit-lead-spinner-{{$user->slug}}"></span>
-													Submit
-												</button>
-											</form>
-											<!-- End Contact Form -->
+												<!-- Contact Form -->
+							
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>`;
+								</div>`;
 			})
 			membersHtml += '</div></div>';
 		} else {
 			membersHtml = '<p>No brokers found.</p>';
 		}
 
-console.log(jQuery.fn.popover);
 		fragment.querySelector('#members-wrapper').innerHTML = membersHtml;
 		const component = document.querySelector('advisr-team-page');
 		component.appendChild(fragment);
@@ -367,6 +318,66 @@ console.log(jQuery.fn.popover);
 			jQuery.HSCore.components.HSModalWindow.init("[data-modal-target]", ".js-modal-window", { autonomous: true}); 
 		})
 
+	}
+
+	// strip html tags
+	removeTags = input => input ? input.toString().replace( /(<([^>]+)>)/ig, '') : '';
+
+	// calculate time since in a nice readable format
+	timeSince = date => {
+		var seconds = Math.floor((new Date() - Date.parse(date)) / 1000);
+		var interval = Math.floor(seconds / 31536000);
+		if (interval > 1) {
+			return interval + " years ago";
+		} else if (interval === 1) {
+			return interval + " year ago";
+		}
+		interval = Math.floor(seconds / 2592000);
+		if (interval > 1) {
+			return interval + " months ago";
+		}
+		interval = Math.floor(seconds / 86400);
+		if (interval > 1) {
+			return interval + " days ago";
+		}
+		interval = Math.floor(seconds / 3600);
+		if (interval > 1) {
+			return interval + " hours ago";
+		}
+		interval = Math.floor(seconds / 60);
+		if (interval > 1) {
+			return interval + " minutes ago";
+		}
+		return Math.floor(seconds) + " seconds ago";
+	}
+
+	// generate rating markup
+	getStarRatingHtml = (rating) => {
+		let ratingHtml = `<ul class="list-inline small m-0">`;
+		for (var i = 0; i < rating; i++) {
+			ratingHtml += `<li class="list-inline-item m-0"><span class="fa fa-star text-warning"></span> </li>`;
+		}
+		for (var j = rating; j < 5; j++) {
+			ratingHtml += `<li class="list-inline-item m-0"><span class="fa fa-star text-white"></span></li>`;
+		}
+		ratingHtml += `</ul>`;
+		return ratingHtml;
+	}
+	
+	// generate reviews markup
+	getReviewsHtml = (reviews) => {			
+		let reviewsHtml = `<div class="review-wrapper mt-3">`;
+		if (reviews && reviews.length > 0) {	
+			reviews.reverse().forEach((review) => {
+				reviewsHtml += `<div class="review-item mb-5"><div class="d-flex flex-row justify-content-between"><h4 class="reviewer-name m-0 mb-2">${review.reviewer}</h4><span class="small review-date">${this.timeSince(review.date)}</span></div>`;
+				reviewsHtml += this.getStarRatingHtml(review.rating);
+				reviewsHtml += `<p class="mt-2">${review.comment}</p></div>`
+			})
+		} else {
+			reviewsHtml += 'No reviews.';
+		}
+		reviewsHtml += '</div>';
+		return reviewsHtml;
 	}
 
 	async fetchFromAdvisrApi(apikey) {
@@ -388,7 +399,6 @@ console.log(jQuery.fn.popover);
 			console.log("Error");
 		}
 	}
-
 }
 
 customElements.define('advisr-team-page', AdvisrTeamPage);

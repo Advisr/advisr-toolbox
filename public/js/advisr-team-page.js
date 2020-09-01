@@ -214,9 +214,10 @@ class AdvisrTeamPage extends HTMLElement {
 				membersHtml += `<div class="team-member-item col-12 col-sm-6 col-md-4 col-lg-3 mb-5">`;
 				const imageHtml = member.avatar_url ? `<div class="team-member-image embed-responsive embed-responsive-1by1 mb-4"><img src="${member.avatar_url}" class="image img-fluid embed-responsive-item"></div>` : '';
 				const nameHtml = member.name ? `<div class="team-member-name mb-4"><h2 class="name m-0">${member.name}</h2></div>` : '';
+				const starRatingHtml = member.rating ? this.getStarRatingHtml(member.rating) : '';
 				const roleHtml = member.role ? `<div class="team-member-role mb-2"><p class="role">${member.role}</p></div>` : '';
 				const launchModalHtml = member.id ? `<a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a>` : '';
-				membersHtml += imageHtml  + nameHtml + roleHtml + launchModalHtml;
+				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml;
 				membersHtml += '</div>';
 				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window">
 									<div class="bg-light position-relative">
@@ -230,7 +231,7 @@ class AdvisrTeamPage extends HTMLElement {
 													</div>
 								
 													<div class="row">
-														<div class="col-lg-4 mb-7 mb-lg-0 pr-lg-5 ">
+														<div class="col-sm-4 mb-7 mb-lg-0 pr-lg-5">
 															<div class="position-relative u-xl-avatar d-inline-block avatar-wrapper">
 																<img class="rounded-circle u-sm-avatar--bordered"
 																	style="width: 160px; height: 160px; object-fit: cover;"
@@ -239,7 +240,7 @@ class AdvisrTeamPage extends HTMLElement {
 							
 							
 														</div>
-														<div class="col-lg-8 mb-7 mb-lg-0 pr-lg-5 ">
+														<div class="col-sm-8 mb-7 mb-lg-0 pr-lg-5">
 															<!-- User Details -->
 															<div class="mb-0">
 																<div class="d-lg-flex align-items-center">
@@ -263,12 +264,16 @@ class AdvisrTeamPage extends HTMLElement {
 																</li>
 															</ul>
 															<div class="my-3 d-flex justify-content-start">
-																<a class="text-primary click-mobile mr-3" href="tel:${member.mobile}">
-																	<i class="fa fa-mobile mr-1"></i> ${member.mobile}
-																</a>
-																<a class="text-primary click-telephone mr-3" href="tel:${member.telephone}">
-																	<i class="fa fa-phone mr-1"></i> ${member.telephone}
-																</a>
+																${member.mobile && `
+																	<a class="text-primary click-mobile mr-3" href="tel:${member.mobile}">
+																		<i class="fa fa-mobile mr-1"></i> ${member.mobile}
+																	</a>
+																`}
+																${member.telephone && `
+																	<a class="text-primary click-telephone mr-3" href="tel:${member.telephone}">
+																		<i class="fa fa-phone mr-1"></i> ${member.telephone}
+																	</a>
+																`}																
 															</div>
 															<div class="d-flex justify-content-start">
 																<a type="button" href="${member.profile_url}#reviews" class="btn btn-primary btn-sm mt-2 add-review mr-3 py-2 px-3">Write a Review
@@ -285,7 +290,7 @@ class AdvisrTeamPage extends HTMLElement {
 													<div class="row">
 														<div class="col-12">
 															<div id="reviews" class=" mb-3">
-																<h3 class="h4 mt-2 mb-4 text-center">
+																<h3 class="h4 mt-2 mb-5 text-center">
 																	Reviews
 																	<span class="text-muted font-size-1">
 																		(${member.reviews ? member.reviews.length : 0} ${member.reviews.length === 1 ? 'review' : 'reviews'})
@@ -358,7 +363,7 @@ class AdvisrTeamPage extends HTMLElement {
 			ratingHtml += `<li class="list-inline-item m-0"><span class="fa fa-star text-warning"></span> </li>`;
 		}
 		for (var j = rating; j < 5; j++) {
-			ratingHtml += `<li class="list-inline-item m-0"><span class="fa fa-star text-white"></span></li>`;
+			ratingHtml += `<li class="list-inline-item m-0"><span class="fa fa-star-o"></span></li>`;
 		}
 		ratingHtml += `</ul>`;
 		return ratingHtml;

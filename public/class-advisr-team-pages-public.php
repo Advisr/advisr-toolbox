@@ -96,12 +96,18 @@ class Advisr_Team_Pages_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advisr-team-pages-public.js', array( 'jquery' ), $this->version, false );
-		
 		// Register the Advisr Team Page script file for enqueueing in function team_pages_member_post_type()
-		// wp_register_script('advisr-reviews', 'https://advisr.com.au/js/advisr-team-page.js', array(), 1.0, true);
+
+		wp_register_script('advisr-reviews', 'https://advisr.com.au/js/advisr-team-page.js', array(), 1.0, true);
 		// @TODO remove this
-		wp_register_script( 'advisr-reviews', plugin_dir_url( __FILE__ ) . 'js/advisr-team-page.js', array(), 1.0, true );
+		// wp_register_script( 'advisr-reviews', plugin_dir_url( __FILE__ ) . 'js/advisr-team-page.js', array(), 1.0, true );
+		
+		// Scripts for modal window
+		wp_enqueue_script( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'custombox', 'https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.3/custombox.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'hs-core', plugin_dir_url( __FILE__ ) . 'js/vendor/hs.core.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'hs-modal-window', plugin_dir_url( __FILE__ ) . 'js/vendor/hs.modal-window.js', array( 'jquery' ), $this->version, false );
+		
 	}
 
 	/**
@@ -161,11 +167,11 @@ class Advisr_Team_Pages_Public {
 			'membersBefore' => $this->advisr_team_page_options['members-before'] === 1 ? true : false,
 			'membersAfter' => $this->advisr_team_page_options['members-after']=== 1 ? true : false,
 		);
-
+		
+		// pass results from WP_Query to js
 		wp_localize_script( 'advisr-reviews', 'scriptParams', $script_params );
-
 		wp_enqueue_script( 'advisr-reviews' );
-
+		
 		return $result;            
 	}
 

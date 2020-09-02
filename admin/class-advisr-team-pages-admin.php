@@ -311,40 +311,6 @@ class Advisr_Team_Pages_Admin {
 	/**
 	 * Adds a metabox to the right side of the screen under the Publish box
 	 */
-	public function add_group_metaboxes() {
-
-		function team_member_group_cb() {
-			global $post;
-	
-			// Nonce field to validate form request came from current site
-			wp_nonce_field( basename( __FILE__ ), 'event_fields' );
-	
-			// Get the group data if it's already been entered
-			$group = get_post_meta( $post->ID, 'group', true );
-	
-			// Output the field
-			echo '<p class="">Choose to group this member before or after Advisr brokers</p>
-				<select name="group" id="group" required class="widefat">
-					<option value="">Select one</option>
-					<option value="before" ' .  ($group == 'before' ? 'selected' : '') . '>Before brokers</option>
-					<option value="after" ' .  ($group == 'after' ? 'selected' : '') . '>After brokers</option>
-				</select>
-			';
-		}
-		
-		add_meta_box(
-			'group',
-			'Group',
-			'team_member_group_cb',
-			'advisr-team-member',
-			'side',
-			'default'
-		);
-	}
-
-	/**
-	 * Adds a metabox to the right side of the screen under the Publish box
-	 */
 	public function add_order_metaboxes() {
 
 		/**
@@ -360,7 +326,7 @@ class Advisr_Team_Pages_Admin {
 			$order = get_post_meta( $post->ID, 'order', true );
 
 			// Output the field
-			echo '<p>Specify order of this team member within the \'before brokers\' or \'after brokers\' group</p>
+			echo '<p>Specify order position of this team member</p>
 				<input type="number" name="order" required placeholder="eg. 12" value="' . esc_textarea( $order )  . '" class="widefat">';
 		}
 
@@ -386,9 +352,6 @@ class Advisr_Team_Pages_Admin {
 
 		// Verify this came from the our screen and with proper authorization,
 		// because save_post can be triggered at other times.
-		if ( ! isset( $_POST['group'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
-			return $post_id;
-		}
 		if ( ! isset( $_POST['order'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
 			return $post_id;
 		}
@@ -404,7 +367,6 @@ class Advisr_Team_Pages_Admin {
 
 		// Now that we're authenticated, time to save the data.
 		// This sanitizes the data from the field and saves it into an array $events_meta.
-		$events_meta['group'] = esc_textarea( $_POST['group'] );
 		$events_meta['order'] = esc_textarea( $_POST['order'] );
 		$events_meta['role'] = esc_textarea( $_POST['role'] );
 		$events_meta['mobile'] = esc_textarea( $_POST['mobile'] );
@@ -433,5 +395,4 @@ class Advisr_Team_Pages_Admin {
 			}
 		endforeach;
 	}
-
 }

@@ -74,7 +74,10 @@ class Advisr_Team_Pages_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-team-pages-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'custombox', 'https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.2/custombox.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'fontawesome', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), $this->version, 'all' );
+		
 	}
 
 	/**
@@ -149,7 +152,7 @@ class Advisr_Team_Pages_Public {
 					'role' => get_post_meta(get_the_ID(), 'role', true),
 					'mobile' => get_post_meta(get_the_ID(), 'mobile', true),
 					'telephone' => get_post_meta(get_the_ID(), 'telephone', true),
-					'group' => get_post_meta(get_the_ID(), 'group', true),
+					// 'group' => get_post_meta(get_the_ID(), 'group', true),
 					'order' => get_post_meta(get_the_ID(), 'order', true)
 				));
 

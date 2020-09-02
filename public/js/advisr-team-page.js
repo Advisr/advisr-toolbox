@@ -112,23 +112,18 @@ class AdvisrTeamPage extends HTMLElement {
 
 	render(advisrBrokerageWithBrokersAndReviews, teamMembers = [], membersBefore = false, membersAfter = false) {
 
-		const advisrBrokers = advisrBrokerageWithBrokersAndReviews.brokers;
-		const reviews = advisrBrokerageWithBrokersAndReviews.reviews;
-
-		const mergedTeamMembers = [
-			...teamMembers.filter(item => membersBefore && item.group === 'before').map(item => this.sanitiseTeamMember(item)),
-			...advisrBrokers.map(item => this.sanitiseTeamMember(item)),
-			...teamMembers.filter(item => membersAfter && item.group === 'after').map(item => this.sanitiseTeamMember(item)),
-		];
+		const mergedTeamMembers = advisrBrokerageWithBrokersAndReviews.brokers.map(broker => this.sanitiseTeamMember(broker));
+		
+		// insert client team members into main array
+		teamMembers.forEach(teamMember => {
+			this.insertAt(mergedTeamMembers, teamMember.order, this.sanitiseTeamMember(teamMember))
+		})
 
 		if (!mergedTeamMembers) {
 			fragment.querySelector('#members-wrapper').innerHTML = 'No brokers found.';
 		}
 
 		const template = document.createElement('template');
-		template.innerHTML += `<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"></link>`;
-		template.innerHTML += `<link rel="stylesheet" href="https://advisr.com.au/vendor/custombox/dist/custombox.min.css">`;
-		template.innerHTML += `<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">`;
 
 		template.innerHTML += `
 		<style>
@@ -213,9 +208,9 @@ class AdvisrTeamPage extends HTMLElement {
 
 				membersHtml += `<div class="team-member-item col-12 col-sm-6 col-md-4 col-lg-3 mb-5">`;
 				const imageHtml = member.avatar_url ? `<div class="team-member-image embed-responsive embed-responsive-1by1 mb-4"><img src="${member.avatar_url}" class="image img-fluid embed-responsive-item"></div>` : '';
-				const nameHtml = member.name ? `<div class="team-member-name mb-4"><h2 class="name m-0">${member.name}</h2></div>` : '';
+				const nameHtml = member.name ? `<div class="team-member-name mb-3"><h4 class="name m-0">${member.name}</h4></div>` : '';
 				const starRatingHtml = member.rating ? this.getStarRatingHtml(member.rating) : '';
-				const roleHtml = member.role ? `<div class="team-member-role mb-2"><p class="role">${member.role}</p></div>` : '';
+				const roleHtml = member.role ? `<div class="team-member-role my-2"><p class="role">${member.role}</p></div>` : '';
 				const launchModalHtml = member.id ? `<a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a>` : '';
 				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml;
 				membersHtml += '</div>';
@@ -231,7 +226,7 @@ class AdvisrTeamPage extends HTMLElement {
 													</div>
 								
 													<div class="row">
-														<div class="col-sm-4 mb-7 mb-lg-0 pr-lg-5">
+														<div class="col-sm-4 mb-7 mb-lg-0">
 															<div class="position-relative u-xl-avatar d-inline-block avatar-wrapper">
 																<img class="rounded-circle u-sm-avatar--bordered"
 																	style="width: 160px; height: 160px; object-fit: cover;"
@@ -240,13 +235,13 @@ class AdvisrTeamPage extends HTMLElement {
 							
 							
 														</div>
-														<div class="col-sm-8 mb-7 mb-lg-0 pr-lg-5">
+														<div class="col-sm-8 mb-7 mb-lg-0">
 															<!-- User Details -->
 															<div class="mb-0">
 																<div class="d-lg-flex align-items-center">
-																	<h2 class="h4 m-0 mb-2">${member.name}</h2> 
+																	<h5 class="m-0 mb-2">${member.name}</h2> 
 																</div>
-																${member.role}
+																<span class="role">${member.role}</span>
 																</div>
 															<!-- End User Details -->
 							
@@ -276,21 +271,21 @@ class AdvisrTeamPage extends HTMLElement {
 																`}																
 															</div>
 															<div class="d-flex justify-content-start">
-																<a type="button" href="${member.profile_url}#reviews" class="btn btn-primary btn-sm mt-2 add-review mr-3 py-2 px-3">Write a Review
+																<a type="button" href="${member.profile_url}#reviews" class="btn btn-primary my-2 add-review mr-3 py-2 px-3">Write a Review
 																</a>
-																<a type="button" href="${member.profile_url}" class="btn btn-primary btn-sm mt-2 add-review py-2 px-3">Send a message
+																<a type="button" href="${member.profile_url}" class="btn btn-primary my-2 send-message py-2 px-3">Send a message
 																</a>
 															</div>
 															<p class="mt-3">${this.removeTags(member.description)}</p>
 														</div>
 													</div>
 							
-													<hr class="my-7">
+													<hr class="my-5">
 							
 													<div class="row">
 														<div class="col-12">
 															<div id="reviews" class=" mb-3">
-																<h3 class="h4 mt-2 mb-5 text-center">
+																<h3 class="h3 mt-2 mb-5 text-center">
 																	Reviews
 																	<span class="text-muted font-size-1">
 																		(${member.reviews ? member.reviews.length : 0} ${member.reviews.length === 1 ? 'review' : 'reviews'})
@@ -323,6 +318,11 @@ class AdvisrTeamPage extends HTMLElement {
 			jQuery.HSCore.components.HSModalWindow.init("[data-modal-target]", ".js-modal-window", { autonomous: true}); 
 		})
 
+	}
+
+	// insert profile in specific position
+	insertAt(array, index, item) {
+		array.splice(index - 1, 0, item);
 	}
 
 	// strip html tags
@@ -374,9 +374,9 @@ class AdvisrTeamPage extends HTMLElement {
 		let reviewsHtml = `<div class="review-wrapper mt-3">`;
 		if (reviews && reviews.length > 0) {	
 			reviews.reverse().forEach((review) => {
-				reviewsHtml += `<div class="review-item mb-5"><div class="d-flex flex-row justify-content-between"><h4 class="reviewer-name m-0 mb-2">${review.reviewer}</h4><span class="small review-date">${this.timeSince(review.date)}</span></div>`;
+				reviewsHtml += `<div class="review-item mb-5"><div class="d-flex flex-row justify-content-between"><h5 class="reviewer-name m-0 mb-2">${review.reviewer}</h5><span class="small review-date">${this.timeSince(review.date)}</span></div>`;
 				reviewsHtml += this.getStarRatingHtml(review.rating);
-				reviewsHtml += `<p class="mt-2">${review.comment}</p></div>`
+				reviewsHtml += `<p class="mt-3">${review.comment}</p></div>`
 			})
 		} else {
 			reviewsHtml += 'No reviews.';

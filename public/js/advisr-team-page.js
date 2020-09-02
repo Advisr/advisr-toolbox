@@ -8,85 +8,16 @@ class AdvisrTeamPage extends HTMLElement {
 	}
 
 	async connectedCallback() {
+		if (jQuery('#members-wrapper').length != 0) {
+			return;
+		}
+
 		if (!this.apikey) {
 			throw new Error('API token not provided');
 		}
 
 		try {
-			// @TODO change this
 			this.advisrBrokerageWithBrokersAndReviews = await this.fetchFromAdvisrApi(this.apikey);
-			// this.advisrBrokerageWithBrokersAndReviews = {
-			// 	"id": 3508,
-			// 	"name": "Brokerage Test 3",
-			// 	"first_name": "Brokerage",
-			// 	"last_name": "Test3",
-			// 	"rating": 4,
-			// 	"description": "<p>fixed</p>",
-			// 	"abn": null,
-			// 	"acn": null,
-			// 	"afsl": null,
-			// 	"ar_number": null,
-			// 	"car_number": null,
-			// 	"telephone": null,
-			// 	"mobile": null,
-			// 	"company": null,
-			// 	"country": null,
-			// 	"state": "NSW",
-			// 	"city": null,
-			// 	"address_1": null,
-			// 	"address_2": null,
-			// 	"postcode": "2031",
-			// 	"views": null,
-			// 	"slug": "brokerage-test-3",
-			// 	"website_url": null,
-			// 	"linkedin_url": null,
-			// 	"video_url": null,
-			// 	"avatar_url": "https://staging.advisr.com.au/storage/users/default.png",
-			// 	"banner_url": null,
-			// 	"profile_url": "https://staging.advisr.com.au/brokerage-test-3",
-			// 	"brokers": [
-			// 		{
-			// 			"id": 1991,
-			// 			"name": "Aaron Macdonald",
-			// 			"first_name": "Aaron",
-			// 			"last_name": "Macdonald",
-			// 			"telephone": "1300 268 371",
-			// 			"mobile": "0422 354 334",
-			// 			"avatar_url": "https://staging.advisr.com.au/storage/users/Aaron-Macdonald_Business-Insurance-Cover-Services-1.jpg",
-			// 			"profile_url": "https://staging.advisr.com.au/aaron-macdonald"
-			// 		},
-			// 		{
-			// 			"id": 1728,
-			// 			"name": "Abby Li",
-			// 			"first_name": "Abby",
-			// 			"last_name": "Li",
-			// 			"telephone": "02 9261 1571",
-			// 			"mobile": "0449 636 278",
-			// 			"avatar_url": "https://staging.advisr.com.au/storage/users/default.png",
-			// 			"profile_url": "https://staging.advisr.com.au/abby-li"
-			// 		}
-			// 	],
-			// 	"reviews": [
-			// 		{
-			// 			"id": 1701,
-			// 			"rating": 3,
-			// 			"reviewer": "Reviewer's name",
-			// 			"comment": "comment",
-			// 			"date": "2020-08-28 12:17:52",
-			// 			"reviewee_id": 1991,
-			// 			"reviewee": "Aaron Macdonald"
-			// 		},
-			// 		{
-			// 			"id": 1702,
-			// 			"rating": 5,
-			// 			"reviewer": "evthedev",
-			// 			"comment": "asdasd",
-			// 			"date": "2020-08-28 12:18:23",
-			// 			"reviewee_id": 1728,
-			// 			"reviewee": "Abby Li"
-			// 		}
-			// 	]
-			// }
 		} catch (error) {
 			throw new Error(error);
 		}

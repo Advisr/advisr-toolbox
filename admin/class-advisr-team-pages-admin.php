@@ -215,8 +215,6 @@ class Advisr_Team_Pages_Admin {
 
 		//Cleanup
 		$valid['apikey'] = (isset($input['apikey']) && !empty($input['apikey'])) ? sanitize_text_field($input['apikey']) : '';
-		$valid['members-before'] = (isset($input['members-before']) && !empty($input['members-before'])) ? 1: 0;
-		$valid['members-after'] = (isset($input['members-after']) && !empty($input['members-after'])) ? 1 : 0;
 
 		return $valid;
 	}

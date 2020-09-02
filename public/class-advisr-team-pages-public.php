@@ -166,9 +166,7 @@ class Advisr_Team_Pages_Public {
 				
 		$script_params = array(
 			'teamMembers' => $team_members,
-			'apikey' => $this->advisr_team_page_options['apikey'],
-			'membersBefore' => $this->advisr_team_page_options['members-before'] === 1 ? true : false,
-			'membersAfter' => $this->advisr_team_page_options['members-after']=== 1 ? true : false,
+			'apikey' => $this->advisr_team_page_options['apikey']
 		);
 		
 		// pass results from WP_Query to js

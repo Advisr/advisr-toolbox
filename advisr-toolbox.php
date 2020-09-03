@@ -10,18 +10,18 @@
  *
  * @link              https://advisr.com.au
  * @since             1.0.0
- * @package           Advisr_Team_Pages
+ * @package           Advisr_Toolbox
  *
  * @wordpress-plugin
- * Plugin Name:       Advisr Team Pages
+ * Plugin Name:       Advisr Toolbox
  * Plugin URI:        https://advisr.com.au
- * Description:       Create and configure your company's team members.
+ * Description:       Create and configure your company's Advisr profiles.
  * Version:           1.0.0
- * Author:            Advisr.com.au
+ * Author:            Advisr
  * Author URI:        https://advisr.com.au
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       advisr-team-pages
+ * Text Domain:       advisr-toolbox
  * Domain Path:       /languages
  */
 
@@ -35,34 +35,34 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ADVISR_TEAM_PAGES_VERSION', '1.0.0' );
+define( 'ADVISR_TOOLBOX_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-advisr-team-pages-activator.php
+ * This action is documented in includes/class-advisr-toolbox-activator.php
  */
-function activate_advisr_team_pages() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-advisr-team-pages-activator.php';
-	Advisr_Team_Pages_Activator::activate();
+function activate_advisr_toolbox() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-advisr-toolbox-activator.php';
+	Advisr_Toolbox_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-advisr-team-pages-deactivator.php
+ * This action is documented in includes/class-advisr-toolbox-deactivator.php
  */
-function deactivate_advisr_team_pages() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-advisr-team-pages-deactivator.php';
-	Advisr_Team_Pages_Deactivator::deactivate();
+function deactivate_advisr_toolbox() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-advisr-toolbox-deactivator.php';
+	Advisr_Toolbox_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_advisr_team_pages' );
-register_deactivation_hook( __FILE__, 'deactivate_advisr_team_pages' );
+register_activation_hook( __FILE__, 'activate_advisr_toolbox' );
+register_deactivation_hook( __FILE__, 'deactivate_advisr_toolbox' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-advisr-team-pages.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-advisr-toolbox.php';
 
 /**
  * Begins execution of the plugin.
@@ -73,10 +73,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-advisr-team-pages.php';
  *
  * @since    1.0.0
  */
-function run_advisr_team_pages() {
+function run_advisr_toolbox() {
 
-	$plugin = new Advisr_Team_Pages();
+	$plugin = new Advisr_Toolbox();
 	$plugin->run();
 
 }
-run_advisr_team_pages();
+run_advisr_toolbox();

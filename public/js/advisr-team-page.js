@@ -35,6 +35,7 @@ class AdvisrTeamPage extends HTMLElement {
 			role: item.role || '',
 			profile_url: item.profile_url,
 			telephone: item.telephone || '',
+			email: item.email || '',
 			rating: item.rating || null,
 			description: item.description || '',
 			reviews: item.reviews || []
@@ -141,8 +142,10 @@ class AdvisrTeamPage extends HTMLElement {
 				const imageHtml = member.avatar_url ? `<div class="team-member-image embed-responsive embed-responsive-1by1 mb-4"><img src="${member.avatar_url}" class="image img-fluid embed-responsive-item"></div>` : '';
 				const nameHtml = member.name ? `<div class="team-member-name mb-3"><h4 class="name m-0">${member.name}</h4></div>` : '';
 				const starRatingHtml = member.rating ? this.getStarRatingHtml(member.rating) : '';
-				const roleHtml = member.role ? `<div class="team-member-role my-2"><p class="role">${member.role}</p></div>` : '';
+				const roleHtml = member.role ? `<div class="team-member-role my-2"><p class="role mb-0">${member.role}</p></div>` : '';
 				const launchModalHtml = member.id ? `<a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a>` : '';
+				const enquireHtml = member.email<a type="button" href="${member.profile_url}#reviews" class="btn btn-primary my-2 add-review mr-3 py-2 px-3">Write a Review
+																</a>
 				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml;
 				membersHtml += '</div>';
 				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window">

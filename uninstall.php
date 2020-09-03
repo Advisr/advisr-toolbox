@@ -22,7 +22,7 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
+ * @package    Advisr_Toolbox
  */
 
 // If uninstall not called from WordPress, then exit.

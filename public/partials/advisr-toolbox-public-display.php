@@ -8,8 +8,8 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/public/partials
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/public/partials
  */
 ?>
 

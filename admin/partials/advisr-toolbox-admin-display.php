@@ -8,8 +8,8 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/admin/partials
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/admin/partials
  */
 ?>
 
@@ -18,7 +18,7 @@
 
     <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 
-    <form method="post" name="advisr_team_page_options" action="options.php">
+    <form method="post" name="advisr_toolbox_options" action="options.php">
 
 		<?php
 			//Grab all options

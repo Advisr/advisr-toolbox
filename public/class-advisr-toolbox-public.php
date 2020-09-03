@@ -6,8 +6,8 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/public
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/public
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/public
  * @author     Ev Ooi <ev@advisr.com.au>
  */
-class Advisr_Team_Pages_Public {
+class Advisr_Toolbox_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -51,7 +51,7 @@ class Advisr_Team_Pages_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-		$this->advisr_team_page_options = get_option($this->plugin_name);
+		$this->advisr_toolbox_options = get_option($this->plugin_name);
 	}
 
 	/**
@@ -65,15 +65,15 @@ class Advisr_Team_Pages_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Advisr_Team_Pages_Loader as all of the hooks are defined
+		 * defined in Advisr_Toolbox_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Advisr_Team_Pages_Loader will then create the relationship
+		 * The Advisr_Toolbox_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-team-pages-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-toolbox-public.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'custombox', 'https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.2/custombox.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'fontawesome', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), $this->version, 'all' );
@@ -91,15 +91,15 @@ class Advisr_Team_Pages_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Advisr_Team_Pages_Loader as all of the hooks are defined
+		 * defined in Advisr_Toolbox_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Advisr_Team_Pages_Loader will then create the relationship
+		 * The Advisr_Toolbox_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		// Register the Advisr Team Page script file for enqueueing in function team_pages_member_post_type()
+		// Register the Advisr Toolbox script file for enqueueing in function team_pages_member_post_type()
 
 		wp_register_script('advisr-reviews', 'https://advisr.com.au/js/advisr-team-page.js', array(), 1.0, true);
 		// @TODO remove this
@@ -152,7 +152,7 @@ class Advisr_Team_Pages_Public {
 					'role' => get_post_meta(get_the_ID(), 'role', true),
 					'mobile' => get_post_meta(get_the_ID(), 'mobile', true),
 					'telephone' => get_post_meta(get_the_ID(), 'telephone', true),
-					// 'group' => get_post_meta(get_the_ID(), 'group', true),
+					'email' => get_post_meta(get_the_ID(), 'email', true),
 					'order' => get_post_meta(get_the_ID(), 'order', true)
 				));
 
@@ -166,7 +166,7 @@ class Advisr_Team_Pages_Public {
 				
 		$script_params = array(
 			'teamMembers' => $team_members,
-			'apikey' => $this->advisr_team_page_options['apikey']
+			'apikey' => $this->advisr_toolbox_options['apikey']
 		);
 		
 		// pass results from WP_Query to js
@@ -176,8 +176,8 @@ class Advisr_Team_Pages_Public {
 		return $result;            
 	}
 
-	public function advisr_team_page_register_shortcodes() {
-		$plugin_public = new Advisr_Team_Pages_Public( $this->get_plugin_name(), $this->get_version() );
+	public function advisr_toolbox_register_shortcodes() {
+		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 		add_shortcode( 'advisr-team-page', array($plugin_public, 'team_pages_member_post_type' ));
 	}
 

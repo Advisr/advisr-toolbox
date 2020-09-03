@@ -9,8 +9,8 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/includes
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/includes
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/includes
  * @author     Ev Ooi <ev@advisr.com.au>
  */
-class Advisr_Team_Pages {
+class Advisr_Toolbox {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Advisr_Team_Pages {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Advisr_Team_Pages_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Advisr_Toolbox_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,12 +67,12 @@ class Advisr_Team_Pages {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'ADVISR_TEAM_PAGES_VERSION' ) ) {
-			$this->version = ADVISR_TEAM_PAGES_VERSION;
+		if ( defined( 'ADVISR_TOOLBOX_VERSION' ) ) {
+			$this->version = ADVISR_TOOLBOX_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'advisr-team-pages';
+		$this->plugin_name = 'advisr-toolbox';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -86,10 +86,10 @@ class Advisr_Team_Pages {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Advisr_Team_Pages_Loader. Orchestrates the hooks of the plugin.
-	 * - Advisr_Team_Pages_i18n. Defines internationalization functionality.
-	 * - Advisr_Team_Pages_Admin. Defines all hooks for the admin area.
-	 * - Advisr_Team_Pages_Public. Defines all hooks for the public side of the site.
+	 * - Advisr_Toolbox_Loader. Orchestrates the hooks of the plugin.
+	 * - Advisr_Toolbox_i18n. Defines internationalization functionality.
+	 * - Advisr_Toolbox_Admin. Defines all hooks for the admin area.
+	 * - Advisr_Toolbox_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -103,33 +103,33 @@ class Advisr_Team_Pages {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-advisr-team-pages-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-advisr-toolbox-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-advisr-team-pages-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-advisr-toolbox-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-advisr-team-pages-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-advisr-toolbox-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-advisr-team-pages-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-advisr-toolbox-public.php';
 
-		$this->loader = new Advisr_Team_Pages_Loader();
+		$this->loader = new Advisr_Toolbox_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Advisr_Team_Pages_i18n class in order to set the domain and to register the hook
+	 * Uses the Advisr_Toolbox_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +137,7 @@ class Advisr_Team_Pages {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Advisr_Team_Pages_i18n();
+		$plugin_i18n = new Advisr_Toolbox_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +152,7 @@ class Advisr_Team_Pages {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Advisr_Team_Pages_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Advisr_Toolbox_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -174,8 +174,9 @@ class Advisr_Team_Pages {
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_role_metaboxes' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_mobile_metaboxes' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_telephone_metaboxes' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_email_metaboxes' );
 
-		$this->loader->add_action( 'save_post', $plugin_admin, 'advisr_team_page_save_meta', 1, 2 );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'advisr_toolbox_save_meta', 1, 2 );
 
 	}
 
@@ -188,12 +189,12 @@ class Advisr_Team_Pages {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Advisr_Team_Pages_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'init', $plugin_public, 'advisr_team_page_register_shortcodes' );
+		$this->loader->add_action( 'init', $plugin_public, 'advisr_toolbox_register_shortcodes' );
 	}
 
 	/**
@@ -220,7 +221,7 @@ class Advisr_Team_Pages {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Advisr_Team_Pages_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Advisr_Toolbox_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

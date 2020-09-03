@@ -6,8 +6,8 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/admin
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/admin
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/admin
  * @author     Ev Ooi <ev@advisr.com.au>
  */
-class Advisr_Team_Pages_Admin {
+class Advisr_Toolbox_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Advisr_Team_Pages_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Advisr_Team_Pages_Loader as all of the hooks are defined
+		 * defined in Advisr_Toolbox_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Advisr_Team_Pages_Loader will then create the relationship
+		 * The Advisr_Toolbox_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-team-pages-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-toolbox-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Advisr_Team_Pages_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Advisr_Team_Pages_Loader as all of the hooks are defined
+		 * defined in Advisr_Toolbox_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Advisr_Team_Pages_Loader will then create the relationship
+		 * The Advisr_Toolbox_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advisr-team-pages-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/advisr-toolbox-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -164,7 +164,7 @@ class Advisr_Team_Pages_Admin {
 		*        Administration Menus: http://codex.wordpress.org/Administration_Menus
 		*
 		*/
-		add_options_page( 'Advisr Team Page Setup', 'Advisr Team Page', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
+		add_options_page( 'Advisr Toolbox Setup', 'Advisr Toolbox', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
 		);
 	}
 
@@ -192,12 +192,12 @@ class Advisr_Team_Pages_Admin {
 	 */
 
 	public function display_plugin_setup_page() {
-		include_once( 'partials/advisr-team-pages-admin-display.php' );
+		include_once( 'partials/advisr-toolbox-admin-display.php' );
 	}
 
 	/**
 	*
-	* admin/class-advisr-team-pages-admin.php
+	* admin/class-advisr-toolbox-admin.php
 	*
 	**/
 	public function options_update() {
@@ -206,7 +206,7 @@ class Advisr_Team_Pages_Admin {
 	
 	/**
 	*
-	* admin/class-advisr-team-pages-admin.php
+	* admin/class-advisr-toolbox-admin.php
 	*
 	**/
 	public function validate($input) {
@@ -309,6 +309,35 @@ class Advisr_Team_Pages_Admin {
 	/**
 	 * Adds a metabox to the right side of the screen under the Publish box
 	 */
+	public function add_email_metaboxes() {
+
+		function team_member_email_cb() {
+			global $post;
+	
+			// Nonce field to validate form request came from current site
+			wp_nonce_field( basename( __FILE__ ), 'event_fields' );
+	
+			// Get the email data if it's already been entered
+			$email = get_post_meta( $post->ID, 'email', true );
+	
+			// Output the field
+			echo '<p>Specify email of this team member within the \'before brokers\' or \'after brokers\' email</p>
+				<input type="number" name="email" placeholder="eg. 02 3333 9999" value="' . esc_textarea( $email )  . '" class="widefat">';
+		}
+		
+		add_meta_box(
+			'email',
+			'Email',
+			'team_member_email_cb',
+			'advisr-team-member',
+			'side',
+			'default'
+		);
+	}
+
+	/**
+	 * Adds a metabox to the right side of the screen under the Publish box
+	 */
 	public function add_order_metaboxes() {
 
 		/**
@@ -341,7 +370,7 @@ class Advisr_Team_Pages_Admin {
 	/**
 	 * Save the metabox data
 	 */
-	public function advisr_team_page_save_meta( $post_id, $post ) {
+	public function advisr_toolbox_save_meta( $post_id, $post ) {
 
 		// Return if the user doesn't have edit permissions.
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
@@ -362,6 +391,9 @@ class Advisr_Team_Pages_Admin {
 		if ( ! isset( $_POST['telephone'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
 			return $post_id;
 		}
+		if ( ! isset( $_POST['email'] ) || ! wp_verify_nonce( $_POST['event_fields'], basename(__FILE__) ) ) {
+			return $post_id;
+		}
 
 		// Now that we're authenticated, time to save the data.
 		// This sanitizes the data from the field and saves it into an array $events_meta.
@@ -369,6 +401,7 @@ class Advisr_Team_Pages_Admin {
 		$events_meta['role'] = esc_textarea( $_POST['role'] );
 		$events_meta['mobile'] = esc_textarea( $_POST['mobile'] );
 		$events_meta['telephone'] = esc_textarea( $_POST['telephone'] );
+		$events_meta['email'] = esc_textarea( $_POST['email'] );
 
 		// Cycle through the $events_meta array.
 		// Note, in this example we just have one item, but this is helpful if you have multiple.

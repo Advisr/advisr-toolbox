@@ -9,8 +9,8 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/includes
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/includes
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/includes
  * @author     Ev Ooi <ev@advisr.com.au>
  */
-class Advisr_Team_Pages_i18n {
+class Advisr_Toolbox_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Advisr_Team_Pages_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'advisr-team-pages',
+			'advisr-toolbox',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

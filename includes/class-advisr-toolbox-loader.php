@@ -6,8 +6,8 @@
  * @link       https://advisr.com.au
  * @since      1.0.0
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/includes
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Advisr_Team_Pages
- * @subpackage Advisr_Team_Pages/includes
+ * @package    Advisr_Toolbox
+ * @subpackage Advisr_Toolbox/includes
  * @author     Ev Ooi <ev@advisr.com.au>
  */
-class Advisr_Team_Pages_Loader {
+class Advisr_Toolbox_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

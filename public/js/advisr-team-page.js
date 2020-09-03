@@ -137,16 +137,14 @@ class AdvisrTeamPage extends HTMLElement {
 		if (mergedTeamMembers && mergedTeamMembers.length > 0) {
 			membersHtml += `<div class="container"><div class="row">`;
 			mergedTeamMembers.forEach((member) => {
-
 				membersHtml += `<div class="team-member-item col-12 col-sm-6 col-md-4 col-lg-3 mb-5">`;
 				const imageHtml = member.avatar_url ? `<div class="team-member-image embed-responsive embed-responsive-1by1 mb-4"><img src="${member.avatar_url}" class="image img-fluid embed-responsive-item"></div>` : '';
-				const nameHtml = member.name ? `<div class="team-member-name mb-3"><h4 class="name m-0">${member.name}</h4></div>` : '';
+				const nameHtml = member.name ? `<div class="team-member-name mb-1"><h4 class="name m-0">${member.name}</h4></div>` : '';
 				const starRatingHtml = member.rating ? this.getStarRatingHtml(member.rating) : '';
-				const roleHtml = member.role ? `<div class="team-member-role my-2"><p class="role mb-0">${member.role}</p></div>` : '';
+				const roleHtml = member.role ? `<div class="team-member-role my-2 text-secondary"><p class="role mb-0">${member.role}</p></div>` : '';
 				const launchModalHtml = member.id ? `<a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a>` : '';
-				const enquireHtml = member.email<a type="button" href="${member.profile_url}#reviews" class="btn btn-primary my-2 add-review mr-3 py-2 px-3">Write a Review
-																</a>
-				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml;
+				const enquireHtml = member.email ? `<a type="button" href="mailto:${member.email}" class="btn btn-primary my-2 email mr-3 py-2 px-4">Enquire <i class="fa fa-envelope-o"></i></a>`: '';
+				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml + enquireHtml;
 				membersHtml += '</div>';
 				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window">
 									<div class="bg-light position-relative">
@@ -171,18 +169,18 @@ class AdvisrTeamPage extends HTMLElement {
 														</div>
 														<div class="col-sm-8 mb-7 mb-lg-0">
 															<!-- User Details -->
-															<div class="mb-0">
+															<div class="mb-3">
 																<div class="d-lg-flex align-items-center">
-																	<h5 class="m-0 mb-2">${member.name}</h2> 
+																	<h5 class="m-0">${member.name}</h2> 
 																</div>
-																<span class="role">${member.role}</span>
+																<span class="role text-secondary">${member.role}</span>
 																</div>
 															<!-- End User Details -->
 							
 															<!-- Collections -->
 															<ul class="list-inline d-flex align-items-center my-1 mx-0">
 																<li class="list-inline-item m-0">
-																	<div class="d-flex align-items-center" id="gotoReviews" style="cursor:pointer;">
+																	<div class="d-flex align-items-center" id="gotoReviews">
 																	
 																		${this.getStarRatingHtml(member.rating)}
 							
@@ -205,10 +203,12 @@ class AdvisrTeamPage extends HTMLElement {
 																`}																
 															</div>
 															<div class="d-flex justify-content-start">
-																<a type="button" href="${member.profile_url}#reviews" class="btn btn-primary my-2 add-review mr-3 py-2 px-3">Write a Review
+																<a type="button" href="${member.profile_url}" target="_blank" class="btn btn-primary my-2 add-review mr-3 py-2 px-3">Write a Review <i class="fa fa-external-link"></i>
 																</a>
-																<a type="button" href="${member.profile_url}" class="btn btn-primary my-2 send-message py-2 px-3">Send a message
-																</a>
+																${member.email && `
+																	<a type="button" href="mailto:${member.email}" class="btn btn-primary my-2 send-message py-2 px-3">Send a message <i class="fa fa-envelope-o"></i>
+																	</a>
+																`}
 															</div>
 															<p class="mt-3">${this.removeTags(member.description)}</p>
 														</div>
@@ -294,10 +294,10 @@ class AdvisrTeamPage extends HTMLElement {
 	getStarRatingHtml = (rating) => {
 		let ratingHtml = `<ul class="list-inline small m-0">`;
 		for (var i = 0; i < rating; i++) {
-			ratingHtml += `<li class="list-inline-item m-0"><span class="fa fa-star text-warning"></span> </li>`;
+			ratingHtml += `<li class="list-inline-item m-0 mr-1"><span class="fa fa-star text-warning"></span> </li>`;
 		}
 		for (var j = rating; j < 5; j++) {
-			ratingHtml += `<li class="list-inline-item m-0"><span class="fa fa-star-o"></span></li>`;
+			ratingHtml += `<li class="list-inline-item m-0 mr-1"><span class="fa fa-star-o"></span></li>`;
 		}
 		ratingHtml += `</ul>`;
 		return ratingHtml;

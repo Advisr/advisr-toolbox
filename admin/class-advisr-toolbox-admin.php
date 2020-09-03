@@ -234,7 +234,7 @@ class Advisr_Toolbox_Admin {
 			$role = get_post_meta( $post->ID, 'role', true );
 	
 			// Output the field
-			echo '<p>Enter team member\'s role</p>
+			echo '<p>Enter team member\'s role.</p>
 				<input type="text" name="role" placeholder="eg. Team leader" value="' . esc_textarea( $role )  . '" class="widefat">';
 		}
 		
@@ -263,7 +263,7 @@ class Advisr_Toolbox_Admin {
 			$mobile = get_post_meta( $post->ID, 'mobile', true );
 	
 			// Output the field
-			echo '<p>Enter team member\'s mobile</p>
+			echo '<p>Enter team member\'s mobile.</p>
 				<input type="number" name="mobile" placeholder="eg. 0444 222 555" value="' . esc_textarea( $mobile )  . '" class="widefat">';
 		}
 		
@@ -292,7 +292,7 @@ class Advisr_Toolbox_Admin {
 			$telephone = get_post_meta( $post->ID, 'telephone', true );
 	
 			// Output the field
-			echo '<p>Specify telephone of this team member within the \'before brokers\' or \'after brokers\' telephone</p>
+			echo '<p>Specify telephone of this team member.</p>
 				<input type="number" name="telephone" placeholder="eg. 02 3333 9999" value="' . esc_textarea( $telephone )  . '" class="widefat">';
 		}
 		
@@ -321,8 +321,8 @@ class Advisr_Toolbox_Admin {
 			$email = get_post_meta( $post->ID, 'email', true );
 	
 			// Output the field
-			echo '<p>Specify email of this team member within the \'before brokers\' or \'after brokers\' email</p>
-				<input type="number" name="email" placeholder="eg. 02 3333 9999" value="' . esc_textarea( $email )  . '" class="widefat">';
+			echo '<p>Specify email of this team member.</p>
+				<input type="text" name="email" placeholder="eg. john@doe.com" value="' . esc_textarea( $email )  . '" class="widefat">';
 		}
 		
 		add_meta_box(

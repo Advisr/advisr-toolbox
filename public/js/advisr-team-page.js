@@ -142,8 +142,8 @@ class AdvisrTeamPage extends HTMLElement {
 				const nameHtml = member.name ? `<div class="team-member-name mb-1"><h4 class="name m-0">${member.name}</h4></div>` : '';
 				const starRatingHtml = member.rating ? this.getStarRatingHtml(member.rating) : '';
 				const roleHtml = member.role ? `<div class="team-member-role my-2 text-secondary"><p class="role mb-0">${member.role}</p></div>` : '';
-				const launchModalHtml = member.id ? `<a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a>` : '';
-				const enquireHtml = member.email ? `<a type="button" href="mailto:${member.email}" class="btn btn-primary my-2 email mr-3 py-2 px-4">Enquire <i class="fa fa-envelope-o"></i></a>`: '';
+				const launchModalHtml = member.id ? `<div class="team-member-modal my-2"><a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a></div>` : '';
+				const enquireHtml = member.email ? `<div class="team-member-enquire my-2"><a type="button" href="mailto:${member.email}" class="btn btn-primary my-2 email mr-3 py-2 px-4">Enquire <i class="fa fa-envelope-o"></i></a></div>`: '';
 				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml + enquireHtml;
 				membersHtml += '</div>';
 				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window">

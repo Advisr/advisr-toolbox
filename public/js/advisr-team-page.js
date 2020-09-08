@@ -2,9 +2,8 @@ class AdvisrTeamPage extends HTMLElement {
 	constructor() {
 		super();
 		this.apikey = scriptParams.apikey;
+		this.advisrBrokersConfig = scriptParams.advisrBrokersConfig;
 		this.teamMembers = scriptParams.teamMembers;
-		this.membersBefore = scriptParams.membersBefore;
-		this.membersAfter = scriptParams.membersAfter;
 	}
 
 	async connectedCallback() {
@@ -22,7 +21,7 @@ class AdvisrTeamPage extends HTMLElement {
 			throw new Error(error);
 		}
 
-		this.render(this.advisrBrokerageWithBrokersAndReviews, this.teamMembers, this.membersBefore, this.membersAfter);
+		this.render(this.advisrBrokerageWithBrokersAndReviews, this.teamMembers, this.advisrBrokersConfig);
 	}
 
 	sanitiseTeamMember(item) {
@@ -42,7 +41,31 @@ class AdvisrTeamPage extends HTMLElement {
 		}
 	}
 
-	render(advisrBrokerageWithBrokersAndReviews, teamMembers = [], membersBefore = false, membersAfter = false) {
+	render(advisrBrokerageWithBrokersAndReviews, teamMembers = [], advisrBrokersConfig) {
+		
+		if (typeof(advisrBrokersConfig) === 'string') {
+			advisrBrokersConfig = JSON.parse(advisrBrokersConfig);
+		}
+		if (typeof(advisrBrokersConfig) === 'string') {
+			advisrBrokersConfig = JSON.parse(advisrBrokersConfig);
+		}
+
+		// add order from config object
+		for (let broker of advisrBrokerageWithBrokersAndReviews.brokers) {
+			for (let advisrBrokersConfigItem of advisrBrokersConfig) {
+				if (parseInt(advisrBrokersConfigItem.id.replace('advisr-order-', '')) === broker.id) {
+					broker.order = parseInt(advisrBrokersConfigItem.value);
+					break;
+				}
+			}
+		}
+
+		// sort brokers according to order field
+		advisrBrokerageWithBrokersAndReviews.brokers.sort((a,b) => {
+			if (a.order > b.order) return 1;
+			if (b.order > a.order) return -1;
+			return 0;
+		});
 
 		const mergedTeamMembers = advisrBrokerageWithBrokersAndReviews.brokers.map(broker => this.sanitiseTeamMember(broker));
 		
@@ -143,7 +166,7 @@ class AdvisrTeamPage extends HTMLElement {
 				const starRatingHtml = member.rating ? this.getStarRatingHtml(member.rating) : '';
 				const roleHtml = member.role ? `<div class="team-member-role my-2 text-secondary"><p class="role mb-0">${member.role}</p></div>` : '';
 				const launchModalHtml = member.id ? `<div class="team-member-modal my-2"><a href="#messageModal-${ member.id }" data-modal-target="#messageModal-${ member.id }" data-modal-effect="blur" data-modal-is-closing-by-esc="true" data-modal-is-closing-by-overlay="true">See more</a></div>` : '';
-				const enquireHtml = member.email ? `<div class="team-member-enquire my-2"><a type="button" href="mailto:${member.email}" class="btn btn-primary my-2 email mr-3 py-2 px-4">Enquire <i class="fa fa-envelope-o"></i></a></div>`: '';
+				const enquireHtml = member.email ? `<div class="team-member-enquire my-2"><a type="button" href="mailto:${member.email}" class="btn btn-primary my-2 email mr-3 py-2 px-4">Send a message <i class="fa fa-envelope-o"></i></a></div>`: '';
 				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml + enquireHtml;
 				membersHtml += '</div>';
 				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window">

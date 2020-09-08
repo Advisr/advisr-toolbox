@@ -166,7 +166,8 @@ class Advisr_Toolbox_Public {
 				
 		$script_params = array(
 			'teamMembers' => $team_members,
-			'apikey' => $this->advisr_toolbox_options['apikey']
+			'apikey' => $this->advisr_toolbox_options['apikey'],
+			'advisrBrokersConfig' => $this->advisr_toolbox_options['advisr-brokers-config']
 		);
 		
 		// pass results from WP_Query to js

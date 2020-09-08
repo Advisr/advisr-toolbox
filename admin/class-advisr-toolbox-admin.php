@@ -235,7 +235,7 @@ class Advisr_Toolbox_Admin {
 			$role = get_post_meta( $post->ID, 'role', true );
 	
 			// Output the field
-			echo '<p>Enter team member\'s role.</p>
+			echo '<p>Team member role</p>
 				<input type="text" name="role" placeholder="eg. Team leader" value="' . esc_textarea( $role )  . '" class="widefat">';
 		}
 		
@@ -264,7 +264,7 @@ class Advisr_Toolbox_Admin {
 			$mobile = get_post_meta( $post->ID, 'mobile', true );
 	
 			// Output the field
-			echo '<p>Enter team member\'s mobile.</p>
+			echo '<p>Team member mobile number.</p>
 				<input type="number" name="mobile" placeholder="eg. 0444 222 555" value="' . esc_textarea( $mobile )  . '" class="widefat">';
 		}
 		
@@ -293,7 +293,7 @@ class Advisr_Toolbox_Admin {
 			$telephone = get_post_meta( $post->ID, 'telephone', true );
 	
 			// Output the field
-			echo '<p>Specify telephone of this team member.</p>
+			echo '<p>Team member phone number</p>
 				<input type="number" name="telephone" placeholder="eg. 02 3333 9999" value="' . esc_textarea( $telephone )  . '" class="widefat">';
 		}
 		
@@ -322,7 +322,7 @@ class Advisr_Toolbox_Admin {
 			$email = get_post_meta( $post->ID, 'email', true );
 	
 			// Output the field
-			echo '<p>Specify email of this team member.</p>
+			echo '<p>Team member email</p>
 				<input type="text" name="email" placeholder="eg. john@doe.com" value="' . esc_textarea( $email )  . '" class="widefat">';
 		}
 		
@@ -354,7 +354,7 @@ class Advisr_Toolbox_Admin {
 			$order = get_post_meta( $post->ID, 'order', true );
 
 			// Output the field
-			echo '<p>Specify order position of this team member</p>
+			echo '<p>Team member position on the page</p>
 				<input type="number" name="order" required placeholder="eg. 12" value="' . esc_textarea( $order )  . '" class="widefat">';
 		}
 

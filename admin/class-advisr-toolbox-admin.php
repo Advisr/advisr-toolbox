@@ -426,4 +426,27 @@ class Advisr_Toolbox_Admin {
 			}
 		endforeach;
 	}
+
+	public function advisr_toolbox_fetched_data_submenu_page() {
+
+		add_submenu_page(
+			'edit.php?post_type=advisr-team-member',
+			__( 'Advisr Brokers', 'textdomain' ),
+			__( 'Advisr Brokers', 'textdomain' ),
+			'manage_options',
+			'advisr-brokers',
+			array($this, 'advisr_fetched_data_page_callback'),
+			1
+		);
+
+	}
+
+	/**
+	 * Display callback for the submenu page.
+	 */
+	public function advisr_fetched_data_page_callback() { 
+		include_once( 'partials/advisr-toolbox-advisr-brokers-display.php' );
+	}
+
+
 }

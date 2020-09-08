@@ -178,6 +178,8 @@ class Advisr_Toolbox {
 
 		$this->loader->add_action( 'save_post', $plugin_admin, 'advisr_toolbox_save_meta', 1, 2 );
 
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'advisr_toolbox_fetched_data_submenu_page');
+
 	}
 
 	/**

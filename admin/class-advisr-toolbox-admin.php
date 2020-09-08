@@ -215,6 +215,7 @@ class Advisr_Toolbox_Admin {
 
 		//Cleanup
 		$valid['apikey'] = (isset($input['apikey']) && !empty($input['apikey'])) ? sanitize_text_field($input['apikey']) : '';
+		$valid['advisr-brokers-config'] = (isset($input['advisr-brokers-config']) && !empty($input['advisr-brokers-config'])) ? sanitize_text_field($input['advisr-brokers-config']) : "'[]'";
 
 		return $valid;
 	}
@@ -431,7 +432,7 @@ class Advisr_Toolbox_Admin {
 
 		add_submenu_page(
 			'edit.php?post_type=advisr-team-member',
-			__( 'Advisr Brokers', 'textdomain' ),
+			__( 'Advisr Brokers Configuration', 'textdomain' ),
 			__( 'Advisr Brokers', 'textdomain' ),
 			'manage_options',
 			'advisr-brokers',

@@ -26,6 +26,7 @@
 
 			// Cleanup
 			$apikey = $options['apikey'];
+			$advisr_brokers_config = $options['advisr-brokers-config'];
 		?>
 
 		<?php
@@ -39,10 +40,11 @@
         
 		<fieldset>
 			<legend class="screen-reader-text"><span><?php _e('Advisr API access key', $this->plugin_name); ?></span></legend>
-			<textarea type="text" required class="regular-text" id="<?php echo $this->plugin_name; ?>-apikey" name="<?php echo $this->plugin_name; ?>[apikey]" value="<?php if(!empty($apikey)) echo $apikey; ?>" rows="8" placeholder="eg. kjhgafysd65f865ehgf8ehgfsdfr3876rytesd67tywgjrjhasdfyugrhi6fyghrafisd6ftykgjehrfiae76rtyigefe9274567sdkcnmbd23e98w7esd8fasdhfbqr8a76erthbweof87v4gk5jrhag78wbl4efseo87uib"><?php if(!empty($apikey)) echo $apikey; ?></textarea>
+			<textarea type="text"  class="regular-text" id="<?php echo $this->plugin_name; ?>-apikey" name="<?php echo $this->plugin_name; ?>[apikey]" value="<?php if(!empty($apikey)) echo $apikey; ?>" rows="8" placeholder="eg. kjhgafysd65f865ehgf8ehgfsdfr3876rytesd67tywgjrjhasdfyugrhi6fyghrafisd6ftykgjehrfiae76rtyigefe9274567sdkcnmbd23e98w7esd8fasdhfbqr8a76erthbweof87v4gk5jrhag78wbl4efseo87uib"><?php if(!empty($apikey)) echo $apikey; ?></textarea>
 		</fieldset>
         <?php submit_button('Save settings', 'primary','submit', TRUE); ?>
 		
+		<textarea type="text" class="regular-text" style="display: none" id="<?php echo $this->plugin_name; ?>-advisr_brokers_config" name="<?php echo $this->plugin_name; ?>[advisr-brokers-config]" value="<?php if(!empty($advisr_brokers_config)) echo $advisr_brokers_config; ?>" rows="8" placeholder="eg. kjhgafysd65f865ehgf8ehgfsdfr3876rytesd67tywgjrjhasdfyugrhi6fyghrafisd6ftykgjehrfiae76rtyigefe9274567sdkcnmbd23e98w7esd8fasdhfbqr8a76erthbweof87v4gk5jrhag78wbl4efseo87uib"><?php if(!empty($advisr_brokers_config)) echo $advisr_brokers_config; ?></textarea>
 		<h3>Step 2</h3>
 		<p class="regular-text">Manage your internal team members <a href="edit.php?post_type=advisr-team-member">here</a>.</p>
 		<br/>

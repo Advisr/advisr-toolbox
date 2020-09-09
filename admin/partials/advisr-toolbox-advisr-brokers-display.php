@@ -62,7 +62,7 @@
 
 	jQuery(document).on('input', '.advisr-broker-order', function(event) {
 		// get advisr brokers config value
-		let advisrBrokersConfig = jQuery('#advisr-brokers-config').val() || [];
+		let advisrBrokersConfig = (jQuery('#advisr-brokers-config').val() && jQuery('#advisr-brokers-config').val() !== '[]') ? jQuery('#advisr-brokers-config').val() : [];
 		
 		if (typeof(advisrBrokersConfig) === 'string') {
 			advisrBrokersConfig = JSON.parse(advisrBrokersConfig);
@@ -103,7 +103,11 @@
 
 		<?php if(!empty($advisr_brokers_config)) { ?>
 			advisrBrokersConfig = JSON.parse(<?php echo $advisr_brokers_config; ?>);
-			advisrBrokersConfig.forEach(function (advisrBrokersConfigItem) {
+
+			if (typeof(JSON.parse(<?php echo $advisr_brokers_config; ?>)) === 'string') {
+				advisrBrokersConfig = JSON.parse(advisrBrokersConfig);			}
+			
+				advisrBrokersConfig.forEach(function (advisrBrokersConfigItem) {
 				if (jQuery(`#${advisrBrokersConfigItem.id}`).length === 1) {
 					jQuery(`#${advisrBrokersConfigItem.id}`).val(advisrBrokersConfigItem.value)
 				}
@@ -340,7 +344,7 @@
 				membersHtml += imageHtml  + nameHtml + orderHtml;
 				membersHtml += '</div>';
 			});
-			const stringifiedConfig = (<?php echo $advisr_brokers_config; ?>);
+			const stringifiedConfig = <?php echo (string) $advisr_brokers_config; ?>;
 			membersHtml += `<input type="hidden" id="advisr-brokers-config" name="<?php echo $this->plugin_name; ?>[advisr-brokers-config]" value=${stringifiedConfig}>`;
 			membersHtml += '</div>';
 		} else {

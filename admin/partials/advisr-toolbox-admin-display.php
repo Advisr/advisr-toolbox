@@ -50,7 +50,7 @@
 		<br/>
 
 		<h3>Step 3</h3>
-		<p class="regular-text">Organise Advisr members <a href="edit.php?post_type=advisr-team-member&page=advisr-brokers">here</a>.</p>
+		<p class="regular-text">Organise your Advisr generated team members <a href="edit.php?post_type=advisr-team-member&page=advisr-brokers">here</a>.</p>
 		<br/>
 
         <h3>Step 4</h3>

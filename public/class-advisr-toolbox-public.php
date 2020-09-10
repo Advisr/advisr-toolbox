@@ -74,7 +74,6 @@ class Advisr_Toolbox_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-toolbox-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'custombox', 'https://cdnjs.cloudflare.com/ajax/libs/custombox/4.0.2/custombox.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'fontawesome', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), $this->version, 'all' );
 		

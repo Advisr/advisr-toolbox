@@ -81,74 +81,6 @@ class AdvisrTeamPage extends HTMLElement {
 		const template = document.createElement('template');
 
 		template.innerHTML += `
-		<style>
-			.mb-3, .my-3 {
-				margin-bottom: 1rem;
-			}
-			.mb-2, .my-2 {
-				margin-bottom: .5rem;
-			}
-			.ml-0, .mx-0 {
-				margin-left: 0;
-			}
-			.mr-0, .mx-0 {
-				margin-right: 0;
-			}
-			.d-flex {
-				display: -webkit-box;
-				display: flex;
-			}
-			.flex-row {
-				-webkit-box-orient: horizontal;
-				-webkit-box-direction: normal;
-				flex-direction: row;
-			}
-			.justify-content-between {
-				-webkit-box-pack: justify;
-				justify-content: space-between;
-			}
-			.list-inline {
-				padding-left: 0;
-				margin-top: 0;
-				margin-bottom: 0.5rem;
-				list-style: none;
-			}
-			.list-inline-item {
-				display: inline-block;
-			}
-			.list-inline-item:not(:last-child) {
-				margin-right: .2rem;
-			}
-			.text-warning {
-				color: #ffc107;
-			}
-			.image {
-				object-fit: cover;
-			}
-			.custombox-lock {
-				overflow: auto;
-			}
-			.u-custombox-no-scroll.custombox-lock {
-				margin-right: 1.0625rem;
-				overflow: hidden;
-			}
-			.custombox-content, .custombox-overlay {
-				width: 100vw;
-			}
-			.u-modal-window {
-				display: none;
-				max-height: 85vh;
-				width: 680px;
-			}
-			@media  screen and (max-width: 720px) {
-				.u-modal-window {
-					width: 95vw;
-				}
-				.grecaptcha-badge{
-					display: none !important;
-				}
-			}
-		</style>
 		<div class="custombox-container custombox-top" style="">
 			<div id='members-wrapper'></div>
 		</div>`;
@@ -158,7 +90,7 @@ class AdvisrTeamPage extends HTMLElement {
 		let membersHtml = '';
 
 		if (mergedTeamMembers && mergedTeamMembers.length > 0) {
-			membersHtml += `<div class="container"><div class="row">`;
+			membersHtml += `<div class="team-member__container container"><div class="team-member__row row">`;
 			mergedTeamMembers.forEach((member) => {
 				membersHtml += `<div class="team-member-item col-12 col-sm-6 col-md-4 col-lg-3 mb-5">`;
 				const imageHtml = member.avatar_url ? `<div class="team-member-image embed-responsive embed-responsive-1by1 mb-4"><img src="${member.avatar_url}" class="image img-fluid embed-responsive-item"></div>` : '';
@@ -169,16 +101,14 @@ class AdvisrTeamPage extends HTMLElement {
 				const enquireHtml = member.email ? `<div class="team-member-enquire my-2"><a type="button" href="mailto:${member.email}" class="btn btn-primary my-2 email mr-3 py-2 px-4">Send a message <i class="fa fa-envelope-o"></i></a></div>`: '';
 				membersHtml += imageHtml  + nameHtml + starRatingHtml + roleHtml + launchModalHtml + enquireHtml;
 				membersHtml += '</div>';
-				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window">
+				membersHtml += `<div id="messageModal-${ member.id }" class="js-modal-window u-modal-window team-member__modal-window">
 									<div class="bg-light position-relative">
-										<div class="container">
-											<div class="row justify-content-center">
-												<div class="col-12 p-5">
-													<div class="float-right">
-														<button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
-															<span aria-hidden="true">×</span>
-														</button>
-													</div>
+										<div class="container team-member__modal-container">
+											<div class="row justify-content-center team-member__modal-row">
+												<div class="col-12 p-5 team-member__modal-wrapper">
+													<button type="button" class="close" aria-label="Close" onclick="Custombox.modal.close();">
+														<span aria-hidden="true">×</span>
+													</button>
 								
 													<div class="row">
 														<div class="col-sm-4 mb-7 mb-lg-0">

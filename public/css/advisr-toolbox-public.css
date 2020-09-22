@@ -1,7 +1,6 @@
-/**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
+/*!
+* Advisr v1.0.0 (https://advisr.com.au/)
+*/
 
  a.btn {
 	text-decoration: none;
@@ -36,7 +35,9 @@ button.close {
     background-color: transparent;
 	border: 0;
 	position: absolute;
-    right: 3rem;
+	right: 3rem;
+	z-index: 10;
+	text-decoration: none;
 }
 [type=button], [type=reset], [type=submit], button {
     -webkit-appearance: button;

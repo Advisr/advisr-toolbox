@@ -1,3 +1,7 @@
+/*!
+* Advisr v1.0.0 (https://advisr.com.au/)
+*/
+
 class AdvisrTeamPage extends HTMLElement {
 	constructor() {
 		super();

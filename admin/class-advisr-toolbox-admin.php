@@ -131,20 +131,20 @@ class Advisr_Toolbox_Admin {
 		$opts['show_in_menu'] = TRUE;
 		$opts['show_in_nav_menu'] = TRUE;
 		
-		$opts['labels']['add_new'] = esc_html__( "Add New {$single}", 'team member' );
-		$opts['labels']['add_new_item'] = esc_html__( "Add New {$single}", 'team member' );
-		$opts['labels']['all_items'] = esc_html__( $plural, 'team member' );
-		$opts['labels']['edit_item'] = esc_html__( "Edit {$single}" , 'team member' );
-		$opts['labels']['menu_name'] = esc_html__( $plural, 'team member' );
-		$opts['labels']['name'] = esc_html__( $plural, 'team member' );
-		$opts['labels']['name_admin_bar'] = esc_html__( $single, 'team member' );
-		$opts['labels']['new_item'] = esc_html__( "New {$single}", 'team member' );
-		$opts['labels']['not_found'] = esc_html__( "No {$plural} Found", 'team member' );
-		$opts['labels']['not_found_in_trash'] = esc_html__( "No {$plural} Found in Trash", 'team member' );
-		$opts['labels']['parent_item_colon'] = esc_html__( "Parent {$plural} :", 'team member' );
-		$opts['labels']['search_items'] = esc_html__( "Search {$plural}", 'team member' );
-		$opts['labels']['singular_name'] = esc_html__( $single, 'team member' );
-		$opts['labels']['view_item'] = esc_html__( "View {$single}", 'team member' );
+		$opts['labels']['add_new'] = sanitize_text_field( "Add New {$single}" );
+		$opts['labels']['add_new_item'] = sanitize_text_field( "Add New {$single}" );
+		$opts['labels']['all_items'] = sanitize_text_field( $plural );
+		$opts['labels']['edit_item'] = sanitize_text_field( "Edit {$single}"  );
+		$opts['labels']['menu_name'] = sanitize_text_field( $plural );
+		$opts['labels']['name'] = sanitize_text_field( $plural );
+		$opts['labels']['name_admin_bar'] = sanitize_text_field( $single );
+		$opts['labels']['new_item'] = sanitize_text_field( "New {$single}" );
+		$opts['labels']['not_found'] = sanitize_text_field( "No {$plural} Found" );
+		$opts['labels']['not_found_in_trash'] = sanitize_text_field( "No {$plural} Found in Trash" );
+		$opts['labels']['parent_item_colon'] = sanitize_text_field( "Parent {$plural} :" );
+		$opts['labels']['search_items'] = sanitize_text_field( "Search {$plural}" );
+		$opts['labels']['singular_name'] = sanitize_text_field( $single );
+		$opts['labels']['view_item'] = sanitize_text_field( "View {$single}" );
 		register_post_type( strtolower( $cpt_name ), $opts );
 	} // new_cpt_job()
 
@@ -236,7 +236,7 @@ class Advisr_Toolbox_Admin {
 	
 			// Output the field
 			echo '<p>Team member role</p>
-				<input type="text" name="role" placeholder="eg. Team leader" value="' . esc_textarea( $role )  . '" class="widefat">';
+				<input type="text" name="role" placeholder="eg. Team leader" value="' . sanitize_text_field( $role )  . '" class="widefat">';
 		}
 		
 		add_meta_box(
@@ -265,7 +265,7 @@ class Advisr_Toolbox_Admin {
 	
 			// Output the field
 			echo '<p>Team member mobile number.</p>
-				<input type="number" name="mobile" placeholder="eg. 0444 222 555" value="' . esc_textarea( $mobile )  . '" class="widefat">';
+				<input type="number" name="mobile" placeholder="eg. 0444 222 555" value="' . sanitize_text_field( $mobile )  . '" class="widefat">';
 		}
 		
 		add_meta_box(
@@ -294,7 +294,7 @@ class Advisr_Toolbox_Admin {
 	
 			// Output the field
 			echo '<p>Team member phone number</p>
-				<input type="number" name="telephone" placeholder="eg. 02 3333 9999" value="' . esc_textarea( $telephone )  . '" class="widefat">';
+				<input type="number" name="telephone" placeholder="eg. 02 3333 9999" value="' . sanitize_text_field( $telephone )  . '" class="widefat">';
 		}
 		
 		add_meta_box(
@@ -323,7 +323,7 @@ class Advisr_Toolbox_Admin {
 	
 			// Output the field
 			echo '<p>Team member email</p>
-				<input type="text" name="email" placeholder="eg. john@doe.com" value="' . esc_textarea( $email )  . '" class="widefat">';
+				<input type="text" name="email" placeholder="eg. john@doe.com" value="' . sanitize_text_field( $email )  . '" class="widefat">';
 		}
 		
 		add_meta_box(
@@ -355,7 +355,7 @@ class Advisr_Toolbox_Admin {
 
 			// Output the field
 			echo '<p>Team member position on the page</p>
-				<input type="number" name="order" required placeholder="eg. 12" value="' . esc_textarea( $order )  . '" class="widefat">';
+				<input type="number" name="order" required placeholder="eg. 12" value="' . sanitize_text_field( $order )  . '" class="widefat">';
 		}
 
 		add_meta_box(
@@ -398,11 +398,11 @@ class Advisr_Toolbox_Admin {
 
 		// Now that we're authenticated, time to save the data.
 		// This sanitizes the data from the field and saves it into an array $events_meta.
-		$events_meta['order'] = esc_textarea( $_POST['order'] );
-		$events_meta['role'] = esc_textarea( $_POST['role'] );
-		$events_meta['mobile'] = esc_textarea( $_POST['mobile'] );
-		$events_meta['telephone'] = esc_textarea( $_POST['telephone'] );
-		$events_meta['email'] = esc_textarea( $_POST['email'] );
+		$events_meta['order'] = sanitize_text_field( $_POST['order'] );
+		$events_meta['role'] = sanitize_text_field( $_POST['role'] );
+		$events_meta['mobile'] = sanitize_text_field( $_POST['mobile'] );
+		$events_meta['telephone'] = sanitize_text_field( $_POST['telephone'] );
+		$events_meta['email'] = sanitize_text_field( $_POST['email'] );
 
 		// Cycle through the $events_meta array.
 		// Note, in this example we just have one item, but this is helpful if you have multiple.

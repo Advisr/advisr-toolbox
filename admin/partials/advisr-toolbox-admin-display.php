@@ -16,7 +16,7 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
 
-    <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+    <h1><?php echo sanitize_text_field(get_admin_page_title()); ?></h1>
 
     <form method="post" name="advisr_toolbox_options" action="options.php">
 

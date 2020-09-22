@@ -1,3 +1,7 @@
+/*!
+* Advisr v1.0.0 (https://advisr.com.au/)
+*/
+
 (function( $ ) {
 	'use strict';
 

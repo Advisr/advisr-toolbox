@@ -4,7 +4,7 @@ Donate link: https://advisr.com.au
 Tags: insurance, insurtech, team, members
 Requires PHP: 5.6 or higher
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: 4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

@@ -13,7 +13,13 @@ Connect your native data with Advisr data to create dynamic team pages and more.
 
 == Description ==
 
-Connect your native data with Advisr data to create dynamic team pages and more.
+This plugin relies on Advisr.com.au, as a third party service that provides data that drives this plugin's functionality. Specifically, when this plugin is implemented on a page, it makes a single GET request to the Advisr REST API, using Javascript Fetch API, and receives the response which it then renders on the page. All API calls must be authenticated by an access token that Advisr securely provides to the plugin user.
+
+For more info on this service provider: https://advisr.com.au
+API documentation: https://advisr.com.au/api/doc
+Terms and Conditions: https://advisr.com.au/privacy-policy/#TermsAndConditions
+Privacy Policy: https://advisr.com.au/privacy-policy
+
 
 Features available:
 * Team pages

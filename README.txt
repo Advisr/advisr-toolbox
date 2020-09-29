@@ -1,5 +1,5 @@
 === Advisr Toolbox ===
-Contributors: evthedev
+Contributors: evthedev, advisr
 Donate link: https://advisr.com.au
 Tags: insurance, insurtech, team, members
 Requires PHP: 5.6 or higher

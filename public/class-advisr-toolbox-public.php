@@ -153,11 +153,11 @@ class Advisr_Toolbox_Public {
 
 			endwhile;
 
-			$result .= '<advisr-team-page></advisr-reviews>';
-
 			wp_reset_postdata();
-
+			
 		endif;   
+
+		$result .= '<advisr-team-page></advisr-reviews>';
 				
 		$script_params = array(
 			'teamMembers' => $team_members,

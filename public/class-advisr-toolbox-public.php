@@ -74,7 +74,8 @@ class Advisr_Toolbox_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-toolbox-public.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'custombox', plugin_dir_url( __FILE__ ) . 'css/vendor/custombox/custombox.min.css', array(), $this->version, 'all' );
+        wp_enqueue_style( 'advisr-bootstrap', plugin_dir_url( __FILE__ ) . 'css/vendor/bootstrap/bootstrap-custom.css', array(), $this->version, 'all' );
+//		wp_enqueue_style( 'custombox', plugin_dir_url( __FILE__ ) . 'css/vendor/custombox/custombox.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'fontawesome', plugin_dir_url( __FILE__ ) . 'css/vendor/fontawesome/css/font-awesome.min.css', array(), $this->version, 'all' );
 		
 	}
@@ -101,7 +102,7 @@ class Advisr_Toolbox_Public {
 		// Register the Advisr Toolbox script file for enqueueing in function team_pages_member_post_type()
 
 		wp_register_script( 'advisr-reviews', plugin_dir_url( __FILE__ ) . 'js/advisr-team-page.js', array(), 1.0, true );
-		wp_enqueue_script( 'bootstrap', plugin_dir_url( __FILE__ ) . 'js/vendor/bootstrap/js/bootstrap.min.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'advisr-bootstrap', plugin_dir_url( __FILE__ ) . 'js/vendor/bootstrap/bootstrap.min.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'custombox', plugin_dir_url( __FILE__ ) . 'js/vendor/custombox/dist/custombox.min.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'hs-core', plugin_dir_url( __FILE__ ) . 'js/vendor/hs.core.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'hs-modal-window', plugin_dir_url( __FILE__ ) . 'js/vendor/hs.modal-window.js', array( 'jquery' ), $this->version, false );

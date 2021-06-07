@@ -46,6 +46,9 @@ Feature roadmap:
 
 == Changelog ==
 
+= v2.0 =
+* Updated the look and feel of Advisr Team Pages
+
 = v0.1 =
 * Create and edit internal team members
 * Meta data for internal team members: Order, Role, Mobile and Telephone

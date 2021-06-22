@@ -122,6 +122,8 @@ class Advisr_Toolbox {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-advisr-toolbox-public.php';
 
+		
+
 		$this->loader = new Advisr_Toolbox_Loader();
 
 	}

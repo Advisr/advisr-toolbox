@@ -5,10 +5,10 @@
 @import url(/wp-content/plugins/toolbox/public/css/fonts/Proxima-Nova/stylesheet.css);
 */
 
-h1, h2, h3, h4, h5, h6 {
+/* h1, h2, h3, h4, h5, h6 {
 	margin: 0 !important;
-	line-height: 1.2;
-}
+	line-height: 1.2 !important;;
+} */
 
 .medium {
 	font-size: 90% !important;
@@ -18,10 +18,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 80% !important;
 }
 
-p {
+/* p {
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
-}
+} */
 
 .btn {
 	font-size: 17px !important;
@@ -392,4 +392,11 @@ div#modalCarouselIndicators button.advisr-prefix-class.carousel-indicator {
 
 .advisr-prefix-class a:focus {
     outline: none!important;
+}
+
+.advisr-prefix-class.team-member__modal-container.modal.fade {
+    opacity: 1;
+}
+.advisr-prefix-class.team-member__modal-image.embed-responsive.embed-responsive-1by1 {
+    height: auto;
 }

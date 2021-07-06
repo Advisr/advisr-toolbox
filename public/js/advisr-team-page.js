@@ -293,10 +293,10 @@ class AdvisrTeamPage extends HTMLElement {
 			function getStarRating(rating) {
 				let ratingHtml = `<ul class="list-inline small m-0 p-0">`;
 				for (var i = 0; i < rating; i++) {
-					ratingHtml += `<li class="list-inline-item m-0 mr-1"><span class="fa fa-star text-warning"></span> </li>`;
+					ratingHtml += `<li class="advisr-prefix-class list-inline-item m-0 mr-1"><span class="fa fa-star text-warning"></span> </li>`;
 				}
 				for (var j = rating; j < 5; j++) {
-					ratingHtml += `<li class="list-inline-item m-0 mr-1"><span class="fa fa-star-o"></span></li>`;
+					ratingHtml += `<li class="advisr-prefix-class list-inline-item m-0 mr-1"><span class="fa fa-star-o"></span></li>`;
 				}
 				ratingHtml += `</ul>`;
 				return ratingHtml;

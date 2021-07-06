@@ -276,9 +276,23 @@ p.advisr-prefix-class.team-member-role.text-muted {
 h4.advisr-prefix-class.team-member-name.card-title.clickable.text-black {
     font-family: 'proxima_novabold';
     font-weight: 500;
+    font-size: 21px!important;
 }
 
+h4.advisr-prefix-class.fw-bold.py-3.text-black {
+    font-size: 21px!important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
 
+h5.advisr-prefix-class.fw-bold.text-black {
+    font-size: 18px!important;
+    line-height: 1.2 !important;
+}
+
+li.advisr-prefix-class.list-inline-item.m-0.mr-1 {
+    padding-left: 0;
+}
 
 .advisr-prefix-class.modal-content {
     border-radius: 0!important;
@@ -289,7 +303,9 @@ h4.advisr-prefix-class.team-member-name.card-title.clickable.text-black {
 .advisr-prefix-class.team-member__modal-card-body.card-body h4#modalName {
     font-family: 'proxima_novabold';
     font-weight: 500;
-
+    font-size: 21px!important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
 }
 
 .advisr-prefix-class.team-member__modal-card-body.card-body p#modalRole {

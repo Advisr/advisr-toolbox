@@ -11,7 +11,7 @@
  */
 
 /**
- * The public-facing functionality of the plugin.
+ * The public-facing functionality of the plugin. v1.0.0
  *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.

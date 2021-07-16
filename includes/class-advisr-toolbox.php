@@ -199,6 +199,7 @@ class Advisr_Toolbox {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'init', $plugin_public, 'advisr_toolbox_register_shortcodes' );
+		$this->loader->add_action( 'init', $plugin_public, 'advisr_toolbox_review_shortcodes' );
 	}
 
 	/**
@@ -240,5 +241,6 @@ class Advisr_Toolbox {
 	public function get_version() {
 		return $this->version;
 	}
+	
 
 }

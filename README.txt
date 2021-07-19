@@ -46,7 +46,7 @@ Feature roadmap:
 
 == Changelog ==
 
-= v2.0 =
+= v2.1 =
 * Updated the look and feel of Advisr Team Pages
 
 = v0.1 =

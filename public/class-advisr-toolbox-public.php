@@ -74,6 +74,7 @@ class Advisr_Toolbox_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/advisr-toolbox-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), $this->version, 'all' );
         wp_enqueue_style( 'advisr-bootstrap', plugin_dir_url( __FILE__ ) . 'css/vendor/bootstrap/bootstrap-custom.css', array(), $this->version, 'all' );
 //		wp_enqueue_style( 'custombox', plugin_dir_url( __FILE__ ) . 'css/vendor/custombox/custombox.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'fontawesome', plugin_dir_url( __FILE__ ) . 'css/vendor/fontawesome/css/font-awesome.min.css', array(), $this->version, 'all' );
@@ -182,8 +183,7 @@ class Advisr_Toolbox_Public {
 	public function review_advisr_member_review(){
 		?>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
-
-		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">  
+		  <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ );?>css/bootstrap.min.css">  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <style>
@@ -246,7 +246,7 @@ class Advisr_Toolbox_Public {
 				jQuery(document).ready(function($){
 					$(".carousel .item:first-child").addClass('active');
 				$('.carousel').carousel({
-  interval: 10000 * 10
+  interval: 10000 
 }); 
 				$(".carousel").swipe({
 				swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
@@ -293,11 +293,6 @@ $reivew_name=$array_result['name'];
 $html = '';
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
-   
 <?php
 		
 		   $html.='<div class="advisr-container container">';
@@ -348,8 +343,15 @@ $html.='</div>';
 		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 		//add_shortcode( 'advisr-reviews', array('review_advisr_member_review'));
 		add_shortcode( 'advisr-reviews', array($plugin_public, 'review_advisr_member_review' ));
+		if ( version_compare($GLOBALS['wp_version'], '5.0-beta', '>') ) {
+    // WP > 5 beta
+    add_filter( 'use_block_editor_for_post_type', '__return_false', 100 );
+} else {
+    // WP < 5 beta
+    add_filter( 'gutenberg_can_edit_post_type', '__return_false' );
+}
 	}
-	/**
+	/** 
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *

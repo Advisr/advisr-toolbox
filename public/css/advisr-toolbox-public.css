@@ -431,11 +431,11 @@ div#modalCarouselIndicators button.advisr-prefix-class.carousel-indicator {
     max-width: 100%!important;
 }
 
-.advisr-container .carousel-inner .item {
+/* .advisr-container .carousel-inner .item {
     height: 280px;
     overflow-y: auto;
 }
-
+ */
 }
 
 

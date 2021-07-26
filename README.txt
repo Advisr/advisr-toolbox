@@ -23,9 +23,9 @@ Privacy Policy: https://advisr.com.au/privacy-policy
 
 Features available:
 * Team pages
+* Advisr Reviews
 
 Feature roadmap:
-* Advisr Reviews
 * Google My Business Reviews
 * Leads submission
 * Reviews submissions
@@ -45,8 +45,11 @@ Feature roadmap:
 == Screenshots ==
 
 == Changelog ==
-
 = v2.1 =
+* Added Reviews Segment Functionality
+* Added the `[advisr-reviews]` shortcode to display reviews
+
+= v2.0 =
 * Updated the look and feel of Advisr Team Pages
 
 = v0.1 =

@@ -10,7 +10,7 @@
  *
  * @link              https://advisr.com.au
  * @since             1.0.0
- * @package           Advisr_Toolbox
+ * @package           Advisr_Toolbox  
  *
  * @wordpress-plugin
  * Plugin Name:       Advisr Toolbox

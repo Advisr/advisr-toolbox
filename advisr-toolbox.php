@@ -10,12 +10,12 @@
  *
  * @link              https://advisr.com.au
  * @since             1.0.0
- * @package           Advisr_Toolbox  
+ * @package           Advisr_Toolbox
  *
  * @wordpress-plugin
  * Plugin Name:       Advisr Toolbox
  * Description:       Connect your native data with Advisr data to create dynamic team pages and more.
- * Version:           2.1.0
+ * Version:           2.2.0
  * Author:            Advisr
  * Author URI:        https://advisr.com.au
  * License:           GPL-2.0+
@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ADVISR_TOOLBOX_VERSION', '2.1.0' );
+define( 'ADVISR_TOOLBOX_VERSION', '2.2.0' );
 
 /**
  * The code that runs during plugin activation.

@@ -200,6 +200,8 @@ class Advisr_Toolbox {
 
 		$this->loader->add_action( 'init', $plugin_public, 'advisr_toolbox_register_shortcodes' );
 		$this->loader->add_action( 'init', $plugin_public, 'advisr_toolbox_review_shortcodes' );
+		$this->loader->add_action( 'init', $plugin_public, 'advisr_toolbox_save_review_custom_pop' );
+		$this->loader->add_action( 'init', $plugin_public, 'advisr_toolbox_custom_footer_ajex' );
 	}
 
 	/**

@@ -180,91 +180,103 @@ class Advisr_Toolbox_Public {
 		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 		add_shortcode( 'advisr-team-page', array($plugin_public, 'team_pages_member_post_type' ));
 	}
-	public function review_advisr_member_review(){
-		?>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
-		  <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ );?>css/bootstrap.min.css">  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <style>
-  .advisr-prefix-class-container {max-width: 1140px; margin-left: auto; margin-right: auto;} 
-               .advisr-prefix-class-h6 {font-size: 1.2rem; font-weight: 600;}  
-                .advisr-prefix-class-d-flex {display: flex; justify-content: space-between;}  
-                ul.advisr-prefix-class {display: flex; list-style-type: none; padding-left: 0;}  
-                i.fa.fa-star{color: #f9d304;font-size: 20px;}  
-                .advisr-prefix-class-text-center {text-align: center;} 
-                .advisr-prefix-class-text-left {text-align: left;}
-                .advisr-prefix-class-text-secondary {color: grey;} 
-                .advisr-prefix-class-link-muted {margin-bottom: 32px;} 
-                .advisr-prefix-class-list-inline {text-align: center; margin-left: auto; margin-right: auto;} 
-                .advisr-prefix-class-row {display: flex; flex-wrap: wrap; margin-right: auto; margin-left: auto; align-items: center; width: 100%;} 
-                .advisr-prefix-class-col-1 {margin-left: 4.15%; -webkit-box-flex: 0; flex: 0 0 8.3333333333%; max-width: 8.3333333333%;} 
-                .advisr-prefix-class-col-2 {-webkit-box-flex: 0; flex: 0 0 16.6666666667%; max-width: 16.6666666667%;}
-                .advisr-prefix-class-col-8 {-webkit-box-flex: 0; flex: 0 0 66.6666666667%; max-width: 66.6666666667%;} 
-                .advisr-prefix-class-col-8 {text-align: center; margin-left: auto; margin-right: auto;} 
-               .advisr-prefix-class-mt-5 {margin-top: 64px;} 
-                .advisr-prefix-class-col-8 ul {display: flex; margin-left: auto; margin-right: auto; justify-content: center;} 
-              .advisr-prefix-class-col-12 {-webkit-box-flex: 0; flex: 0 0 100%; max-width: 100%; padding-left: 15px; padding-right: 15px; position: relative; width: 100%; min-height: 1px;} 
-              .advisr-prefix-class-text-dark {color: gray; margin-top: 32px;} 
-               .advisr-prefix-class-h5 {font-size: 1.25rem; line-height: 1.2; font-weight: 500;} 
-               .advisr-prefix-class-h5-carousel {font-size: 1.4rem; line-height: 1.2; font-weight: 600;} 
-               .advisr-prefix-class-border-bottom {border-bottom: 1px solid grey; margin-bottom: 20px; padding-bottom: 20px;}
-               .advisr-prefix-class-spacing-y-3 {margin-top:1rem} 
-                .advisr-prefix-class-ml-auto {margin-left: auto} 
-                .advisr-prefix-class-mr-2 {margin-right: .5rem}
-                .advisr-prefix-class-mb-0 {margin-bottom: 0} 
-                .advisr-prefix-class-mb-1 {margin-bottom: .25rem}
-               .advisr-prefix-class-small {font-size: 80%; font-weight: 400;} 
-               .advisr-prefix-class-justify-content-center {justify-content: center;} 
-               .advisr-prefix-class-align-items-center {align-items: center;} 
-               .advisr-prefix-class-u-header__navbar-brand-text {font-size: 2.25rem; font-weight: 700; margin-left: .5rem; color: #0062d8;}
-				.fa-quote-left:before {
-				content: "\f10d";
-				}
-				.carousel .item {
-				cursor: pointer;
-				}
-				span.advisr-prefix-class-h5-carousel {
-					font-size: 15px;
-				}
-				@media only screen and (max-width: 400px) {
-					img.advisr-prefix-class-mr-2 {
-					margin-top: 0px;
-					float: left;
-					display: inline-block;
-					}
-					span.advisr-prefix-class-h5-carousel {
-					text-align: left;
-					}
-					.advisr-container .carousel-inner .item {
-    height: 550px;
-}
-				}
-
-                </style>
+	function custom_footer_ajex(){
+		
+	?>
+	<script src="https://cdn.jsdelivr.net/jquery.slick/1.5.2/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.2/slick.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.5.2/slick-theme.css">
 				<script>
 				jQuery(document).ready(function($){
-					$(".carousel .item:first-child").addClass('active');
-				$('.carousel').carousel({
-  interval: 10000 
-}); 
-				$(".carousel").swipe({
-				swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
-				if (direction == 'left') $(this).carousel('next');
-				if (direction == 'right') $(this).carousel('prev');
-				},
-				allowPageScroll:"vertical"
-				});
-				});
+jQuery(".slickItem .advisr-prefix-class-align-items-center").show();
+            $(".slickContainer").slick({
+                slide: '.slickItem',
+				arrows : false,
+				autoplay: true,
+				autoplaySpeed: 10000,
+            });
+        
+			});
 				</script>
 				
+	<input type="hidden" id="ajax_url" value="<?php echo admin_url('admin-ajax.php'); ?>">
+	
+		<?php
+	}
+	public function advisr_toolbox_custom_footer_ajex() {
+		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
+        add_action('wp_head',array($plugin_public, 'custom_footer_ajex' ));
+	
+	}
+	function save_review_custom_pop(){
+		//print_r($_POST[user_name]);
+     $rating=$_POST['rating'];
+	 if(empty($rating)){
+		 $rating=1;
+	 }
+		$fields = array(
+        'reviewee_id' => $_POST['reviewee_id'],
+        'rating' =>  $rating,
+        'fullName' =>  $_POST['user_name'],
+        'email' =>  $_POST['email_user'],
+        'comment' =>  $_POST['comment_user']
+    );
+
+    $fields = json_encode($fields);
+	//print_r($field);
+
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://staging.advisr.com.au/api/v1/reviews",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  ///curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+   CURLOPT_POSTFIELDS => $fields,
+  CURLOPT_HTTPHEADER => array(
+    "cache-control: no-cache",
+    "content-type: application/json",
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+ //= echo $response;
+}
+//print_r( $response);
+if(!empty($response)){
+	echo "Done";
+}
+		exit;
+	}
+//add_action('wp_ajax_save_review_custom_pop', 'save_review_custom_pop');
+//add_action('wp_ajax_nopriv_save_review_custom_pop', 'save_review_custom_pop');
+	public function advisr_toolbox_save_review_custom_pop() {
+		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
+		add_action('wp_ajax_save_review_custom_pop',  array($plugin_public, 'save_review_custom_pop' ));
+        add_action('wp_ajax_nopriv_save_review_custom_pop',array($plugin_public, 'save_review_custom_pop' ));
+	
+	}
+	public function review_advisr_member_review(){
+		?>
+	
 		<?php
 		$advisr_toolbox= get_option('advisr-toolbox');
 		$apikey=$advisr_toolbox['apikey'];
+		 $slider_text_color = get_option('slider_text_color');
 	
 		$curl = curl_init();
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://advisr.com.au/api/v1/brokerages/150?withReviews=true&recursiveReviews=true",
+  CURLOPT_URL => "https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -291,50 +303,53 @@ $reivew_slug=$array_result['slug'];
 $reivew_name=$array_result['name'];
 
 $html = '';
-?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<?php
+
 		
-		   $html.='<div class="advisr-container container">';
-  $html.='<div id="carousel-example-generic" class="carousel slide slide advisr-prefix-class-col-12" data-interval="10000" data-ride="carousel">';
-  $html.=' <div class="carousel-inner" role="listbox">';  
-foreach($reivew as $reviews_data){
-	//print_r($reviews_data);
- $rating=$reviews_data['rating'];
-
-    $html.='  <div class="item">';
-    $html.='<div class="advisr-prefix-class-row advisr-prefix-class-text-center advisr-prefix-class-align-items-center">
-	<div class="advisr-prefix-class-col-2"><i class="fa fa-quote-left" aria-hidden="true"></i></div><div class="advisr-prefix-class-col-8"><p></p>
-	<ul class="advisr-prefix-class advisr-prefix-class-list-inline advisr-prefix-class-small advisr-prefix-class-mb-3">';
-	
-	for ($x = 1; $x <= $rating; $x++) {
-  $html.='<li class="advisr-prefix-class-list-inline-item advisr-prefix-class-mx-0"><i class="fa fa-star" aria-hidden="true"></i></li>';
-}
-
-	$html.='</ul> 
-	'.$reviews_data['comment'].'<p></p>
-	
-	<div class="advisr-prefix-class-col-12 advisr-prefix-class-text-center advisr-prefix-class-d-flex advisr-prefix-class-justify-content-center advisr-prefix-class-align-items-center">';
-    if($reviews_data['google'] == false){
-	 $html.='<img src="'.plugin_dir_url( __FILE__ ).'/advisr-logo.png" data-toggle="tooltip" data-placement="top" title="Advisr review" class="advisr-prefix-class-mr-2" alt="advisr-logo" style="height: 16px; width: 16px;">';
-	}else{
-	 $html.='<img src="'.plugin_dir_url( __FILE__ ).'/google-logo.png" data-toggle="tooltip" data-placement="top" title="Advisr review" class="advisr-prefix-class-mr-2" alt="advisr-logo" style="height: 16px; width: 16px;">';
-}
-	 $html.='<span class="advisr-prefix-class-h5-carousel">'.$reviews_data['reviewer'].' reviewed '.$reviews_data['reviewee'].'</span></div>
-	</div>
-	<div class="advisr-prefix-class-col-2">
-	<i class="fa fa-quote-right"></i></div></div>';
-     $html.=' </div>';
-   
-
+	$html.='<div class="advisr-container container">';
+	$html.='<div class="review_section">';
+	$html.=' <div class="slickContainer" >';
+	foreach($reivew as $reviews_data){
+		$rating=$reviews_data['rating'];
+	$html.=' <div class="slickItem">';
+		$html.='<div class="advisr-prefix-class-row advisr-prefix-class-text-center advisr-prefix-class-align-items-center" style="display: none;">';
+					$html.='<div class="advisr-prefix-class-col-2"><svg id="Capa_1" style="fill: '.$slider_text_color.'" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.02 31.78"><path d="M14.47,6.31A1.74,1.74,0,0,0,15.36,4l0,0L13.9,1A1.74,1.74,0,0,0,11.63.15,19.9,19.9,0,0,0,5.38,4.22a15.09,15.09,0,0,0-4.21,6.65A36.27,36.27,0,0,0,0,21.09V30a1.76,1.76,0,0,0,1.75,1.77H13.16A1.75,1.75,0,0,0,14.9,30h0V18.59a1.74,1.74,0,0,0-1.74-1.74H7.7a12.29,12.29,0,0,1,2-7.06A11.1,11.1,0,0,1,14.47,6.31Z" transform="translate(0.01 0.01)"/><path d="M35,6.31A1.74,1.74,0,0,0,35.86,4l0,0L34.42,1A1.74,1.74,0,0,0,32.15.14a20.73,20.73,0,0,0-6.24,4,15.45,15.45,0,0,0-4.24,6.67A36.14,36.14,0,0,0,20.54,21v8.91a1.75,1.75,0,0,0,1.65,1.85h11.5A1.77,1.77,0,0,0,35.44,30V18.59a1.76,1.76,0,0,0-1.75-1.74H28.2a12.27,12.27,0,0,1,2-7.06A11,11,0,0,1,35,6.31Z" transform="translate(0.01 0.01)"/></svg></div><div class="advisr-prefix-class-col-8" style="color:'.$slider_text_color.'"><p></p>
+							<ul class="advisr-prefix-class advisr-prefix-class-list-inline advisr-prefix-class-small advisr-prefix-class-mb-3">';
+							for ($x = 1; $x <= $rating; $x++) {
+							$html.='<li class="advisr-prefix-class-list-inline-item advisr-prefix-class-mx-0"><i class="fa fa-star" aria-hidden="true"></i></li>';
+							}
+							$html.='</ul> 
+							'.$reviews_data['comment'].'<p></p>';
+							$html.='<div class="advisr-prefix-class-col-12 advisr-prefix-class-text-center advisr-prefix-class-d-flex advisr-prefix-class-justify-content-center advisr-prefix-class-align-items-center">';
+									if($reviews_data['google'] == false){
+									$html.='<img src="'.plugin_dir_url( __FILE__ ).'/advisr-logo.png" data-toggle="tooltip" data-placement="top" title="Advisr review" class="advisr-prefix-class-mr-2" alt="advisr-logo" style="height: 16px; width: 16px;">';
+									}else{
+									$html.='<img src="'.plugin_dir_url( __FILE__ ).'/google-logo.png" data-toggle="tooltip" data-placement="top" title="Advisr review" class="advisr-prefix-class-mr-2" alt="advisr-logo" style="height: 16px; width: 16px;">';
+									}
+								   $html.='<span class="advisr-prefix-class-h5-carousel">'.$reviews_data['reviewer'].' reviewed '.$reviews_data['reviewee'].'</span>';
+							$html.='</div>';
+					$html.='</div>';
+				$html.='<div class="advisr-prefix-class-col-2">
+					<svg version="1.1" style="fill: '.$slider_text_color.'" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					viewBox="0 0 36 31.7" style="enable-background:new 0 0 36 31.7;" xml:space="preserve">
+					<path d="M21.5,25.5c-0.9,0.4-1.3,1.4-0.9,2.3c0,0,0,0,0,0l1.4,3c0.4,0.8,1.4,1.2,2.3,0.8c2.3-0.9,4.4-2.3,6.3-4.1
+					c2-1.8,3.4-4.1,4.2-6.7c0.9-3.3,1.3-6.8,1.2-10.2V1.8c0-1-0.8-1.8-1.7-1.8c0,0,0,0,0,0L22.8,0c-1,0-1.7,0.8-1.7,1.8c0,0,0,0,0,0
+					v11.4c0,1,0.8,1.7,1.7,1.7h5.5c0.1,2.5-0.6,5-2,7.1C25,23.5,23.4,24.7,21.5,25.5z"/>
+					<path d="M1,25.5c-0.9,0.4-1.3,1.4-0.9,2.3c0,0,0,0,0,0l1.4,3C2,31.6,3,32,3.8,31.6c2.3-0.9,4.4-2.3,6.2-4c2-1.8,3.4-4.1,4.2-6.7
+					c0.9-3.3,1.2-6.8,1.1-10.2V1.8c0.1-1-0.7-1.8-1.6-1.8c0,0-0.1,0-0.1,0L2.3,0c-1,0-1.7,0.8-1.7,1.8v11.4c0,1,0.8,1.7,1.7,1.7h5.5
+					c0.1,2.5-0.6,5-2,7.1C4.5,23.5,2.9,24.7,1,25.5z"/>
+					</svg>
+				</div>
+			</div>';
+	$html.=' </div>';
+		
 	}
+
+	$html.=' </div>';
+		$html.='<div class="add-review advisr-prefix-class-text-center advisr-prefix-class-text-dark">
+	<a href="https://advisr.com.au/'.$reivew_slug.'#reviews" target="_blank" style="color:'.$slider_text_color.'">Leave '.$reivew_name.' a review</a></div>';
 	
-	 $html.='<div class="add-review advisr-prefix-class-text-center advisr-prefix-class-text-dark">
-	 <a href="https://advisr.com.au/'.$reivew_slug.'#reviews" target="_blank">Leave '.$reivew_name.' a review</a></div>';
-		  $html.='  </div>';
- $html.=' </div>';
-$html.='</div>'; 
-$html.='</div>'; 
+	$html.='</div>'; 
+	$html.='</div>'; 
 
 		return $html;
 	}
@@ -343,6 +358,7 @@ $html.='</div>';
 		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 		//add_shortcode( 'advisr-reviews', array('review_advisr_member_review'));
 		add_shortcode( 'advisr-reviews', array($plugin_public, 'review_advisr_member_review' ));
+	
 		if ( version_compare($GLOBALS['wp_version'], '5.0-beta', '>') ) {
     // WP > 5 beta
     add_filter( 'use_block_editor_for_post_type', '__return_false', 100 );

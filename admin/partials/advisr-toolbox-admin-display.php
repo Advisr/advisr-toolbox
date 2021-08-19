@@ -21,8 +21,15 @@
     <form method="post" name="advisr_toolbox_options" action="options.php">
 
 		<?php
+	
+			$save_color=$_POST['submit'];
+			$slider_text_color=$_POST['slider_text_color'];
+			if(!empty($slider_text_color) && $save_color =='Save Text Color'){
+				  update_option('slider_text_color',$slider_text_color);
+			}
 			//Grab all options
 			$options = get_option($this->plugin_name);
+			 $slider_text_color = get_option('slider_text_color');
 
 			// Cleanup
 			$apikey = $options['apikey'];
@@ -42,7 +49,7 @@
 			<legend class="screen-reader-text"><span><?php _e('Advisr API access key', $this->plugin_name); ?></span></legend>
 			<textarea type="text" required class="regular-text" id="<?php echo $this->plugin_name; ?>-apikey" name="<?php echo $this->plugin_name; ?>[apikey]" value="<?php if(!empty($apikey)) echo $apikey; ?>" rows="8" placeholder="eg. kjhgafysd65f865ehgf8ehgfsdfr3876rytesd67tywgjrjhasdfyugrhi6fyghrafisd6ftykgjehrfiae76rtyigefe9274567sdkcnmbd23e98w7esd8fasdhfbqr8a76erthbweof87v4gk5jrhag78wbl4efseo87uib"><?php if(!empty($apikey)) echo $apikey; ?></textarea>
 		</fieldset>
-        <?php submit_button('Save settings', 'primary','submit', TRUE); ?>
+        <?php submit_button('Save Access Token', 'primary','submit', TRUE); ?>
 		
 		<textarea type="text" class="regular-text" style="display: none" id="<?php echo $this->plugin_name; ?>-advisr_brokers_config" name="<?php echo $this->plugin_name; ?>[advisr-brokers-config]" value="<?php if(!empty($advisr_brokers_config)) echo $advisr_brokers_config; ?>" rows="8" placeholder="eg. kjhgafysd65f865ehgf8ehgfsdfr3876rytesd67tywgjrjhasdfyugrhi6fyghrafisd6ftykgjehrfiae76rtyigefe9274567sdkcnmbd23e98w7esd8fasdhfbqr8a76erthbweof87v4gk5jrhag78wbl4efseo87uib"><?php if(!empty($advisr_brokers_config)) echo $advisr_brokers_config; ?></textarea>
 		<h3>Step 2</h3>
@@ -57,5 +64,13 @@
 		<p>Paste this code anywhere in your site: <code>[advisr-team-page]</code></p>
 
     </form>
+	  <hr>
+	 <form method="post" name="advisr_toolbox_color" >
+	 <h3>Advisr Reviews Settings</h3>
+	   
+	   <label><strong> Reviews Carousel Text Color : </strong> <input type="color" value="<?php echo $slider_text_color; ?>" name="slider_text_color"></label> 
+	   
+	  <?php submit_button('Save Text Color', 'primary','submit', TRUE); ?>
+	 </form>
 
 </div>

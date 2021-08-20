@@ -22,14 +22,14 @@
 
 		<?php
 	
-			$save_color=$_POST['submit'];
-			$slider_text_color=$_POST['slider_text_color'];
-			if(!empty($slider_text_color) && $save_color =='Save Text Color'){
-				  update_option('slider_text_color',$slider_text_color);
+			$save_color = $_POST['submit'];
+			$slider_text_color = $_POST['slider_text_color'];
+			if (!empty($slider_text_color) && $save_color =='Save Text Color') {
+			    update_option('slider_text_color',$slider_text_color);
 			}
 			//Grab all options
 			$options = get_option($this->plugin_name);
-			 $slider_text_color = get_option('slider_text_color');
+			$slider_text_color = get_option('slider_text_color');
 
 			// Cleanup
 			$apikey = $options['apikey'];

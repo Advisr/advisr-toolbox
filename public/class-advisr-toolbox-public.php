@@ -317,7 +317,7 @@ class Advisr_Toolbox_Public {
                                     $html.='<li class="advisr-prefix-class-list-inline-item advisr-prefix-class-mx-0"><i class="fa fa-star" aria-hidden="true"></i></li>';
                                     }
                                     $html.='</ul> 
-                                    '.$reviews_data['comment'].'<p></p>';
+                                    '.$reviews_data['comment'].'<p style="margin-bottom: 15px; "></p>';
                                     $html.='<div class="advisr-prefix-class-col-12 advisr-prefix-class-text-center advisr-prefix-class-d-flex advisr-prefix-class-justify-content-center advisr-prefix-class-align-items-center">';
                                             if($reviews_data['google'] == false){
                                             $html.='<img src="'.plugin_dir_url( __FILE__ ).'/advisr-logo.png" data-toggle="tooltip" data-placement="top" title="Advisr review" class="advisr-prefix-class-mr-2" alt="advisr-logo" style="height: 16px; width: 16px;">';
@@ -339,13 +339,15 @@ class Advisr_Toolbox_Public {
                             </svg>
                         </div>
                     </div>';
+					$html.='<div class="add-review advisr-prefix-class-text-center advisr-prefix-class-text-dark">
+	    <a href="https://advisr.com.au/'.$reivew_slug.'#reviews" target="_blank" style="color:'.$slider_text_color.'">Leave '.$reivew_name.' a review</a></div>';
             $html.=' </div>';
+					
             
         }
 
 	    $html.=' </div>';
-		$html.='<div class="add-review advisr-prefix-class-text-center advisr-prefix-class-text-dark">
-	    <a href="https://advisr.com.au/'.$reivew_slug.'#reviews" target="_blank" style="color:'.$slider_text_color.'">Leave '.$reivew_name.' a review</a></div>';
+
 	
         $html.='</div>'; 
         $html.='</div>'; 

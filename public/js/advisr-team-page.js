@@ -97,7 +97,7 @@ class AdvisrTeamPage extends HTMLElement {
 			membersHtml += `<div class="advisr-prefix-class team-member-row row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5 pb-5">`;
 				mergedTeamMembers.forEach((member, index) => {
 					membersHtml += `<div class="advisr-prefix-class team-member-col col">`
-						membersHtml += `<div class="advisr-prefix-class team-member-card card h-100 text-center">`;
+						membersHtml += `<div class="advisr-prefix-class team-member-card 1 card h-100 text-center">`;
 							const imageHtml = member.avatar_url ?
 								`<div class="advisr-prefix-class team-member-image btn embed-responsive embed-responsive-1by1 border border-5 border-white"
  									data-bs-toggle="modal" data-bs-target="#memberModal"
@@ -119,10 +119,33 @@ class AdvisrTeamPage extends HTMLElement {
 								</p>` : '';
 							const mobileHTML = member.mobile ? `<p><a class="advisr-prefix-class team-member-mobile card-text text-muted small" href="tel:${member.mobile}">${member.mobile}</a></p>` : '';
 							const telephoneHTML = member.telephone ? `<p><a class="advisr-prefix-class team-member-telephone card-text text-muted small" href="tel:${member.telephone}">${member.telephone}</a></p>` : '';
+			
+			let ratingHtml= ` `;
+			let ratingtoal= 0;
+	
+			const rating = member.rating;
+				for (var i = 0; i < rating; i++) {
+					ratingHtml += `<li class="advisr-prefix-class list-inline-item m-0 mr-1"><span class="fa fa-star text-warning"></span> </li>`;
+					//ratingtoal+=rating;
+				}
+				for (var j = rating; j < 5; j++) {
+					ratingHtml += `<li class="advisr-prefix-class list-inline-item m-0 mr-1"><span class="fa fa-star-o"></span></li>`;
+					//ratingtoal+=rating;
+				}
+				let reviews = member.reviews;
+						for (var i = 0; i < reviews.length; i++) {
+				//console.log(reviews[i].rating);
+    ratingtoal += reviews[i].rating << 0;
+}
+
+				const reviewsCount = reviews.length ? `(${reviews ? reviews.length : 0} ${reviews.length === 1 ? 'review' : 'reviews'})` : ''	
+const reviewsCount2 = reviews.length;				
+  const rating_avg=ratingtoal/reviewsCount2;		
+					const reviewHTML = member.rating ? `<p>${ratingHtml} <span>${reviewsCount}</span></p>` : '';
 							const enquireHtml = member.email ? `<a href="mailto:${member.email}" class="advisr-prefix-class team-member-email btn btn-dark mb-3">Connect</a>`: '';
 							membersHtml += imageHtml  +
 								`<div class="advisr-prefix-class team-member-contact card-body">`
-									+ nameHtml + roleHtml + mobileHTML + telephoneHTML +
+									+ nameHtml + roleHtml + mobileHTML + telephoneHTML +reviewHTML+
 								`</div>` +
 								`<div class="advisr-prefix-class team-member-enquiry card-footer bg-transparent border-top-0">`
 									+ enquireHtml +
@@ -130,6 +153,7 @@ class AdvisrTeamPage extends HTMLElement {
 						membersHtml += `</div>`;
 					membersHtml += `</div>`;
 				});
+				
 			membersHtml += `</div>`;
 
 			membersHtml +=
@@ -157,7 +181,7 @@ class AdvisrTeamPage extends HTMLElement {
 											<small id="modalReviewsCount" class="advisr-prefix-class ml-1 text-muted"></small>
 										</span>
 										<a id="modalConnectButton" href="" class="advisr-prefix-class btn btn-dark my-1">Connect</a>
-										<a id="modalReviewButton" href="" class="advisr-prefix-class btn btn-dark my-1 mx-2">Review</a>
+										<a id="modalReviewButton" data-bs-toggle="modal" data-bs-target="#memberModal2" href="" class="advisr-prefix-class btn btn-dark my-1 mx-2 write_a_review">Write a Review</a>
 									</div>
 								</div>
 							 </div>
@@ -191,6 +215,71 @@ class AdvisrTeamPage extends HTMLElement {
 					</div>
 				</div>
 			</div>`;
+			
+		
+	
+			membersHtml +=
+				`<div class="advisr-prefix-class team-member__modal-container modal fade" id="memberModal2" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+				<div class="advisr-prefix-class team-member__modal-dialog modal-dialog modal-lg modal-dialog-centered">
+					<div class="advisr-prefix-class team-member__modal-content modal-content">
+						<div class="advisr-prefix-class close_button team-member__modal-header modal-header border-0 pb-0">
+							<button type="button" class="advisr-prefix-class btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="advisr-prefix-class thank_you team-member__modal-body modal-body pt-2 pb-0">
+							<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
+								<div class="advisr-prefix-class heading team-member__modal-col ">
+									<h4>Write a Review</h4>
+								</div>
+								<div class="advisr-prefix-class team-member__modal-card-col ">
+									<div class="advisr-prefix-class team-member__modal-card-body card-body">
+										
+										<form method="post" id="submit_review">
+				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
+<div class="rating">
+<label><li class="list-inline-item mx-0">
+ <span class="fas fa-star-o text-warning"></span>
+</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
+ <label><li class="list-inline-item mx-0">
+ <span class="fas fa-star-o text-warning"></span>
+</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
+<label><li class="list-inline-item mx-0">
+ <span class="fas fa-star-o text-warning"></span>
+</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
+<label><li class="list-inline-item mx-0">
+ <span class="fas fa-star-o text-warning"></span>
+</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
+<label><li class="list-inline-item mx-0">
+ <span class="fas fa-star-o text-warning"></span>
+</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+
+</div>
+	<br><span class="rating_error error"></span>
+</div>
+										<div class="filed_custo_all">
+										<div class="filed_custom"><label>YOUR NAME <span>*</span></label><input type="text" name="reivewer_name" class="customfiled user_name">
+										<span class="user_name error"></span></div>
+										<div class="filed_custom">	<label>YOUR EMAIL ADDRESS <span>*</span> </label><input type="text" name="reivewer_email" class="customfiled email_user" >
+										<span class="email_user error"></span></div>
+										</div>
+										<div class="text_area"><label> YOUR REVIEW <span>*</span></label> <textarea rows="5" name="reivewer_comment" class="customfiled comment_user"></textarea >
+										<span class="comment_user error"></span></div>
+							               <input type="hidden" value="" name="reviewee_id" class="customfiled reviewee_id" >
+										
+									<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_review" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+										</form>
+									</div>
+								</div>
+							 </div>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>`;
+	 
+			
+			
+			
 		}
 
 		fragment.querySelector('#members-wrapper').innerHTML = membersHtml;
@@ -201,6 +290,293 @@ class AdvisrTeamPage extends HTMLElement {
 		jQuery(document).ready(function () {
 			jQuery.HSCore.components.HSModalWindow.init("[data-modal-target]", ".js-modal-window", { autonomous: true});
 
+			
+			//jQuery('.rating label').click(function() {
+	jQuery(document).on("click",".thank_you .rating label",function(e) {
+    jQuery('.rating label').removeClass('active');
+   jQuery(this).addClass('active');
+  });
+
+ 
+		 jQuery(".thank_you").on("click","button.review_okay", function(e){
+			 //location.reload();
+			  	//jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+			 jQuery("#memberModal2 button.advisr-prefix-class.btn-close").trigger("click");
+		 });
+		jQuery("#memberModal").on("click","a#modalReviewButton", function(e){
+		
+				if(jQuery(".thank_you").hasClass("authenticate_review")){
+					jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+				}else{
+					jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+				}
+			if(jQuery(this).hasClass("active")){
+			
+				jQuery("#memberModal2 .advisr-prefix-class.close_button.team-member__modal-header").show();
+				var pophtml=`<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
+								<div class="advisr-prefix-class heading team-member__modal-col ">
+									<h4>Write a Review</h4>
+								</div>
+								<div class="advisr-prefix-class team-member__modal-card-col ">
+									<div class="advisr-prefix-class team-member__modal-card-body card-body">
+										<form method="post" id="submit_review">
+				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
+				<div class="rating">
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
+				 <label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+
+				</div>
+					<br><span class="rating_error error"></span>
+				</div>
+										<div class="filed_custo_all">
+										<div class="filed_custom"><label>YOUR NAME <span>*</span></label><input type="text" name="reivewer_name" class="customfiled user_name">
+										<span class="user_name error"></span></div>
+										<div class="filed_custom">	<label>YOUR EMAIL ADDRESS <span>*</span> </label><input type="text" name="reivewer_email" class="customfiled email_user" >
+										<span class="email_user error"></span></div>
+										</div>
+										<div class="text_area"><label> YOUR REVIEW <span>*</span></label> <textarea rows="5" name="reivewer_comment" class="customfiled comment_user"></textarea >
+										<span class="comment_user error"></span></div>
+							               <input type="hidden" value="" name="reviewee_id" class="customfiled reviewee_id" >
+										
+									<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_review" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+										</form>
+									</div>
+								</div>
+							 </div>`;
+							 
+			if(jQuery(".thank_you").hasClass("new_reivews")){
+			}else{
+				jQuery(".thank_you").removeClass("active");
+						jQuery(".thank_you").html(pophtml);
+			}
+			var dataid=jQuery(".thank_you").attr("data-id");
+				jQuery(".reviewee_id").val(dataid);
+			}
+			  jQuery(this).addClass("active");
+			   
+		  });
+		
+		/*  jQuery("div#memberModal2").on("click",function(){
+
+  if(jQuery("div#memberModal2").hasClass("show")){
+console.log("if");
+}else{
+console.log("else");
+ jQuery("button.advisr-prefix-class.btn-close").trigger("click");
+}
+
+});
+	 */	 jQuery(".thank_you .user_name ").keypress(function(){
+			  jQuery("input.user_name").removeClass("input_error");
+jQuery(".user_name.error").html(' ');
+});	
+ jQuery(".thank_you .comment_user").keypress(function(){
+	 jQuery("textarea.comment_user").removeClass("input_error");
+jQuery(".comment_user.error").html(' ');
+});	 
+jQuery(".thank_you .email_user ").keypress(function(){
+	jQuery("input.email_user").removeClass("input_error");
+jQuery(".email_user.error").html(' ');
+});
+/* jQuery(".thank_you  #authenticate_form .email_user ").keypress(function(){
+jQuery("#authenticate_form .email_user.error").html(' ');
+}); */
+ jQuery(".thank_you").on("keypress","#authenticate_form .email_user", function(e){
+	 jQuery("#authenticate_form .email_user").removeClass("input_error");
+jQuery("#authenticate_form .email_user.error").html(' ');
+});
+ jQuery(".thank_you").on("submit","#authenticate_form", function(e){
+	 	jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+	  e.preventDefault();
+	   var email_user= jQuery("#authenticate_form .email_user").val();
+	   if (email_user.length < 1) {	
+	    jQuery("#authenticate_form .email_user").addClass("input_error");
+      jQuery('#authenticate_form .email_user.error').html('Please enter your email address.');
+    } else {
+ 
+	 var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+      var validEmail = pattern.test(email_user);
+      if (!validEmail) {
+		  jQuery("#authenticate_form .email_user").addClass("input_error");
+        jQuery('#authenticate_form .email_user.error').html('Please enter a valid email address.');
+      }else{
+		  jQuery("#authenticate_form .email_user").removeClass("input_error");
+		  jQuery('#authenticate_form.email_user.error').html(' ');
+		    jQuery('#authenticate_form .email_user.error').html(' ');
+	  }
+    }
+	 if (email_user.length > 1 && validEmail) {
+		/// alert("ddd");
+	jQuery('.thank_you #submit_review').trigger('submit');
+	 }
+	   return false;
+ })
+
+   /// jQuery("#memberModal2 .thank_you #submit_review").on("submit", function(e){
+		jQuery(document).on("submit",".thank_you #submit_review",function(e) {
+		  // var user_name= jQuery(".user_name").val();
+		 //  alert("fff");
+    e.preventDefault();
+        var ajaxurl= jQuery("#ajax_url").val();
+        var user_name= jQuery(".user_name").val();
+        var email_user= jQuery(".email_user").val();
+        var comment_user= jQuery(".comment_user").val();
+        var reviewee_id= jQuery(".reviewee_id").val();
+        var rating= jQuery("label.active input.star_input").val();
+		//alert(rating);
+		var name=jQuery("#modalName").html();
+		
+			 if( typeof rating === 'undefined') {
+			
+      jQuery('.rating_error.error').html('Please leave '+name+' a star rating.');
+    }else{
+		 jQuery('.rating_error.error').html(' ');
+	}
+		 if (user_name.length < 1) {
+		jQuery("input.user_name").addClass("input_error");
+      jQuery('.user_name.error').html('Please enter your name.');
+    }else{
+		jQuery("input.user_name").removeClass("input_error");
+		 jQuery('.user_name.error').html(' ');
+	}
+	 if (comment_user.length < 1) {
+		 jQuery("textarea.comment_user").addClass("input_error");
+      jQuery('.comment_user.error').html('Please enter review.');
+    }else{
+		jQuery("textarea.comment_user").removeClass("input_error");
+		 jQuery('.comment_user.error').html(' ');
+	}
+    if (email_user.length < 1) {	
+	jQuery("input.email_user").addClass("input_error");
+      jQuery('.email_user.error').html('Please enter your email address.');
+    } else {
+     var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
+	 var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+      var validEmail = pattern.test(email_user);
+      if (!validEmail) {
+		  jQuery("input.email_user").addClass("input_error");
+        jQuery('.email_user.error').html('Please enter a valid email address.');
+      }else{
+		  jQuery("input.email_user").removeClass("input_error");
+		  jQuery('.email_user.error').html(' ');
+	  }
+    }
+	
+		 if (email_user.length > 1 && user_name.length > 1 && comment_user.length > 1 && validEmail &&  rating >= 1) {
+			 var form_data = new FormData(); 
+				form_data.append('user_name', user_name);
+				form_data.append('email_user', email_user);
+				form_data.append('rating', rating);
+				form_data.append('comment_user', comment_user);
+				form_data.append('reviewee_id', reviewee_id);
+				form_data.append('action', 'save_review_custom_pop');
+				
+			  if(rating > 3){
+				  jQuery(".submit_button span#submit-review-spinner").show();
+				  	 jQuery(".submit_button input.advisr-prefix-class.btn").attr("disabled","disabled");
+				jQuery.ajax({
+				url : ajaxurl,
+				dataType: 'text',  
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: form_data,                         
+				type: 'post',
+					success : function(data) {
+						if(data =='Done'){
+						///console.log("ddd")
+						jQuery(".submit_button input.advisr-prefix-class.btn").attr("disabled",false);
+						 jQuery(".submit_button span#submit-review-spinner").hide();
+						jQuery(".close_button").hide();
+						jQuery(".thank_you").addClass("renew");
+						jQuery(".thank_you").addClass("active");
+							jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+						jQuery(".thank_you").html('<h2>Thank you for your review</h2><button type="button" class="review_okay btn-dark" data-bs-dismiss="modal" aria-label="Okay">Okay</button>');
+							/* if(jQuery(".thank_you").hasClass("new_reivews")){
+							   jQuery(".thank_you").html('<h2>Thank you for your review</h2> <br><p>To ensure your review is genuine we need you to confirm your email address</p><form method="post"> <div class="email_custom"><label>YOUR EMAIL ADDRESS <span>*</span> </label><input type="email" required name="reivewer_email" class="customfiled " ></div><div><input type="submit" class="review_okay" value="Authenticate my email"><p>Please check your email account for an email from us</p><br><br></div></form>');
+
+							} */
+						}
+					}
+				});
+  }else{
+						jQuery(".policy_text").html(" ");
+					
+						jQuery(".thank_you .heading").addClass("custom_reivews");
+					jQuery(".thank_you .heading").html("<strong>Hi, it seems like you've had a bad experience with "+name+"</strong><p class='custom_text'>To help resolve your concerns, "+name+" will be given the opportunity to reply. if you'd like to change any part of your review you can do that here<p>")
+				jQuery(".filed_custom").addClass("bad_reivews");
+				jQuery(".submit_button input.advisr-prefix-class.btn").val("Yes, i want to submit this reivew");
+				jQuery(".submit_button input.advisr-prefix-class.btn").after("<div class='policy_text'><p>By proceeding you agree to adhere to the <a target='_blank' href='https://advisr.com.au/advisr-review-guidelines'>Advisr Reviews Policy and terms of usage</a></p><div>");
+				//jQuery(".customfiled").val('');
+				jQuery(".error").html('');
+				
+								
+				if(jQuery(".thank_you").hasClass("authenticate_review")){
+					 jQuery("#authenticate_form span#submit-review-spinner").show();
+					 jQuery(".submit_button input.advisr-prefix-class.btn").attr("disabled","disabled");
+					 jQuery("#authenticate_form input.review_okay").attr("disabled","disabled");
+						jQuery.ajax({
+					url : ajaxurl,
+					dataType: 'text',  
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: form_data,                         
+					type: 'post',
+						success : function(data) {
+							if(data =='Done'){
+							//console.log("ddd")
+							 jQuery("#authenticate_form span#submit-review-spinner").hide();
+							  jQuery(".submit_button input.advisr-prefix-class.btn").attr("disabled",false);
+							  jQuery("#authenticate_form input.review_okay").attr("disabled",false);
+							jQuery(".close_button").hide();
+							jQuery(".thank_you").addClass("active");
+							jQuery(".thank_you").removeClass("new_reivews");
+							jQuery(".thank_you").removeClass("authenticate_review");
+							jQuery(".thank_you").addClass("renew");
+								jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+							jQuery(".thank_you").html('<h2>Thank you for your review</h2><br><p>Please check your email account for an email form us</p><button type="button" class="review_okay btn-dark" data-bs-dismiss="modal" aria-label="Okay">Okay</button>');
+						
+							}
+						}
+					}); 
+				}
+				
+				if(jQuery("#authenticate_form").hasClass("active")){
+					console.log("active");
+				}else{
+					if(jQuery(".thank_you").hasClass("new_reivews")){
+								jQuery(".close_button").hide();
+								jQuery(".thank_you").addClass("active");
+								jQuery(".thank_you").addClass("authenticate_review");
+								jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+								jQuery("#memberModal2 .advisr-prefix-class.close_button.team-member__modal-header").show();
+									   jQuery(".thank_you").append('<h2>Thank you for your review</h2> <br><p class="custom_text">To ensure your review is genuine we need you to confirm your email address</p><form method="post" id="authenticate_form" class="active"> <div class="email_custom"><label>YOUR EMAIL ADDRESS <span class="error">*</span> </label><input type="text" name="reivewer_email" class="customfiled email_user" value="'+email_user+'"><br><span class="email_user error"></span></div><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" class="review_okay btn-dark" value="Authenticate my email"><p>Please check your email account for an email from us</p><br><br></div></form>');
+					jQuery(".thank_you .advisr-prefix-class.team-member__modal-row.row.g-0.m-0").hide();
+					}
+				}
+				jQuery(".thank_you").addClass("new_reivews");
+				
+				
+				}
+		 }
+	 
+      return false;
+    });
+  
 			let memberModal = document.getElementById('memberModal')
 			memberModal.addEventListener('show.bs.modal', function (event) {
 				// Button that triggered the modal
@@ -209,6 +585,7 @@ class AdvisrTeamPage extends HTMLElement {
 				let selected = button.getAttribute('data-bs-selected');
 				let avatar = mergedTeamMembers[selected].avatar_url;
 				let name = mergedTeamMembers[selected].name;
+				let id = mergedTeamMembers[selected].id;
 				let role = mergedTeamMembers[selected].role;
 				let mobile = mergedTeamMembers[selected].mobile;
 				let telephone = mergedTeamMembers[selected].telephone;
@@ -217,7 +594,86 @@ class AdvisrTeamPage extends HTMLElement {
 				let reviews = mergedTeamMembers[selected].reviews;
 				let reviewsCount = reviews.length ? `(${reviews ? reviews.length : 0} ${reviews.length === 1 ? 'review' : 'reviews'})` : ''
 				let profileURL = mergedTeamMembers[selected].profile_url;
+                let ratingtoal=0;
+				let reviewsCount2=reviews.length;
+				for (var i = 0; i < reviews.length; i++) {
+				ratingtoal += reviews[i].rating << 0;
+				}  	
+				const rating_avg=ratingtoal/reviewsCount2;	
+				   
+				   if(id ==''){
+					   jQuery(".write_a_review").hide();
+				   }else{
+					     jQuery(".write_a_review").show();
+				   }
+				   
+				   	jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+					jQuery(".thank_you").removeClass("new_reivews");
+					jQuery("a#modalReviewButton").removeClass("active");
+					jQuery(".thank_you .rating label").removeClass("active");
+					jQuery(".thank_you .heading").html("<h4>Write a Review</h4>");
+				jQuery(".filed_custom").removeClass("bad_reivews");
+					jQuery(".submit_button input.advisr-prefix-class.btn").val("Submit");
+					jQuery(".policy_text").html(" ");
+					jQuery(".customfiled").val('');
+					jQuery(".error").html('');
+					jQuery("#memberModal2 .advisr-prefix-class.close_button.team-member__modal-header").show();
+				var pophtml=`<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
+								<div class="advisr-prefix-class heading team-member__modal-col ">
+									<h4>Write a Review</h4>
+								</div>
+								<div class="advisr-prefix-class team-member__modal-card-col ">
+									<div class="advisr-prefix-class team-member__modal-card-body card-body">
+										
+										<form method="post" id="submit_review">
+				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
+				<div class="rating">
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
+				 <label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
+				<label><li class="list-inline-item mx-0">
+				 <span class="fas fa-star-o text-warning"></span>
+				</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
 
+				</div>
+					<br><span class="rating_error error"></span>
+				</div>
+										<div class="filed_custo_all">
+										<div class="filed_custom"><label>YOUR NAME <span>*</span></label><input type="text" name="reivewer_name" class="customfiled user_name">
+										<span class="user_name error"></span></div>
+										<div class="filed_custom">	<label>YOUR EMAIL ADDRESS <span>*</span> </label><input type="text" name="reivewer_email" class="customfiled email_user" >
+										<span class="email_user error"></span></div>
+										</div>
+										<div class="text_area"><label> YOUR REVIEW <span>*</span></label> <textarea rows="5" name="reivewer_comment" class="customfiled comment_user"></textarea >
+										<span class="comment_user error"></span></div>
+							               <input type="hidden" value="" name="reviewee_id" class="customfiled reviewee_id" >
+										
+									<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_review" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+										</form>
+									</div>
+								</div>
+							 </div>`;
+						if(jQuery(".thank_you").hasClass("authenticate_review")){
+							jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+						jQuery(".thank_you").html(pophtml);
+						}if(jQuery(".thank_you").hasClass("renew")){
+						jQuery(".thank_you").html(pophtml);
+						}
+						
+				jQuery(".thank_you").removeClass("custom_reivews");
+				jQuery(".thank_you").removeClass("renew");
+				jQuery(".thank_you").removeClass("authenticate_review");
+				jQuery(".thank_you").removeClass("active");
+ 
 				
 				let email = mergedTeamMembers[selected].email;
 				let description = extractContent(mergedTeamMembers[selected].description);
@@ -257,8 +713,10 @@ class AdvisrTeamPage extends HTMLElement {
 				jQuery("#modalReviewSummary").html(ratingHtml);
 				jQuery("#modalReviewsCount").text(reviewsCount);
 				jQuery("#modalConnectButton").attr("href", `mailto:${email}`);
+				jQuery(".reviewee_id").val(id);
+				jQuery(".thank_you").attr("data-id",id);
 
-					jQuery("#modalReviewButton").attr("href", profileURL);
+					//jQuery("#modalReviewButton").attr("href", profileURL);
 
 
 				if(reviews.length > 0) {
@@ -376,6 +834,7 @@ class AdvisrTeamPage extends HTMLElement {
 
 	async fetchFromAdvisrApi(apikey) {
 		const url = `https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
+		// const url = `https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
 
 		var myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${apikey}`);

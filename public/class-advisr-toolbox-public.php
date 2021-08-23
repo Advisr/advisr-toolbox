@@ -226,7 +226,7 @@ class Advisr_Toolbox_Public {
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://staging.advisr.com.au/api/v1/reviews",
+            CURLOPT_URL => "https://advisr.com.au/api/v1/reviews",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -275,7 +275,7 @@ class Advisr_Toolbox_Public {
 	
 		$curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
+            CURLOPT_URL => "https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

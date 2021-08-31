@@ -1,11 +1,11 @@
 === Advisr Toolbox ===
 Contributors: evthedev, advisr
 Donate link: https://advisr.com.au
-Tags: insurance, insurtech, team, members
+Tags: insurance, insurtech, team, members, reviews
 Requires PHP: 5.6 or higher
 Requires at least: 4.7
-Tested up to: 5.5
-Stable tag: 4.3
+Tested up to: 5.8
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,10 +23,9 @@ Privacy Policy: https://advisr.com.au/privacy-policy
 
 Features available:
 * Team pages
-* Advisr Reviews
+* Advisr Reviews with Google My Business Reviews
 
 Feature roadmap:
-* Google My Business Reviews
 * Leads submission
 * Reviews submissions
 
@@ -37,14 +36,19 @@ Feature roadmap:
 3. Insert your Advisr API access token.
 4. Create internal team members.
 5. Organise Advisr team members.
-6. Paste this code anywhere in your site: `[advisr-team-page]`
-
+6. Paste this code anywhere in your site:
+* For Advisr Team Page: `[advisr-team-page]`
+* For Advisr Reviews: `[advisr-reviews]`
 
 == Frequently Asked Questions ==
 
 == Screenshots ==
 
 == Changelog ==
+= v2.2 =
+* Updated Reviews Segment Functionality
+* Add the functionality to submit Advisr Reviews
+
 = v2.1 =
 * Added Reviews Segment Functionality
 * Added the `[advisr-reviews]` shortcode to display reviews

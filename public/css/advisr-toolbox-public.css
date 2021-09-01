@@ -960,12 +960,22 @@ form#authenticate_form input.review_okay {
 .email_custom input.customfiled.email_user {
     width: 100%;
 }
+.review_section {
+    width: 500px !important;
+    margin: 0 auto;
+}
 
 
 }
 
 
 @media (max-width: 480px){
+	
+	.review_section {
+    width: 3350px !important;
+	margin: 0 auto;
+}
+
     .advisr-prefix-class-align-items-center .advisr-prefix-class-col-8, .advisr-prefix-class-h5-carousel, .advisr-prefix-class-text-dark {
         font-size: 16px!important;
 
@@ -1016,4 +1026,29 @@ input.customfiled.user_name:focus, input.customfiled.email_user:focus, textarea.
 .thank_you .input_error {
     border-color: rgba(222,68,55,.5) !important;
     box-shadow: 0 0 10px rgb(222 68 55 / 10%) !important;
+}
+@media (max-width: 430px){
+.review_section {
+    width: 320px !important;
+	float: left;
+}
+}
+@media (max-width: 380px){
+.review_section {
+    width: 300px !important;
+	
+}
+}
+
+@media (max-width: 360px){
+.review_section {
+    width: 270px !important;
+
+}
+}
+@media (max-width: 330px){
+.review_section {
+    width: 260px !important;
+
+}
 }

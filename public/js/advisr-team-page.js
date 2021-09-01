@@ -14,7 +14,8 @@ class AdvisrTeamPage extends HTMLElement {
 		if (jQuery('#members-wrapper').length != 0) {
 			return;
 		}
-
+     
+	 
 		if (!this.apikey) {
 			throw new Error('API token not provided');
 		}

@@ -20,7 +20,7 @@
  * @subpackage Advisr_Toolbox/public
  * @author     Ev Ooi <ev@advisr.com.au>
  */
-class Advisr_Toolbox_Public {
+class Advisr_Toolbox_Public {    
 
 	/**
 	 * The ID of this plugin.

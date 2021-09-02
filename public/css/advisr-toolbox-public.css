@@ -44,7 +44,9 @@ form#submit_review label span {
     margin-top: 0px;
 }
 
-
+.slickItem.slick-slide {
+    outline: none;
+}
 .advisr-prefix-class label {
     display: inline-block;
     margin-bottom: 0;

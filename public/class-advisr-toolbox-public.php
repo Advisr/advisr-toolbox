@@ -263,7 +263,6 @@ class Advisr_Toolbox_Public {
 		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 		add_action('wp_ajax_save_review_custom_pop',  array($plugin_public, 'save_review_custom_pop' ));
         add_action('wp_ajax_nopriv_save_review_custom_pop',array($plugin_public, 'save_review_custom_pop' ));
-		
 		add_action('wp_ajax_save_massage_drop_user_custom_pop',  array($plugin_public, 'save_massage_drop_user_custom_pop' ));
         add_action('wp_ajax_nopriv_save_massage_drop_user_custom_pop',array($plugin_public, 'save_massage_drop_user_custom_pop' ));
 	}

@@ -139,21 +139,21 @@ class AdvisrTeamPage extends HTMLElement {
     ratingtoal += reviews[i].rating << 0;
 }
 
-				const reviewsCount = reviews.length ? `(${reviews ? reviews.length : 0} ${reviews.length === 1 ? 'review' : 'reviews'})` : ''	
+const reviewsCount = reviews.length ? `(${reviews ? reviews.length : 0} ${reviews.length === 1 ? 'review' : 'reviews'})` : ''
 const reviewsCount2 = reviews.length;				
-  const rating_avg=ratingtoal/reviewsCount2;		
-					const reviewHTML = member.rating ? `<p>${ratingHtml} <span>${reviewsCount}</span></p>` : '';
-							const enquireHtml = member.id ? `<a data-id="${member.id}" id="modalmassageButton" data-bs-toggle="modal" data-bs-target="#memberModal3" href="" class="advisr-prefix-class team-member-email btn btn-dark mb-3">Connect</a>`: '';
-							membersHtml += imageHtml  +
-								`<div class="advisr-prefix-class team-member-contact card-body">`
-									+ nameHtml + roleHtml + mobileHTML + telephoneHTML +reviewHTML+
-								`</div>` +
-								`<div class="advisr-prefix-class team-member-enquiry card-footer bg-transparent border-top-0">`
-									+ enquireHtml +
-								`</div>` ;
-						membersHtml += `</div>`;
-					membersHtml += `</div>`;
-				});
+const rating_avg=ratingtoal/reviewsCount2;
+const reviewHTML = member.rating ? `<p>${ratingHtml} <span>${reviewsCount}</span></p>` : '';
+const enquireHtml = member.id ? `<a data-id="${member.id}" id="modalmassageButton" data-bs-toggle="modal" data-bs-target="#memberModal3" href="" class="advisr-prefix-class team-member-email btn btn-dark mb-3">Connect</a>`: '';
+		membersHtml += imageHtml  +
+			`<div class="advisr-prefix-class team-member-contact card-body">`
+				+ nameHtml + roleHtml + mobileHTML + telephoneHTML +reviewHTML+
+			`</div>` +
+			`<div class="advisr-prefix-class team-member-enquiry card-footer bg-transparent border-top-0">`
+				+ enquireHtml +
+			`</div>` ;
+	membersHtml += `</div>`;
+membersHtml += `</div>`;
+});
 				
 			membersHtml += `</div>`;
 
@@ -277,8 +277,6 @@ const reviewsCount2 = reviews.length;
 					</div>
 				</div>
 			</div>`;
-	 
-			
 			
 			membersHtml +=
 				`<div class="advisr-prefix-class team-member__modal-container modal fade" id="memberModal3" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
@@ -320,14 +318,9 @@ const reviewsCount2 = reviews.length;
 								</div>
 							 </div>
 						</div>
-						
-						
 					</div>
 				</div>
 			</div>`;
-	 
-			
-			
 		}
 
 		fragment.querySelector('#members-wrapper').innerHTML = membersHtml;
@@ -340,10 +333,9 @@ const reviewsCount2 = reviews.length;
 
 			
 			//jQuery('.rating label').click(function() {
-	jQuery(document).on("click",".thank_you .rating label",function(e) {
-    jQuery('.rating label').removeClass('active');
-   jQuery(this).addClass('active');
-   
+		jQuery(document).on("click",".thank_you .rating label",function(e) {
+		jQuery('.rating label').removeClass('active');
+		jQuery(this).addClass('active');
   });
 
  
@@ -628,54 +620,48 @@ jQuery("#authenticate_form .email_user.error").html(' ');
   
   
     /* massage drop*/
-  jQuery(".team-member-enquiry a#modalmassageButton").click(function(){
-	    jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+jQuery(".team-member-enquiry a#modalmassageButton").click(function(){
+jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
 	 var html_drop= `<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
-								<div class="advisr-prefix-class team-member__modal-col ">
-									<h4 class="center">Drop us a message</h4>
-									<p class="center">Find the right solution</p>
-								</div>
-								<div class="advisr-prefix-class team-member__modal-card-col ">
-									<div class="advisr-prefix-class team-member__modal-card-body card-body">
-										
-										<form method="post" id="submit_massage">
+		<div class="advisr-prefix-class team-member__modal-col ">
+			<h4 class="center">Drop us a message</h4>
+			<p class="center">Find the right solution</p>
+		</div>
+		<div class="advisr-prefix-class team-member__modal-card-col ">
+			<div class="advisr-prefix-class team-member__modal-card-body card-body">
 				
-										<div class="filed_custo_all">
-										<div class="filed_custom"><input type="text" name="first_name" placeholder="First Name" class="customfiled first_name">
-										<span class="first_name error"></span></div>
-										<div class="filed_custom">	<input type="text" name="last_name" placeholder="Last Name" class="customfiled last_name" >
-										<span class="last_name error"></span></div>
-										</div>
-										<div class="filed_custo_all">
-										<div class="filed_custom"><input type="text" name="email_address" placeholder="Email Address" class="customfiled email_address">
-										<span class="email_address error"></span></div>
-										<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
-										<span class="phone_number error"></span></div>
-										</div>
-										<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
-										<span class="comment_user error"></span></div>
-							            <br>
-										<div class="filed_custom" style=" width: 100%;"><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a></label> 
-							            <span class="terms_condition error"></span> </div> <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
-										 
-									<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
-										</form>
-									</div>
-								</div>
-							 </div>`; 
-							  jQuery(".drop_massage").html(html_drop);
-	  var user_id=jQuery(this).attr("data-id");
-	
-	   jQuery("#reviewee_id").val(user_id);
-	 
-	   
-	  
-	   
-	   
+				<form method="post" id="submit_massage">
+		
+				<div class="filed_custo_all">
+				<div class="filed_custom"><input type="text" name="first_name" placeholder="First Name" class="customfiled first_name">
+				<span class="first_name error"></span></div>
+				<div class="filed_custom">	<input type="text" name="last_name" placeholder="Last Name" class="customfiled last_name" >
+				<span class="last_name error"></span></div>
+				</div>
+				<div class="filed_custo_all">
+				<div class="filed_custom"><input type="text" name="email_address" placeholder="Email Address" class="customfiled email_address">
+				<span class="email_address error"></span></div>
+				<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
+				<span class="phone_number error"></span></div>
+				</div>
+				<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
+				<span class="comment_user error"></span></div>
+				<br>
+				<div class="filed_custom" style=" width: 100%;"><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a></label> 
+				<span class="terms_condition error"></span> </div> <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
+				 
+			<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+				</form>
+			</div>
+		</div>
+		</div>`;
+	jQuery(".drop_massage").html(html_drop);
+	var user_id=jQuery(this).attr("data-id");
+	jQuery("#reviewee_id").val(user_id);
   })
-     		jQuery(document).on("submit","#submit_massage",function(e) {
-		  // var user_name= jQuery(".user_name").val();
-		 //  alert("fff");
+	jQuery(document).on("submit","#submit_massage",function(e) {
+	// var user_name= jQuery(".user_name").val();
+	//  alert("fff");
     e.preventDefault();
         var ajaxurl= jQuery("#ajax_url").val();
         var first_name= jQuery(".first_name").val();
@@ -716,85 +702,80 @@ jQuery("#authenticate_form .email_user.error").html(' ');
 	}
 	if (phone_number.length < 1) {
 		jQuery("input.phone_number").addClass("input_error");
-      jQuery('.phone_number.error').html('Please enter your phone number.');
-	   var phone_valid=' ';
-    }else{ 
-	
-		  //var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
-		  var phoneNum = /^(?=.{15})\d{10,15}_{0,5}$/; 
-            if(phone_number.match(phoneNum)) {
-				jQuery("input.phone_number").removeClass("input_error");
-		 jQuery('.phone_number.error').html(' ');
-		var phone_valid='true';
-			}else{
-				jQuery("input.phone_number").addClass("input_error");
-      jQuery('.phone_number.error').html('Please enter your valid number.');
-	  var phone_valid=' ';
-			}
-		
+		jQuery('.phone_number.error').html('Please enter your phone number.');
+		var phone_valid=' ';
+    } else {
+  		//var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		var phoneNum = /^(?=.{15})\d{10,15}_{0,5}$/;
+		if(phone_number.match(phoneNum)) {
+			jQuery("input.phone_number").removeClass("input_error");
+			jQuery('.phone_number.error').html(' ');
+			var phone_valid='true';
+		} else {
+			jQuery("input.phone_number").addClass("input_error");
+			jQuery('.phone_number.error').html('Please enter your valid number.');
+			var phone_valid=' ';
+		}
+
 	}
 	
 	 if (comment_user.length < 1) {
-		 jQuery("textarea.comment_user").addClass("input_error");
-      jQuery('.comment_user.error').html('Please enter a reason.');
-    }else{
+		jQuery("textarea.comment_user").addClass("input_error");
+		jQuery('.comment_user.error').html('Please enter a reason.');
+    } else {
 		jQuery("textarea.comment_user").removeClass("input_error");
-		 jQuery('.comment_user.error').html(' ');
+		jQuery('.comment_user.error').html(' ');
 	}
     if (email_user.length < 1) {	
-	jQuery("input.email_address").addClass("input_error");
-      jQuery('.email_address.error').html('Please enter your email address.');
+		jQuery("input.email_address").addClass("input_error");
+		jQuery('.email_address.error').html('Please enter your email address.');
     } else {
-     var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
-	 var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
-      var validEmail = pattern.test(email_user);
-      if (!validEmail) {
-		  jQuery("input.email_address").addClass("input_error");
-        jQuery('.email_address.error').html('Please enter a valid email address.');
-      }else{
+		var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
+		var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+		var validEmail = pattern.test(email_user);
+		if (!validEmail) {
+			jQuery("input.email_address").addClass("input_error");
+			jQuery('.email_address.error').html('Please enter a valid email address.');
+		} else {
 		  jQuery("input.email_address").removeClass("input_error");
 		  jQuery('.email_address.error').html(' ');
-	  }
+		}
     }
 	
-		 if (email_user.length > 1 && first_name.length > 1 && last_name.length > 1 && terms_condition =='yes' && comment_user.length > 1 && validEmail && phone_valid =='true' ) {
-			 var form_data = new FormData(); 
-				form_data.append('first_name', first_name);
-				form_data.append('last_name', last_name);
-				form_data.append('email_user', email_user);
-				form_data.append('phone_number', phone_number);
-				form_data.append('comment_user', comment_user);
-				form_data.append('reviewee_id', reviewee_id);
-				form_data.append('action', 'save_massage_drop_user_custom_pop');
-				
-			
-				 jQuery("#submit_massage .submit_button span#submit-review-spinner").show();
-				 jQuery("#submit_massage .submit_button input.advisr-prefix-class.btn").attr("disabled","disabled");
-					jQuery.ajax({
-					url : ajaxurl,
-					dataType: 'text',  
-					cache: false,
-					contentType: false,
-					processData: false,
-					data: form_data,                         
-					type: 'post',
-						success : function(data) {
-							//console(data);
-							if(data =='Done'){
-							jQuery("#submit_massage .submit_button input.advisr-prefix-class.btn").attr("disabled",false);
-							 jQuery("#submit_massage .submit_button span#submit-review-spinner").hide();
-							 	jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
-							   jQuery(".drop_massage").html('<div class="successful"><p>Enquiry sent successfully</p><button type="button" class="review_okay btn-dark" data-bs-dismiss="modal" aria-label="Okay">Okay</button></div>');
-							   
-							
-							}
-						}
-					}); 
-	
-		
+	 if (email_user.length > 1 && first_name.length > 1 && last_name.length > 1 && terms_condition =='yes' && comment_user.length > 1 && validEmail && phone_valid =='true' ) {
+		 var form_data = new FormData();
+			form_data.append('first_name', first_name);
+			form_data.append('last_name', last_name);
+			form_data.append('email_user', email_user);
+			form_data.append('phone_number', phone_number);
+			form_data.append('comment_user', comment_user);
+			form_data.append('reviewee_id', reviewee_id);
+			form_data.append('action', 'save_massage_drop_user_custom_pop');
+
+		 jQuery("#submit_massage .submit_button span#submit-review-spinner").show();
+		 jQuery("#submit_massage .submit_button input.advisr-prefix-class.btn").attr("disabled","disabled");
+			jQuery.ajax({
+			url : ajaxurl,
+			dataType: 'text',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data: form_data,
+			type: 'post',
+				success : function(data) {
+					//console(data);
+					if(data =='Done'){
+					jQuery("#submit_massage .submit_button input.advisr-prefix-class.btn").attr("disabled",false);
+					 jQuery("#submit_massage .submit_button span#submit-review-spinner").hide();
+						jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+					   jQuery(".drop_massage").html('<div class="successful"><p>Enquiry sent successfully</p><button type="button" class="review_okay btn-dark" data-bs-dismiss="modal" aria-label="Okay">Okay</button></div>');
+
+
+					}
 				}
-		
-	 
+			});
+	}
+
       return false;
     });
 	 
@@ -828,7 +809,7 @@ jQuery("#authenticate_form .email_user.error").html(' ');
 				   }else{
 					     jQuery(".write_a_review").show();
 				   }
-				     jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+				 	jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
 				   	jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
 					jQuery(".thank_you").removeClass("new_reivews");
 					jQuery("a#modalReviewButton").removeClass("active");
@@ -898,40 +879,40 @@ jQuery("#authenticate_form .email_user.error").html(' ');
  
 				
 				 var html_drop= `<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
-								<div class="advisr-prefix-class team-member__modal-col ">
-									<h4 class="center">Drop us a message</h4>
-									<p class="center">Find the right solution</p>
-								</div>
-								<div class="advisr-prefix-class team-member__modal-card-col ">
-									<div class="advisr-prefix-class team-member__modal-card-body card-body">
-										
-										<form method="post" id="submit_massage">
-				
-										<div class="filed_custo_all">
-										<div class="filed_custom"><input type="text" name="first_name" placeholder="First Name" class="customfiled first_name">
-										<span class="first_name error"></span></div>
-										<div class="filed_custom">	<input type="text" name="last_name" placeholder="Last Name" class="customfiled last_name" >
-										<span class="last_name error"></span></div>
-										</div>
-										<div class="filed_custo_all">
-										<div class="filed_custom"><input type="text" name="email_address" placeholder="Email Address" class="customfiled email_address">
-										<span class="email_address error"></span></div>
-										<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
-										<span class="phone_number error"></span></div>
-										</div>
-										<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
-										<span class="comment_user error"></span></div>
-										 <br>
-										 <div class="filed_custom" style=" width: 100%; "><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a> </label> 
-							            <span class="terms_condition error"></span> </div>
-							              <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
-										
-									<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
-										</form>
-									</div>
-								</div>
-							 </div>`; 
-							  jQuery(".drop_massage").html(html_drop);
+					<div class="advisr-prefix-class team-member__modal-col ">
+						<h4 class="center">Drop us a message</h4>
+						<p class="center">Find the right solution</p>
+					</div>
+					<div class="advisr-prefix-class team-member__modal-card-col ">
+						<div class="advisr-prefix-class team-member__modal-card-body card-body">
+							
+							<form method="post" id="submit_massage">
+	
+							<div class="filed_custo_all">
+							<div class="filed_custom"><input type="text" name="first_name" placeholder="First Name" class="customfiled first_name">
+							<span class="first_name error"></span></div>
+							<div class="filed_custom">	<input type="text" name="last_name" placeholder="Last Name" class="customfiled last_name" >
+							<span class="last_name error"></span></div>
+							</div>
+							<div class="filed_custo_all">
+							<div class="filed_custom"><input type="text" name="email_address" placeholder="Email Address" class="customfiled email_address">
+							<span class="email_address error"></span></div>
+							<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
+							<span class="phone_number error"></span></div>
+							</div>
+							<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
+							<span class="comment_user error"></span></div>
+							 <br>
+							 <div class="filed_custom" style=" width: 100%; "><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a> </label> 
+							<span class="terms_condition error"></span> </div>
+							  <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
+							
+						<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+							</form>
+						</div>
+					</div>
+				 </div>`;
+				  jQuery(".drop_massage").html(html_drop);
 				
 				
 				let email = mergedTeamMembers[selected].email;

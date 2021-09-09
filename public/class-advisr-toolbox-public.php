@@ -226,7 +226,7 @@ class Advisr_Toolbox_Public {
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://advisr.com.au/api/v1/reviews",
+            CURLOPT_URL => "https://staging.advisr.com.au/api/v1/reviews",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -263,7 +263,6 @@ class Advisr_Toolbox_Public {
 		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 		add_action('wp_ajax_save_review_custom_pop',  array($plugin_public, 'save_review_custom_pop' ));
         add_action('wp_ajax_nopriv_save_review_custom_pop',array($plugin_public, 'save_review_custom_pop' ));
-		
 		add_action('wp_ajax_save_massage_drop_user_custom_pop',  array($plugin_public, 'save_massage_drop_user_custom_pop' ));
         add_action('wp_ajax_nopriv_save_massage_drop_user_custom_pop',array($plugin_public, 'save_massage_drop_user_custom_pop' ));
 	}
@@ -327,7 +326,7 @@ class Advisr_Toolbox_Public {
 	
 		$curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
+            CURLOPT_URL => "https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

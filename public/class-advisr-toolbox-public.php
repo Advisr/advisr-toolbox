@@ -20,7 +20,7 @@
  * @subpackage Advisr_Toolbox/public
  * @author     Ev Ooi <ev@advisr.com.au>
  */
-class Advisr_Toolbox_Public {
+class Advisr_Toolbox_Public {    
 
 	/**
 	 * The ID of this plugin.
@@ -226,7 +226,7 @@ class Advisr_Toolbox_Public {
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://advisr.com.au/api/v1/reviews",
+            CURLOPT_URL => "https://staging.advisr.com.au/api/v1/reviews",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -263,8 +263,59 @@ class Advisr_Toolbox_Public {
 		$plugin_public = new Advisr_Toolbox_Public( $this->get_plugin_name(), $this->get_version() );
 		add_action('wp_ajax_save_review_custom_pop',  array($plugin_public, 'save_review_custom_pop' ));
         add_action('wp_ajax_nopriv_save_review_custom_pop',array($plugin_public, 'save_review_custom_pop' ));
-	
+		add_action('wp_ajax_save_massage_drop_user_custom_pop',  array($plugin_public, 'save_massage_drop_user_custom_pop' ));
+        add_action('wp_ajax_nopriv_save_massage_drop_user_custom_pop',array($plugin_public, 'save_massage_drop_user_custom_pop' ));
 	}
+	
+	function save_massage_drop_user_custom_pop(){
+	
+        $fields = array(
+            'user_id' => $_POST['reviewee_id'],
+            'firstName' => $_POST['first_name'],
+            'lastName' => $_POST['last_name'],
+            'email' =>  $_POST['email_user'],
+            'mobile' =>  $_POST['phone_number'],
+            'message' =>  $_POST['comment_user']
+        );
+
+        $fields = json_encode($fields);
+        //print_r($field);
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://staging.advisr.com.au/api/v1/leads",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            ///curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+            CURLOPT_POSTFIELDS => $fields,
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache",
+                "content-type: application/json",
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+          echo "cURL Error #:" . $err;
+        } else {
+         //= echo $response;
+        }
+       // print_r( $response);
+        if(!empty($response)){
+            echo "Done";
+        }
+		exit;
+	}
+	
+	
 	public function review_advisr_member_review() {
 		?>
 	
@@ -275,7 +326,7 @@ class Advisr_Toolbox_Public {
 	
 		$curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
+            CURLOPT_URL => "https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,

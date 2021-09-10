@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8fdac498-48f9-4a8a-a057-64bfb43eec42" name="Default Changelist" comment="AWP-10 Fixing spacing and indentions" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/admin/class-advisr-toolbox-admin.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/public/class-advisr-toolbox-public.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/advisr-toolbox.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/admin/partials/advisr-toolbox-advisr-brokers-display.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/public/css/advisr-toolbox-public.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/public/js/advisr-team-page.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="1tHq7yytF7B8SioxNMalxfJBhPA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fdac498-48f9-4a8a-a057-64bfb43eec42" name="Default Changelist" comment="" />
+      <created>1622436199661</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622436199661</updated>
+      <workItem from="1622436200996" duration="4995000" />
+      <workItem from="1622451567700" duration="9336000" />
+      <workItem from="1622518661446" duration="1984000" />
+      <workItem from="1623068657566" duration="3388000" />
+      <workItem from="1623370875252" duration="2330000" />
+      <workItem from="1624411470499" duration="91000" />
+      <workItem from="1624411618529" duration="4484000" />
+      <workItem from="1624491158517" duration="618000" />
+      <workItem from="1624577116103" duration="2049000" />
+      <workItem from="1624584181631" duration="3262000" />
+      <workItem from="1624835756062" duration="135000" />
+      <workItem from="1624836152770" duration="4517000" />
+      <workItem from="1624922497667" duration="2418000" />
+      <workItem from="1625008119314" duration="1208000" />
+      <workItem from="1625098047711" duration="1214000" />
+      <workItem from="1625545966470" duration="1447000" />
+      <workItem from="1625646245329" duration="709000" />
+      <workItem from="1625699776210" duration="4608000" />
+      <workItem from="1625786300802" duration="620000" />
+      <workItem from="1626045153245" duration="334000" />
+      <workItem from="1626100064679" duration="1514000" />
+      <workItem from="1626102157284" duration="112000" />
+      <workItem from="1626421397559" duration="1021000" />
+      <workItem from="1626746520642" duration="1316000" />
+      <workItem from="1626822788965" duration="4047000" />
+      <workItem from="1627276951351" duration="2585000" />
+      <workItem from="1627346589641" duration="69000" />
+      <workItem from="1627524639201" duration="613000" />
+      <workItem from="1628585197537" duration="2650000" />
+      <workItem from="1628652171818" duration="21000" />
+      <workItem from="1629425893066" duration="7414000" />
+      <workItem from="1629700312725" duration="2361000" />
+      <workItem from="1629761042858" duration="30000" />
+      <workItem from="1630629182087" duration="1219000" />
+      <workItem from="1630883669429" duration="621000" />
+      <workItem from="1630915033881" duration="2066000" />
+      <workItem from="1631084749968" duration="621000" />
+    </task>
+    <task id="LOCAL-00001" summary="Initial commit for advisr toolbox v2">
+      <created>1623070269513</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623070269513</updated>
+    </task>
+    <task id="LOCAL-00002" summary="AWP-2 Updating CSS of WP Plugin - Team Pages">
+      <created>1625546027974</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1625546027974</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Advisr Toolbox v1.0.0">
+      <created>1625723804250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1625723804250</updated>
+    </task>
+    <task id="LOCAL-00004" summary="AWP-4 Updated README file for v2.1">
+      <created>1627277178180</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1627277178180</updated>
+    </task>
+    <task id="LOCAL-00005" summary="AWP-9 Updating formatting and ReadMe">
+      <created>1629438245251</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1629438245251</updated>
+    </task>
+    <task id="LOCAL-00006" summary="AWP-9 Changing URLs to Production">
+      <created>1629701425253</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629701425253</updated>
+    </task>
+    <task id="LOCAL-00007" summary="AWP-10 Fixing spacing and indentions">
+      <created>1630915649853</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1630915649853</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/AWP-2-Refresh-Team-Pages" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit for advisr toolbox v2" />
+    <MESSAGE value="AWP-2 Updating CSS of WP Plugin - Team Pages" />
+    <MESSAGE value="Advisr Toolbox v1.0.0" />
+    <MESSAGE value="AWP-4 Updated README file for v2.1" />
+    <MESSAGE value="AWP-9 Updating formatting and ReadMe" />
+    <MESSAGE value="AWP-9 Changing URLs to Production" />
+    <MESSAGE value="AWP-10 Fixing spacing and indentions" />
+    <option name="LAST_COMMIT_MESSAGE" value="AWP-10 Fixing spacing and indentions" />
+  </component>
+</project>

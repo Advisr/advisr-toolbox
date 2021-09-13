@@ -178,7 +178,7 @@ membersHtml += `</div>`;
 										<p><a id="modalMobile" href="" class="advisr-prefix-class card-text text-muted small"></a></p>
 										<p><a id="modalTelephone" href="" class="advisr-prefix-class card-text text-muted small"></a></p>
 										<span class="advisr-prefix-class d-flex flex-row flex-gap mb-1">
-											<p id="modalReviewSummary"></p>
+											<p id="modalReviewSummary" class="mt-1"></p>
 											<small id="modalReviewsCount" class="advisr-prefix-class ml-1 text-muted"></small>
 										</span>
 										<a id="modalmassageButton" data-bs-toggle="modal" data-bs-target="#memberModal3"  href="" class="advisr-prefix-class btn btn-dark my-1">Connect</a>

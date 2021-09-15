@@ -181,7 +181,7 @@ membersHtml += `</div>`;
 											<p id="modalReviewSummary" class="mt-1"></p>
 											<small id="modalReviewsCount" class="advisr-prefix-class ml-1 text-muted"></small>
 										</span>
-										<a id="modalmassageButton" data-bs-toggle="modal" data-bs-target="#memberModal3"  href="" class="advisr-prefix-class btn btn-dark my-1">Connect</a>
+										<a id="modalmassageButton" data-bs-toggle="modal" data-bs-target="#memberModal3"  href="" class=" advisr-prefix-class btn btn-dark my-1 pop_connect_btn">Connect</a>
 										<a id="modalReviewButton" data-bs-toggle="modal" data-bs-target="#memberModal2" href="" class="advisr-prefix-class btn btn-dark my-1 mx-2 write_a_review">Write a Review</a>
 									</div>
 								</div>
@@ -237,23 +237,18 @@ membersHtml += `</div>`;
 										<form method="post" id="submit_review">
 				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
 <div class="rating">
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
- <label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+<input type="radio" class="star_input" id="starValue5" name="starValue" value="5" />
+ <label for="starValue5"></label>
+ <input type="radio" class="star_input" id="starValue4" name="starValue" value="4" />
+  <label for="starValue4"></label>
+<input type="radio" class="star_input" id="starValue3" name="starValue" value="3" />
+ <label for="starValue3"></label>
+<input type="radio" class="star_input" id="starValue2" name="starValue" value="2" />
+<label for="starValue2"></label>
+<input type="radio" class="star_input" id="starValue1" name="starValue" value="1" /></label>
+  <label for="starValue1"></label>
 
-</div>
+</div> 
 	<br><span class="rating_error error"></span>
 </div>
 										<div class="filed_custo_all">
@@ -363,21 +358,16 @@ membersHtml += `</div>`;
 										<form method="post" id="submit_review">
 				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
 				<div class="rating">
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
-				 <label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+				<input type="radio" class="star_input" id="starValue5" name="starValue" value="5" />
+ <label for="starValue5"></label>
+ <input type="radio" class="star_input" id="starValue4" name="starValue" value="4" />
+  <label for="starValue4"></label>
+<input type="radio" class="star_input" id="starValue3" name="starValue" value="3" />
+ <label for="starValue3"></label>
+<input type="radio" class="star_input" id="starValue2" name="starValue" value="2" />
+<label for="starValue2"></label>
+<input type="radio" class="star_input" id="starValue1" name="starValue" value="1" /></label>
+  <label for="starValue1"></label>
 
 				</div>
 					<br><span class="rating_error error"></span>
@@ -476,7 +466,7 @@ jQuery("#authenticate_form .email_user.error").html(' ');
         var email_user= jQuery(".email_user").val();
         var comment_user= jQuery(".comment_user").val();
         var reviewee_id= jQuery(".reviewee_id").val();
-        var rating= jQuery("label.active input.star_input").val();
+        var rating= jQuery(".rating_div .rating input:checked").val();
 		//alert(rating);
 		var name=jQuery("#modalName").html();
 		
@@ -806,8 +796,11 @@ jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-
 				   
 				   if(id ==''){
 					   jQuery(".write_a_review").hide();
+					    jQuery(".pop_connect_btn").hide();
+					   
 				   }else{
 					     jQuery(".write_a_review").show();
+					     jQuery(".pop_connect_btn").show();
 				   }
 				 	jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
 				   	jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
@@ -831,21 +824,16 @@ jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-
 										<form method="post" id="submit_review">
 				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
 				<div class="rating">
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
-				 <label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+				<input type="radio" class="star_input" id="starValue5" name="starValue" value="5" />
+ <label for="starValue5"></label>
+ <input type="radio" class="star_input" id="starValue4" name="starValue" value="4" />
+  <label for="starValue4"></label>
+<input type="radio" class="star_input" id="starValue3" name="starValue" value="3" />
+ <label for="starValue3"></label>
+<input type="radio" class="star_input" id="starValue2" name="starValue" value="2" />
+<label for="starValue2"></label>
+<input type="radio" class="star_input" id="starValue1" name="starValue" value="1" /></label>
+  <label for="starValue1"></label>
 
 				</div>
 					<br><span class="rating_error error"></span>

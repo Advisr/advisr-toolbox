@@ -332,14 +332,14 @@ button.review_okay {
     position: relative;
     width: 20px;
 }
-.rating > label.active:before,
-.rating > label.active ~ label:before,
+/*.rating > label.active:before,
+.rating > label.active ~ label:before
 .rating > label:hover:before,
 .rating > label:hover ~ label:before {
   content: "\f005";
   position: absolute;
   color: #ffc107;
-}
+}*/
 .rating label {
     color: #ffc107;
     cursor: pointer;
@@ -565,7 +565,39 @@ span.advisr-prefix-class-h5-carousel {
 }
 
 /*end slider reivew*/
+/* star image css*/
+.rating_div .rating label {
+    display: inline-block;
+    background-image: url(../../public/border-star.png);
+    background-repeat: no-repeat !important;
+    width: 30px;
+    height: 30px;
+    margin: -2px;
+}
 
+.rating_div .rating label:nth-of-type(1) { order: 5; }
+.rating_div .rating label:nth-of-type(2) { order: 4; }
+.rating_div .rating label:nth-of-type(3) { order: 3; }
+.rating_div .rating label:nth-of-type(4) { order: 2; }
+.rating_div .rating label:nth-of-type(5) { order: 1; }
+
+.rating_div .rating input:checked ~ label {
+  background: url(../../public/dark-star.png); 
+}
+.rating_div .rating label  {
+  background: url(../../public/border-star.png); 
+}
+.rating_div .rating label:hover, .rating_div .rating label:hover ~ label  {
+  background:  url(../../public/dark-star.png) !important; 
+  background-repeat: no-repeat !important;
+
+}
+
+.advisr-prefix-class input[type=text],.advisr-prefix-class textarea {
+    font-size: 20px !important;
+}
+
+/*star image css end*/
 /*18-6-2021*/
 div#members-wrapper {
     background-color: transparent;

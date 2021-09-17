@@ -5,7 +5,7 @@ Tags: insurance, insurtech, team, members, reviews
 Requires PHP: 5.6 or higher
 Requires at least: 4.7
 Tested up to: 5.8
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,10 @@ Feature roadmap:
 == Screenshots ==
 
 == Changelog ==
+= v2.3 =
+* Updated Reviews Segment Functionality for Mobile
+* Add the functionality to submit enquiries to Brokers at Advisr
+
 = v2.2 =
 * Updated Reviews Segment Functionality
 * Add the functionality to submit Advisr Reviews

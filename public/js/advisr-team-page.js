@@ -14,7 +14,8 @@ class AdvisrTeamPage extends HTMLElement {
 		if (jQuery('#members-wrapper').length != 0) {
 			return;
 		}
-
+     
+	 
 		if (!this.apikey) {
 			throw new Error('API token not provided');
 		}
@@ -138,21 +139,21 @@ class AdvisrTeamPage extends HTMLElement {
     ratingtoal += reviews[i].rating << 0;
 }
 
-				const reviewsCount = reviews.length ? `(${reviews ? reviews.length : 0} ${reviews.length === 1 ? 'review' : 'reviews'})` : ''	
+const reviewsCount = reviews.length ? `(${reviews ? reviews.length : 0} ${reviews.length === 1 ? 'review' : 'reviews'})` : ''
 const reviewsCount2 = reviews.length;				
-  const rating_avg=ratingtoal/reviewsCount2;		
-					const reviewHTML = member.rating ? `<p>${ratingHtml} <span>${reviewsCount}</span></p>` : '';
-							const enquireHtml = member.email ? `<a href="mailto:${member.email}" class="advisr-prefix-class team-member-email btn btn-dark mb-3">Connect</a>`: '';
-							membersHtml += imageHtml  +
-								`<div class="advisr-prefix-class team-member-contact card-body">`
-									+ nameHtml + roleHtml + mobileHTML + telephoneHTML +reviewHTML+
-								`</div>` +
-								`<div class="advisr-prefix-class team-member-enquiry card-footer bg-transparent border-top-0">`
-									+ enquireHtml +
-								`</div>` ;
-						membersHtml += `</div>`;
-					membersHtml += `</div>`;
-				});
+const rating_avg=ratingtoal/reviewsCount2;
+const reviewHTML = member.rating ? `<p>${ratingHtml} <span>${reviewsCount}</span></p>` : '';
+const enquireHtml = member.id ? `<a data-id="${member.id}" id="modalmassageButton" data-bs-toggle="modal" data-bs-target="#memberModal3" href="" class="advisr-prefix-class team-member-email btn btn-dark mb-3">Connect</a>`: '';
+		membersHtml += imageHtml  +
+			`<div class="advisr-prefix-class team-member-contact card-body">`
+				+ nameHtml + roleHtml + mobileHTML + telephoneHTML +reviewHTML+
+			`</div>` +
+			`<div class="advisr-prefix-class team-member-enquiry card-footer bg-transparent border-top-0">`
+				+ enquireHtml +
+			`</div>` ;
+	membersHtml += `</div>`;
+membersHtml += `</div>`;
+});
 				
 			membersHtml += `</div>`;
 
@@ -177,10 +178,10 @@ const reviewsCount2 = reviews.length;
 										<p><a id="modalMobile" href="" class="advisr-prefix-class card-text text-muted small"></a></p>
 										<p><a id="modalTelephone" href="" class="advisr-prefix-class card-text text-muted small"></a></p>
 										<span class="advisr-prefix-class d-flex flex-row flex-gap mb-1">
-											<p id="modalReviewSummary"></p>
+											<p id="modalReviewSummary" class="mt-1"></p>
 											<small id="modalReviewsCount" class="advisr-prefix-class ml-1 text-muted"></small>
 										</span>
-										<a id="modalConnectButton" href="" class="advisr-prefix-class btn btn-dark my-1">Connect</a>
+										<a id="modalmassageButton" data-bs-toggle="modal" data-bs-target="#memberModal3"  href="" class=" advisr-prefix-class btn btn-dark my-1 pop_connect_btn">Connect</a>
 										<a id="modalReviewButton" data-bs-toggle="modal" data-bs-target="#memberModal2" href="" class="advisr-prefix-class btn btn-dark my-1 mx-2 write_a_review">Write a Review</a>
 									</div>
 								</div>
@@ -236,23 +237,18 @@ const reviewsCount2 = reviews.length;
 										<form method="post" id="submit_review">
 				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
 <div class="rating">
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
- <label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
-<label><li class="list-inline-item mx-0">
- <span class="fas fa-star-o text-warning"></span>
-</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+<input type="radio" class="star_input" id="starValue5" name="starValue" value="5" />
+ <label for="starValue5"></label>
+ <input type="radio" class="star_input" id="starValue4" name="starValue" value="4" />
+  <label for="starValue4"></label>
+<input type="radio" class="star_input" id="starValue3" name="starValue" value="3" />
+ <label for="starValue3"></label>
+<input type="radio" class="star_input" id="starValue2" name="starValue" value="2" />
+<label for="starValue2"></label>
+<input type="radio" class="star_input" id="starValue1" name="starValue" value="1" /></label>
+  <label for="starValue1"></label>
 
-</div>
+</div> 
 	<br><span class="rating_error error"></span>
 </div>
 										<div class="filed_custo_all">
@@ -276,10 +272,50 @@ const reviewsCount2 = reviews.length;
 					</div>
 				</div>
 			</div>`;
-	 
 			
-			
-			
+			membersHtml +=
+				`<div class="advisr-prefix-class team-member__modal-container modal fade" id="memberModal3" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+				<div class="advisr-prefix-class team-member__modal-dialog modal-dialog modal-lg modal-dialog-centered">
+					<div class="advisr-prefix-class team-member__modal-content modal-content">
+						<div class="advisr-prefix-class close_button team-member__modal-header modal-header border-0 pb-0">
+							<button type="button" class="advisr-prefix-class btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="advisr-prefix-class drop_massage team-member__modal-body modal-body pt-2 pb-0">
+							<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
+								<div class="advisr-prefix-class team-member__modal-col ">
+									<h4 class="center">Drop us a message</h4>
+									<p class="center">Find the right solution</p>
+								</div>
+								<div class="advisr-prefix-class team-member__modal-card-col ">
+									<div class="advisr-prefix-class team-member__modal-card-body card-body">
+										
+										<form method="post" id="submit_massage">
+				
+										<div class="filed_custo_all">
+										<div class="filed_custom"><input type="text" name="first_name" placeholder="First Name" class="customfiled first_name">
+										<span class="first_name error"></span></div>
+										<div class="filed_custom">	<input type="text" name="last_name" placeholder="Last Name" class="customfiled last_name" >
+										<span class="last_name error"></span></div>
+										</div>
+										<div class="filed_custo_all">
+										<div class="filed_custom"><input type="text" name="email_address" placeholder="Email Address" class="customfiled email_address">
+										<span class="email_address error"></span></div>
+										<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
+										<span class="phone_number error"></span></div>
+										</div>
+										<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
+										<span class="comment_user error"></span></div>
+							              <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
+										
+									<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+										</form>
+									</div>
+								</div>
+							 </div>
+						</div>
+					</div>
+				</div>
+			</div>`;
 		}
 
 		fragment.querySelector('#members-wrapper').innerHTML = membersHtml;
@@ -292,9 +328,9 @@ const reviewsCount2 = reviews.length;
 
 			
 			//jQuery('.rating label').click(function() {
-	jQuery(document).on("click",".thank_you .rating label",function(e) {
-    jQuery('.rating label').removeClass('active');
-   jQuery(this).addClass('active');
+		jQuery(document).on("click",".thank_you .rating label",function(e) {
+		jQuery('.rating label').removeClass('active');
+		jQuery(this).addClass('active');
   });
 
  
@@ -322,21 +358,16 @@ const reviewsCount2 = reviews.length;
 										<form method="post" id="submit_review">
 				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
 				<div class="rating">
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
-				 <label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+				<input type="radio" class="star_input" id="starValue5" name="starValue" value="5" />
+ <label for="starValue5"></label>
+ <input type="radio" class="star_input" id="starValue4" name="starValue" value="4" />
+  <label for="starValue4"></label>
+<input type="radio" class="star_input" id="starValue3" name="starValue" value="3" />
+ <label for="starValue3"></label>
+<input type="radio" class="star_input" id="starValue2" name="starValue" value="2" />
+<label for="starValue2"></label>
+<input type="radio" class="star_input" id="starValue1" name="starValue" value="1" /></label>
+  <label for="starValue1"></label>
 
 				</div>
 					<br><span class="rating_error error"></span>
@@ -435,7 +466,7 @@ jQuery("#authenticate_form .email_user.error").html(' ');
         var email_user= jQuery(".email_user").val();
         var comment_user= jQuery(".comment_user").val();
         var reviewee_id= jQuery(".reviewee_id").val();
-        var rating= jQuery("label.active input.star_input").val();
+        var rating= jQuery(".rating_div .rating input:checked").val();
 		//alert(rating);
 		var name=jQuery("#modalName").html();
 		
@@ -577,6 +608,168 @@ jQuery("#authenticate_form .email_user.error").html(' ');
       return false;
     });
   
+  
+    /* massage drop*/
+jQuery(".team-member-enquiry a#modalmassageButton").click(function(){
+jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+	 var html_drop= `<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
+		<div class="advisr-prefix-class team-member__modal-col ">
+			<h4 class="center">Drop us a message</h4>
+			<p class="center">Find the right solution</p>
+		</div>
+		<div class="advisr-prefix-class team-member__modal-card-col ">
+			<div class="advisr-prefix-class team-member__modal-card-body card-body">
+				
+				<form method="post" id="submit_massage">
+		
+				<div class="filed_custo_all">
+				<div class="filed_custom"><input type="text" name="first_name" placeholder="First Name" class="customfiled first_name">
+				<span class="first_name error"></span></div>
+				<div class="filed_custom">	<input type="text" name="last_name" placeholder="Last Name" class="customfiled last_name" >
+				<span class="last_name error"></span></div>
+				</div>
+				<div class="filed_custo_all">
+				<div class="filed_custom"><input type="text" name="email_address" placeholder="Email Address" class="customfiled email_address">
+				<span class="email_address error"></span></div>
+				<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
+				<span class="phone_number error"></span></div>
+				</div>
+				<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
+				<span class="comment_user error"></span></div>
+				<br>
+				<div class="filed_custom" style=" width: 100%;"><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a></label> 
+				<span class="terms_condition error"></span> </div> <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
+				 
+			<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+				</form>
+			</div>
+		</div>
+		</div>`;
+	jQuery(".drop_massage").html(html_drop);
+	var user_id=jQuery(this).attr("data-id");
+	jQuery("#reviewee_id").val(user_id);
+  })
+	jQuery(document).on("submit","#submit_massage",function(e) {
+	// var user_name= jQuery(".user_name").val();
+	//  alert("fff");
+    e.preventDefault();
+        var ajaxurl= jQuery("#ajax_url").val();
+        var first_name= jQuery(".first_name").val();
+        var last_name= jQuery(".last_name").val();
+        var email_user= jQuery(".email_address").val();
+        var phone_number= jQuery(".phone_number").val();
+        var comment_user= jQuery("#submit_massage .comment_user").val();
+		
+        var reviewee_id= jQuery("#reviewee_id").val();
+		
+		if (jQuery('input#terms_condition').is(':checked')) {
+        var terms_condition= jQuery("#terms_condition").val();
+		}else{
+			 var terms_condition=" "
+		}
+		
+		 if (first_name.length < 1) {
+		jQuery("input.first_name").addClass("input_error");
+      jQuery('.first_name.error').html('Please enter your First Name.');
+    }else{
+		jQuery("input.first_name").removeClass("input_error");
+		 jQuery('.first_name.error').html(' ');
+	}
+	if (last_name.length < 1) {
+		jQuery("input.last_name").addClass("input_error");
+      jQuery('.last_name.error').html('Please enter your Last Name.');
+    }else{
+		jQuery("input.last_name").removeClass("input_error");
+		 jQuery('.last_name.error').html(' ');
+	}
+	if (terms_condition =='yes') {
+		jQuery("input#terms_condition").removeClass("input_error");
+		 jQuery('.terms_condition.error').html(' ');
+    }else{
+		jQuery("input#terms_condition").addClass("input_error");
+      jQuery('.terms_condition.error').html('Please fill checkbox terms conditions.');
+		
+	}
+	if (phone_number.length < 1) {
+		jQuery("input.phone_number").addClass("input_error");
+		jQuery('.phone_number.error').html('Please enter your phone number.');
+		var phone_valid=' ';
+    } else {
+  		//var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		var phoneNum = /^\({0,1}((0|\+61)(2|4|3|7|8)){0,1}\){0,1}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{1}(\ |-){0,1}[0-9]{3}$/;
+		if(phone_number.match(phoneNum)) {
+			jQuery("input.phone_number").removeClass("input_error");
+			jQuery('.phone_number.error').html(' ');
+			var phone_valid='true';
+		} else {
+			jQuery("input.phone_number").addClass("input_error");
+			jQuery('.phone_number.error').html('Please enter a valid phone number.');
+			var phone_valid=' ';
+		}
+
+	}
+	
+	 if (comment_user.length < 1) {
+		jQuery("textarea.comment_user").addClass("input_error");
+		jQuery('.comment_user.error').html('Please enter a reason.');
+    } else {
+		jQuery("textarea.comment_user").removeClass("input_error");
+		jQuery('.comment_user.error').html(' ');
+	}
+    if (email_user.length < 1) {	
+		jQuery("input.email_address").addClass("input_error");
+		jQuery('.email_address.error').html('Please enter your email address.');
+    } else {
+		var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
+		var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+		var validEmail = pattern.test(email_user);
+		if (!validEmail) {
+			jQuery("input.email_address").addClass("input_error");
+			jQuery('.email_address.error').html('Please enter a valid email address.');
+		} else {
+		  jQuery("input.email_address").removeClass("input_error");
+		  jQuery('.email_address.error').html(' ');
+		}
+    }
+	
+	 if (email_user.length > 1 && first_name.length > 1 && last_name.length > 1 && terms_condition =='yes' && comment_user.length > 1 && validEmail && phone_valid =='true' ) {
+		 var form_data = new FormData();
+			form_data.append('first_name', first_name);
+			form_data.append('last_name', last_name);
+			form_data.append('email_user', email_user);
+			form_data.append('phone_number', phone_number);
+			form_data.append('comment_user', comment_user);
+			form_data.append('reviewee_id', reviewee_id);
+			form_data.append('action', 'save_massage_drop_user_custom_pop');
+
+		 jQuery("#submit_massage .submit_button span#submit-review-spinner").show();
+		 jQuery("#submit_massage .submit_button input.advisr-prefix-class.btn").attr("disabled","disabled");
+			jQuery.ajax({
+			url : ajaxurl,
+			dataType: 'text',
+			cache: false,
+			contentType: false,
+			processData: false,
+			data: form_data,
+			type: 'post',
+				success : function(data) {
+					//console(data);
+					if(data =='Done'){
+					jQuery("#submit_massage .submit_button input.advisr-prefix-class.btn").attr("disabled",false);
+					 jQuery("#submit_massage .submit_button span#submit-review-spinner").hide();
+						jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","600px");
+					   jQuery(".drop_massage").html('<div class="successful"><p>Enquiry sent successfully</p><button type="button" class="review_okay btn-dark" data-bs-dismiss="modal" aria-label="Okay">Okay</button></div>');
+
+
+					}
+				}
+			});
+	}
+
+      return false;
+    });
+	 
+  /* end massage drop*/
 			let memberModal = document.getElementById('memberModal')
 			memberModal.addEventListener('show.bs.modal', function (event) {
 				// Button that triggered the modal
@@ -603,10 +796,13 @@ jQuery("#authenticate_form .email_user.error").html(' ');
 				   
 				   if(id ==''){
 					   jQuery(".write_a_review").hide();
+					    jQuery(".pop_connect_btn").hide();
+					   
 				   }else{
 					     jQuery(".write_a_review").show();
+					     jQuery(".pop_connect_btn").show();
 				   }
-				   
+				 	jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
 				   	jQuery("#memberModal2 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
 					jQuery(".thank_you").removeClass("new_reivews");
 					jQuery("a#modalReviewButton").removeClass("active");
@@ -628,21 +824,16 @@ jQuery("#authenticate_form .email_user.error").html(' ');
 										<form method="post" id="submit_review">
 				<div class="rating_div"><label style="float: left; ">Rating:	</label>		
 				<div class="rating">
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="5" /></label>
-				 <label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="4" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="3" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="2" /></label>
-				<label><li class="list-inline-item mx-0">
-				 <span class="fas fa-star-o text-warning"></span>
-				</li><input type="radio" class="star_input" name="starValue" value="1" /></label>
+				<input type="radio" class="star_input" id="starValue5" name="starValue" value="5" />
+ <label for="starValue5"></label>
+ <input type="radio" class="star_input" id="starValue4" name="starValue" value="4" />
+  <label for="starValue4"></label>
+<input type="radio" class="star_input" id="starValue3" name="starValue" value="3" />
+ <label for="starValue3"></label>
+<input type="radio" class="star_input" id="starValue2" name="starValue" value="2" />
+<label for="starValue2"></label>
+<input type="radio" class="star_input" id="starValue1" name="starValue" value="1" /></label>
+  <label for="starValue1"></label>
 
 				</div>
 					<br><span class="rating_error error"></span>
@@ -674,6 +865,43 @@ jQuery("#authenticate_form .email_user.error").html(' ');
 				jQuery(".thank_you").removeClass("authenticate_review");
 				jQuery(".thank_you").removeClass("active");
  
+				
+				 var html_drop= `<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
+					<div class="advisr-prefix-class team-member__modal-col ">
+						<h4 class="center">Drop us a message</h4>
+						<p class="center">Find the right solution</p>
+					</div>
+					<div class="advisr-prefix-class team-member__modal-card-col ">
+						<div class="advisr-prefix-class team-member__modal-card-body card-body">
+							
+							<form method="post" id="submit_massage">
+	
+							<div class="filed_custo_all">
+							<div class="filed_custom"><input type="text" name="first_name" placeholder="First Name" class="customfiled first_name">
+							<span class="first_name error"></span></div>
+							<div class="filed_custom">	<input type="text" name="last_name" placeholder="Last Name" class="customfiled last_name" >
+							<span class="last_name error"></span></div>
+							</div>
+							<div class="filed_custo_all">
+							<div class="filed_custom"><input type="text" name="email_address" placeholder="Email Address" class="customfiled email_address">
+							<span class="email_address error"></span></div>
+							<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
+							<span class="phone_number error"></span></div>
+							</div>
+							<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
+							<span class="comment_user error"></span></div>
+							 <br>
+							 <div class="filed_custom" style=" width: 100%; "><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a> </label> 
+							<span class="terms_condition error"></span> </div>
+							  <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
+							
+						<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
+							</form>
+						</div>
+					</div>
+				 </div>`;
+				  jQuery(".drop_massage").html(html_drop);
+				
 				
 				let email = mergedTeamMembers[selected].email;
 				let description = extractContent(mergedTeamMembers[selected].description);
@@ -714,6 +942,7 @@ jQuery("#authenticate_form .email_user.error").html(' ');
 				jQuery("#modalReviewsCount").text(reviewsCount);
 				jQuery("#modalConnectButton").attr("href", `mailto:${email}`);
 				jQuery(".reviewee_id").val(id);
+				jQuery("#reviewee_id").val(id);
 				jQuery(".thank_you").attr("data-id",id);
 
 					//jQuery("#modalReviewButton").attr("href", profileURL);

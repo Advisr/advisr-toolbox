@@ -696,14 +696,14 @@ jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-
 		var phone_valid=' ';
     } else {
   		//var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-		var phoneNum = /^(?=.{15})\d{10,15}_{0,5}$/;
+		var phoneNum = /^\({0,1}((0|\+61)(2|4|3|7|8)){0,1}\){0,1}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{1}(\ |-){0,1}[0-9]{3}$/;
 		if(phone_number.match(phoneNum)) {
 			jQuery("input.phone_number").removeClass("input_error");
 			jQuery('.phone_number.error').html(' ');
 			var phone_valid='true';
 		} else {
 			jQuery("input.phone_number").addClass("input_error");
-			jQuery('.phone_number.error').html('Please enter your valid number.');
+			jQuery('.phone_number.error').html('Please enter a valid phone number.');
 			var phone_valid=' ';
 		}
 

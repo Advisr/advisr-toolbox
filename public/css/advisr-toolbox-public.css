@@ -71,7 +71,22 @@ form#submit_massage {
 .successful {
     text-align: center;
 }
-
+.error {
+    clear: both;
+    display: block;
+}
+.email_custom label span {
+    display: inline-block;
+}
+.email_custom input.customfiled.email_user {
+    float: none;
+}
+form#authenticate_form input.review_okay.btn-dark {
+	 float: none;
+}
+form#authenticate_form .loaderdiv p {
+    display: inline-block;
+}
 .successful p {
     font-size: 26px;
     color: #111 !important;
@@ -112,10 +127,6 @@ input#terms_condition:after {
 
 input#terms_condition:checked:after {
     opacity: 1;
-}
-
-form#submit_massage input.advisr-prefix-class.btn.btn-dark.my-1.mx-2 {
-    width: 100%;
 }
 
 input#terms_condition {
@@ -830,9 +841,12 @@ li.advisr-prefix-class.list-inline-item.m-0.mr-1 {
     text-transform: capitalize;
     background-color: #212529 !important;
     border-color: #212529 !important;
+	float: none;
 }
 
-
+ input#terms_condition {
+    float: none !important;
+}
 
 .advisr-prefix-class p#modalDescriptionSnippet, .advisr-prefix-class p#modalDescription{
     font-family: proxima_novaregular;

@@ -277,7 +277,7 @@ membersHtml += `</div>`;
 				`<div class="advisr-prefix-class team-member__modal-container modal fade" id="memberModal3" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
 				<div class="advisr-prefix-class team-member__modal-dialog modal-dialog modal-lg modal-dialog-centered">
 					<div class="advisr-prefix-class team-member__modal-content modal-content">
-						<div class="advisr-prefix-class close_button team-member__modal-header modal-header border-0 pb-0">
+						<div class="advisr-prefix-class close_button team-member__modal-header modal-header border-0 pb-0" style="display: block !important;">
 							<button type="button" class="advisr-prefix-class btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="advisr-prefix-class drop_massage team-member__modal-body modal-body pt-2 pb-0">
@@ -612,6 +612,7 @@ jQuery("#authenticate_form .email_user.error").html(' ');
     /* massage drop*/
 jQuery(".team-member-enquiry a#modalmassageButton").click(function(){
 jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-header").show();
 	 var html_drop= `<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
 		<div class="advisr-prefix-class team-member__modal-col ">
 			<h4 class="center">Drop us a message</h4>
@@ -696,14 +697,14 @@ jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-
 		var phone_valid=' ';
     } else {
   		//var phoneNum = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-		var phoneNum = /^(?=.{15})\d{10,15}_{0,5}$/;
+		var phoneNum = /^\({0,1}((0|\+61)(2|4|3|7|8)){0,1}\){0,1}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{2}(\ |-){0,1}[0-9]{1}(\ |-){0,1}[0-9]{3}$/;
 		if(phone_number.match(phoneNum)) {
 			jQuery("input.phone_number").removeClass("input_error");
 			jQuery('.phone_number.error').html(' ');
 			var phone_valid='true';
 		} else {
 			jQuery("input.phone_number").addClass("input_error");
-			jQuery('.phone_number.error').html('Please enter your valid number.');
+			jQuery('.phone_number.error').html('Please enter a valid phone number.');
 			var phone_valid=' ';
 		}
 
@@ -901,7 +902,7 @@ jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-
 					</div>
 				 </div>`;
 				  jQuery(".drop_massage").html(html_drop);
-				
+				 jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-header").show();
 				
 				let email = mergedTeamMembers[selected].email;
 				let description = extractContent(mergedTeamMembers[selected].description);
@@ -1062,8 +1063,8 @@ jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-
 	}
 
 	async fetchFromAdvisrApi(apikey) {
-		//const url = `https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
-		 const url = `https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
+		const url = `https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
+		// const url = `https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
 
 		var myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${apikey}`);

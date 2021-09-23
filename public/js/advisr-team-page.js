@@ -277,7 +277,7 @@ membersHtml += `</div>`;
 				`<div class="advisr-prefix-class team-member__modal-container modal fade" id="memberModal3" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
 				<div class="advisr-prefix-class team-member__modal-dialog modal-dialog modal-lg modal-dialog-centered">
 					<div class="advisr-prefix-class team-member__modal-content modal-content">
-						<div class="advisr-prefix-class close_button team-member__modal-header modal-header border-0 pb-0">
+						<div class="advisr-prefix-class close_button team-member__modal-header modal-header border-0 pb-0" style="display: block !important;">
 							<button type="button" class="advisr-prefix-class btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="advisr-prefix-class drop_massage team-member__modal-body modal-body pt-2 pb-0">
@@ -612,6 +612,7 @@ jQuery("#authenticate_form .email_user.error").html(' ');
     /* massage drop*/
 jQuery(".team-member-enquiry a#modalmassageButton").click(function(){
 jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-width","800px");
+jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-header").show();
 	 var html_drop= `<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
 		<div class="advisr-prefix-class team-member__modal-col ">
 			<h4 class="center">Drop us a message</h4>
@@ -901,7 +902,7 @@ jQuery("#memberModal3 .advisr-prefix-class.team-member__modal-dialog").css("max-
 					</div>
 				 </div>`;
 				  jQuery(".drop_massage").html(html_drop);
-				
+				 jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-header").show();
 				
 				let email = mergedTeamMembers[selected].email;
 				let description = extractContent(mergedTeamMembers[selected].description);

@@ -63,8 +63,11 @@ form#submit_massage {
     margin-top: 12px !important;
 }
 div#memberModal3 .drop_massage .filed_custom {
-    float: left;
+    float: left !important;
 }
+textarea.customfiled.comment_user_msg {
+    width: 100% !important;
+}  
 .drop_massage p.center {
     font-size: 15px;
     color: #8c8585 !important;

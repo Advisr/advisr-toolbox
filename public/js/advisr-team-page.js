@@ -648,7 +648,7 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 		</div>`;
 	jQuery(".drop_massage").html(html_drop);
 	var user_id=jQuery(this).attr("data-id");
-	jQuery("#reviewee_id").val(user_id);
+	jQuery("#reviewee_id").val(user_id);  
   })
 	jQuery(document).on("submit","#submit_massage",function(e) {
 	// var user_name= jQuery(".user_name").val();

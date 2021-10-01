@@ -62,11 +62,13 @@ form#submit_massage {
     text-align: center;
     margin-top: 12px !important;
 }
-
+div#memberModal3 .drop_massage .filed_custom {
+    float: left;
+}
 .drop_massage p.center {
     font-size: 15px;
     color: #8c8585 !important;
-}
+} 
 
 .successful {
     text-align: center;

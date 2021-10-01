@@ -303,8 +303,8 @@ membersHtml += `</div>`;
 										<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
 										<span class="phone_number error"></span></div>
 										</div>
-										<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
-										<span class="comment_user error"></span></div>
+										<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user_msg"></textarea >
+										<span class="comment_user_msg error"></span></div>
 							              <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
 										
 									<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
@@ -635,8 +635,8 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 				<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
 				<span class="phone_number error"></span></div>
 				</div>
-				<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
-				<span class="comment_user error"></span></div>
+				<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user_msg"></textarea >
+				<span class="comment_user_msg error"></span></div>
 				<br>
 				<div class="filed_custom" style=" width: 100%;"><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a></label> 
 				<span class="terms_condition error"></span> </div> <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
@@ -659,7 +659,7 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
         var last_name= jQuery(".last_name").val();
         var email_user= jQuery(".email_address").val();
         var phone_number= jQuery(".phone_number").val();
-        var comment_user= jQuery("#submit_massage .comment_user").val();
+        var comment_user_msg= jQuery("#submit_massage .comment_user_msg").val();
 		
         var reviewee_id= jQuery("#reviewee_id").val();
 		
@@ -710,12 +710,12 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 
 	}
 	
-	 if (comment_user.length < 1) {
-		jQuery("textarea.comment_user").addClass("input_error");
-		jQuery('.comment_user.error').html('Please enter a reason.');
+	 if (comment_user_msg.length < 1) {
+		jQuery("textarea.comment_user_msg").addClass("input_error");
+		jQuery('.comment_user_msg.error').html('Please enter a reason.');
     } else {
-		jQuery("textarea.comment_user").removeClass("input_error");
-		jQuery('.comment_user.error').html(' ');
+		jQuery("textarea.comment_user_msg").removeClass("input_error");
+		jQuery('.comment_user_msg.error').html(' ');
 	}
     if (email_user.length < 1) {	
 		jQuery("input.email_address").addClass("input_error");
@@ -733,13 +733,13 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 		}
     }
 	
-	 if (email_user.length > 1 && first_name.length > 1 && last_name.length > 1 && terms_condition =='yes' && comment_user.length > 1 && validEmail && phone_valid =='true' ) {
+	 if (email_user.length > 1 && first_name.length > 1 && last_name.length > 1 && terms_condition =='yes' && comment_user_msg.length > 1 && validEmail && phone_valid =='true' ) {
 		 var form_data = new FormData();
 			form_data.append('first_name', first_name);
 			form_data.append('last_name', last_name);
 			form_data.append('email_user', email_user);
 			form_data.append('phone_number', phone_number);
-			form_data.append('comment_user', comment_user);
+			form_data.append('comment_user', comment_user_msg);
 			form_data.append('reviewee_id', reviewee_id);
 			form_data.append('action', 'save_massage_drop_user_custom_pop');
 
@@ -815,6 +815,9 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 					jQuery(".customfiled").val('');
 					jQuery(".error").html('');
 					jQuery("#memberModal2 .advisr-prefix-class.close_button.team-member__modal-header").show();
+					jQuery("input.user_name").removeClass("input_error");
+					jQuery("input.email_user").removeClass("input_error");
+					jQuery("textarea.comment_user ").removeClass("input_error");
 				var pophtml=`<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
 								<div class="advisr-prefix-class heading team-member__modal-col ">
 									<h4>Write a Review</h4>
@@ -889,8 +892,8 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 							<div class="filed_custom">	<input type="text" name="phone_number" maxlength="15" placeholder="Phone Number" class="customfiled phone_number" >
 							<span class="phone_number error"></span></div>
 							</div>
-							<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user"></textarea >
-							<span class="comment_user error"></span></div>
+							<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user_msg"></textarea >
+							<span class="comment_user_msg error"></span></div>
 							 <br>
 							 <div class="filed_custom" style=" width: 100%; "><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a> </label> 
 							<span class="terms_condition error"></span> </div>
@@ -902,6 +905,7 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 					</div>
 				 </div>`;
 				  jQuery(".drop_massage").html(html_drop);
+				  
 				 jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-header").show();
 				
 				let email = mergedTeamMembers[selected].email;
@@ -945,7 +949,7 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 				jQuery(".reviewee_id").val(id);
 				jQuery("#reviewee_id").val(id);
 				jQuery(".thank_you").attr("data-id",id);
-
+                 //    jQuery(".thank_you input.customfiled.user_name").removeClass("input_error");
 					//jQuery("#modalReviewButton").attr("href", profileURL);
 
 

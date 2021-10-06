@@ -102,7 +102,7 @@ form#authenticate_form .loaderdiv p {
     box-shadow: 0 0 10px rgb(222 68 55 / 10%) !important;
 }
 
-input.customfiled.first_name:focus,input.customfiled.last_name:focus,input.customfiled.phone_number:focus, input.customfiled.email_address:focus, textarea.customfiled.comment_user:focus {
+input.customfiled.first_name:focus,input.customfiled.last_name:focus,input.customfiled.phone_number:focus, input.customfiled.email_address:focus, textarea.customfiled.comment_user:focus, textarea.customfiled.comment_user_msg:focus {
     outline: auto;
     outline-color: #80e2d2;
     outline: 0;

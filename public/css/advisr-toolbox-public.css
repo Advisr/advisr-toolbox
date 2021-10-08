@@ -584,7 +584,7 @@ span.advisr-prefix-class-h5-carousel {
 /* star image css*/
 .rating_div .rating label {
     display: inline-block;
-    background-image: url(../../public/border-star.png);
+    background-image: url(../../public/border-star.jpg);
     background-repeat: no-repeat !important;
     width: 30px;
     height: 30px;
@@ -598,13 +598,13 @@ span.advisr-prefix-class-h5-carousel {
 .rating_div .rating label:nth-of-type(5) { order: 1; }
 
 .rating_div .rating input:checked ~ label {
-  background: url(../../public/dark-star.png); 
+  background: url(../../public/dark-star.jpg); 
 }
 .rating_div .rating label  {
-  background: url(../../public/border-star.png); 
+  background: url(../../public/border-star.jpg); 
 }
 .rating_div .rating label:hover, .rating_div .rating label:hover ~ label  {
-  background:  url(../../public/dark-star.png) !important; 
+  background:  url(../../public/dark-star.jpg) !important; 
   background-repeat: no-repeat !important;
 
 }
@@ -957,7 +957,9 @@ div#modalCarouselIndicators button.advisr-prefix-class.carousel-indicator {
     color: #0056b3;
 }
 
-
+.advisr-prefix-class.close_button.team-member__modal-header.modal-header {
+    display: block !important;
+}
 @media screen and (max-width:991px){    
      body .advisr-prefix-class .mx-2 {
     margin-left: 0 !important;

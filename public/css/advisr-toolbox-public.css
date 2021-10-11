@@ -62,16 +62,36 @@ form#submit_massage {
     text-align: center;
     margin-top: 12px !important;
 }
-
+div#memberModal3 .drop_massage .filed_custom {
+    float: left !important;
+}
+textarea.customfiled.comment_user_msg {
+    width: 100% !important;
+}  
 .drop_massage p.center {
     font-size: 15px;
     color: #8c8585 !important;
-}
+} 
 
 .successful {
     text-align: center;
 }
-
+.error {
+    clear: both;
+    display: block;
+}
+.email_custom label span {
+    display: inline-block;
+}
+.email_custom input.customfiled.email_user {
+    float: none;
+}
+form#authenticate_form input.review_okay.btn-dark {
+	 float: none;
+}
+form#authenticate_form .loaderdiv p {
+    display: inline-block;
+}
 .successful p {
     font-size: 26px;
     color: #111 !important;
@@ -82,7 +102,7 @@ form#submit_massage {
     box-shadow: 0 0 10px rgb(222 68 55 / 10%) !important;
 }
 
-input.customfiled.first_name:focus,input.customfiled.last_name:focus,input.customfiled.phone_number:focus, input.customfiled.email_address:focus, textarea.customfiled.comment_user:focus {
+input.customfiled.first_name:focus,input.customfiled.last_name:focus,input.customfiled.phone_number:focus, input.customfiled.email_address:focus, textarea.customfiled.comment_user:focus, textarea.customfiled.comment_user_msg:focus {
     outline: auto;
     outline-color: #80e2d2;
     outline: 0;
@@ -185,7 +205,7 @@ form#submit_review input:invalid {
 }
 .customfiled {
     border: 1px solid #ddd !important;
-}
+} 
 .custom_reivews {
     text-align: center;
     margin-top: 30px !important;
@@ -564,7 +584,7 @@ span.advisr-prefix-class-h5-carousel {
 /* star image css*/
 .rating_div .rating label {
     display: inline-block;
-    background-image: url(../../public/border-star.png);
+    background-image: url(../../public/border-star.jpg);
     background-repeat: no-repeat !important;
     width: 30px;
     height: 30px;
@@ -578,13 +598,13 @@ span.advisr-prefix-class-h5-carousel {
 .rating_div .rating label:nth-of-type(5) { order: 1; }
 
 .rating_div .rating input:checked ~ label {
-  background: url(../../public/dark-star.png); 
+  background: url(../../public/dark-star.jpg); 
 }
 .rating_div .rating label  {
-  background: url(../../public/border-star.png); 
+  background: url(../../public/border-star.jpg); 
 }
 .rating_div .rating label:hover, .rating_div .rating label:hover ~ label  {
-  background:  url(../../public/dark-star.png) !important; 
+  background:  url(../../public/dark-star.jpg) !important; 
   background-repeat: no-repeat !important;
 
 }
@@ -826,9 +846,12 @@ li.advisr-prefix-class.list-inline-item.m-0.mr-1 {
     text-transform: capitalize;
     background-color: #212529 !important;
     border-color: #212529 !important;
+	float: none;
 }
 
-
+ input#terms_condition {
+    float: none !important;
+}
 
 .advisr-prefix-class p#modalDescriptionSnippet, .advisr-prefix-class p#modalDescription{
     font-family: proxima_novaregular;
@@ -934,7 +957,9 @@ div#modalCarouselIndicators button.advisr-prefix-class.carousel-indicator {
     color: #0056b3;
 }
 
-
+.advisr-prefix-class.close_button.team-member__modal-header.modal-header {
+    display: block !important;
+}
 @media screen and (max-width:991px){    
      body .advisr-prefix-class .mx-2 {
     margin-left: 0 !important;

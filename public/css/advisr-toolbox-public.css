@@ -16,7 +16,12 @@
 .advisr-prefix-class .card-body,.advisr-prefix-class .modal-header {
     padding: 20px 20px !important;
 }
-
+.review_section .slick-slide img {
+     margin: 8px !important; 
+}
+.advisr-container.container {
+    margin: 0 auto;
+}
 /* #memberModal2 .advisr-prefix-class.team-member__modal-content.modal-content {
     margin-left: -10px;
 } */
@@ -288,6 +293,7 @@ p.custom_text {
 }
 .error {
     color: #f50808;
+	font-size: 14px;
 }
 button.review_okay {
     color: #fff;

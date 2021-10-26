@@ -109,11 +109,12 @@ class Advisr_Toolbox_Admin {
 	*/
 	public static function new_cpt_team_member() {
 		$cap_type = 'post';
-		$plural = 'Team Members';
+		$plural = 'Team from Wordpress';
 		$single = 'Team Member';
 		$cpt_name = 'advisr-team-member';
 		$opts['can_export'] = TRUE;
 		$opts['capability_type'] = $cap_type;
+		
 		$opts['description'] = '';
 		$opts['exclude_from_search'] = FALSE;
 		$opts['has_archive'] = FALSE;
@@ -433,7 +434,7 @@ class Advisr_Toolbox_Admin {
 		add_submenu_page(
 			'edit.php?post_type=advisr-team-member',
 			__( 'Advisr Brokers Configuration', 'textdomain' ),
-			__( 'Brokers from Advisr', 'textdomain' ),
+			__( 'Team from Advisr (Brokers)', 'textdomain' ),
 			'manage_options',
 			'advisr-brokers',
 			array($this, 'advisr_fetched_data_page_callback'),

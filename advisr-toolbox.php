@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Advisr Toolbox
  * Description:       Connect your native data with Advisr data to create dynamic team pages and more.
- * Version:           2.3.0
+ * Version:           2.4.0
  * Author:            Advisr
  * Author URI:        https://advisr.com.au
  * License:           GPL-2.0+

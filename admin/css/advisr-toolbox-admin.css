@@ -1,3 +1,119 @@
 /*!
 * Advisr v1.0.0 (https://advisr.com.au/)
 */
+
+
+/*new css admin*/
+
+.adivsr_tab {
+  float: left;
+  width: 20%;
+  margin: 15px 2% 0 0;
+}
+
+.adivsr_tab button {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    outline: none; 
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+    background: #fff;
+    border-bottom: 1px solid #eee !important;
+    border: none;
+}
+
+.adivsr_tab button:hover {
+  background-color: #f5f5f5;
+}
+
+.adivsr_tab button.active {
+    background-color: #f5f5f5;
+}
+
+
+.adivsr_tabcontent {
+  float: left;
+  padding: 0px 12px;
+  width: 70%;
+  border-left: none;
+}
+
+.adiver_login {
+    display: block;
+    width: 50%;
+    background: #ffffffbd;
+    padding: 18px;
+	margin: 10px 0;
+}
+.adiver_login label {
+    width: 22%;
+    display: inline-block;
+}
+.adiver_login input.input-group-field {
+    width: 70%;
+	padding: 8px;
+}
+.adiver_login .input-group {
+    margin-bottom: 10px;
+}
+.adiver_login input.button.button-primary {
+    display: block;
+    padding: 4px 50px;
+    margin: 10px auto;
+}
+a.forget_pass {
+    margin-left: 15%;
+}
+p.error {
+    color: #f33b3b;
+}
+
+.advisr_connect_login {
+    background: #ffffffbd;
+    padding: 18px;
+}
+.adivsr_right_side p {
+    margin: 0;
+}
+p.submit {
+    display: inline-block;
+    margin-left: 20px;
+}
+p.submit input#submit {
+    font-size: 11px;
+    min-height: 20px;
+    line-height: 2;
+}
+li#menu-posts-advisr-team-member ul.wp-submenu.wp-submenu-wrap li:last-child {
+    display: none;
+}
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	  .adivsr_tab {
+    width: 100%;
+}
+	  .adivsr_tabcontent {
+    padding: 0px 0px;
+    width: 100%;
+}
+	  .adiver_login {
+    width: 80%;
+}
+
+}
+@media screen and (max-width:740px){
+.adiver_login label {
+    width: 100%;
+}
+.adiver_login input.input-group-field {
+    width: 100%;
+}
+a.forget_pass {
+    margin-left: 2%;
+}
+}
+/*end new css admin*/

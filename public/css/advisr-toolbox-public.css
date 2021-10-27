@@ -2,21 +2,26 @@
 * Advisr v1.0.0 (https://advisr.com.au/)
 
 
-@import url(/wp-content/plugins/toolbox/public/css/fonts/Proxima-Nova/stylesheet.css);
+
 */
 
 /* h1, h2, h3, h4, h5, h6 {
     margin: 0 !important;
     line-height: 1.2 !important;;
 } */
-
+/*@import url(/wp-content/plugins/toolbox/public/css/fonts/Proxima-Nova/stylesheet.css);*/
 .advisr-prefix-class.d-flex.flex-row.justify-content-between {
     display: block !important;
 }
 .advisr-prefix-class .card-body,.advisr-prefix-class .modal-header {
     padding: 20px 20px !important;
 }
-
+.review_section .slick-slide img {
+     margin: 8px !important; 
+}
+.advisr-container.container {
+    margin: 0 auto;
+}
 /* #memberModal2 .advisr-prefix-class.team-member__modal-content.modal-content {
     margin-left: -10px;
 } */
@@ -63,11 +68,11 @@ form#submit_massage {
     margin-top: 12px !important;
 }
 div#memberModal3 .drop_massage .filed_custom {
-    float: left !important;
+    float: left !important;;
 }
 textarea.customfiled.comment_user_msg {
     width: 100% !important;
-}  
+}
 .drop_massage p.center {
     font-size: 15px;
     color: #8c8585 !important;
@@ -102,7 +107,7 @@ form#authenticate_form .loaderdiv p {
     box-shadow: 0 0 10px rgb(222 68 55 / 10%) !important;
 }
 
-input.customfiled.first_name:focus,input.customfiled.last_name:focus,input.customfiled.phone_number:focus, input.customfiled.email_address:focus, textarea.customfiled.comment_user:focus, textarea.customfiled.comment_user_msg:focus {
+input.customfiled.first_name:focus,input.customfiled.last_name:focus,input.customfiled.phone_number:focus, input.customfiled.email_address:focus, textarea.customfiled.comment_user:focus,textarea.customfiled.comment_user_msg:focus {
     outline: auto;
     outline-color: #80e2d2;
     outline: 0;
@@ -205,7 +210,7 @@ form#submit_review input:invalid {
 }
 .customfiled {
     border: 1px solid #ddd !important;
-} 
+}
 .custom_reivews {
     text-align: center;
     margin-top: 30px !important;
@@ -288,6 +293,7 @@ p.custom_text {
 }
 .error {
     color: #f50808;
+	font-size: 14px;
 }
 button.review_okay {
     color: #fff;

@@ -16,9 +16,8 @@
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="wrap">
 
-    <h1><?php echo sanitize_text_field(get_admin_page_title()); ?></h1>
-
-    <form method="post" name="advisr_toolbox_options" action="options.php">
+    <h1><?php echo sanitize_text_field(get_admin_page_title()); ?> <a href="https://www.advisr.com.au/login" class="page-title-action">Add or Remove Broker Team Member</a></h1> 
+     <form method="post" name="advisr_toolbox_options" action="options.php">
 
 		<?php
 			//Grab all options
@@ -34,22 +33,29 @@
 			do_settings_sections($this->plugin_name);
 		?>
 
-		<h3>Step 1</h3>
+		<h3>Status</h3>
 		<?php if (empty($apikey)) { ?>
-			<p class="regular-text">Enter your API key <a href="options-general.php?page=advisr-toolbox">here</a>.</p>
+		<div class="advisr_connect">
+			<!--<p class="regular-text">Enter your API key <a href="options-general.php?page=advisr-toolbox">here</a>.</p>-->
+			<!--<p class="regular-text"><i class="dashicons-before dashicons-dismiss" style="color: red"></i> Not connected to Advisr</p>
+			<p style="width: 30em;" class="regular-text">Go to <a href="options-general.php?page=advisr-toolbox">Advisr Toolbox Settings</a>  to connect your Advisr brokers.</p>-->
+		   </div>
 		<?php } else { ?>
-			<p class="regular-text"><i class="dashicons-before dashicons-yes" style="color: green"></i> API key OK.</p>
+		<div class="advisr_connect">
+		<!--	<p class="regular-text"><i class="dashicons-before dashicons-yes-alt" style="color: green"></i> Successfully connected to Advisr.</p> -->
+		 </div>
 		<?php } ?>
 		<input type="hidden" class="regular-text" id="<?php echo $this->plugin_name; ?>-apikey" name="<?php echo $this->plugin_name; ?>[apikey]" value="<?php if(!empty($apikey)) echo $apikey; ?>"></input>
 		</br />
-
-		<h3>Step 2</h3>
+        <?php if (!empty($apikey)) { ?>
+		<h3>Broker Configuration</h3>
+		<a class="button button-primary" style="cursor: pointer;" href="https://www.advisr.com.au/login">Add or Remove Broker Team Member</a>
 		<p class="regular-text">Customise order of Advisr brokers.</p>
 
 		<advisr-team-page></advisr-team-page>
 
         <?php submit_button('Save changes', 'primary','submit', TRUE); ?>
-
+		 <?php } ?>
 
     </form>
 
@@ -334,6 +340,7 @@
 		let fragment = document.importNode(template.content, true);
 
 		let membersHtml = '';
+		let advisr_connect = '';
 
 		if (advisrBrokerageWithBrokersAndReviews && advisrBrokerageWithBrokersAndReviews.brokers && advisrBrokerageWithBrokersAndReviews.brokers.length > 0) {
 			membersHtml += `<div class="row">`;
@@ -348,10 +355,15 @@
 			const stringifiedConfig = <?php echo (string) $advisr_brokers_config; ?>;
 			membersHtml += `<input type="hidden" id="advisr-brokers-config" name="<?php echo $this->plugin_name; ?>[advisr-brokers-config]" value=${stringifiedConfig}>`;
 			membersHtml += '</div>';
+			advisr_connect += '<p class="regular-text"><i class="dashicons-before dashicons-yes-alt" style="color: green"></i> Successfully connected to Advisr.</p>';
 		} else {
 			membersHtml = '<p>No brokers found.</p>';
+			advisr_connect += '<p class="regular-text"><i class="dashicons-before dashicons-dismiss" style="color: red"></i> Not connected to Advisr. Connect <a href="options-general.php?page=advisr-toolbox">here</a></p>';
+			
 		}
-
+           jQuery(".advisr_connect").html(advisr_connect);
+            jQuery(".advisr_connect_bulider").html(advisr_connect);
+         
 		fragment.querySelector('#members-wrapper').innerHTML = membersHtml;
 		const component = document.querySelector('advisr-team-page');
 		component.appendChild(fragment);

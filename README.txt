@@ -4,8 +4,8 @@ Donate link: https://advisr.com.au
 Tags: insurance, insurtech, team, members, reviews
 Requires PHP: 5.6 or higher
 Requires at least: 4.7
-Tested up to: 5.8
-Stable tag: 2.4
+Tested up to: 6.0.1
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +17,8 @@ This plugin relies on Advisr.com.au, as a third party service that provides data
 
 For more info on this service provider: https://advisr.com.au
 API documentation: https://advisr.com.au/api/doc
-Terms and Conditions: https://advisr.com.au/privacy-policy/#TermsAndConditions
-Privacy Policy: https://advisr.com.au/privacy-policy
+Terms and Conditions: https://advisr.com.au/page/terms-and-conditions
+Privacy Policy: https://advisr.com.au/page/privacy-policy
 
 
 Features available:
@@ -45,6 +45,10 @@ Feature roadmap:
 == Screenshots ==
 
 == Changelog ==
+= v2.5 =
+* Updated Plugin to Support WordPress 6.0.1
+* Updated Advisr APIs
+
 = v2.4 =
 * Updated Reviews Segment Functionality for Elementor
 * Improved Admin Settings User Experience

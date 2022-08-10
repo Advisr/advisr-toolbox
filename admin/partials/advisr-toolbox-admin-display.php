@@ -34,7 +34,8 @@
 		//print_r($_POST);
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://advisr.com.au/api/v1/login?email='.$email.'&password='.$password,
+        CURLOPT_URL => 'https://advisr.com.au/api/authenticate?email='.$email.'&password='.$password,
+//		CURLOPT_URL => 'https://advisr.advisrdev.com.au/api/authenticate?email='.$email.'&password='.$password,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -321,7 +322,7 @@ document.getElementById("defaultOpen").click();
 			throw new Error(error);
 		}
 
-		render(advisrBrokerageWithBrokersAndReviews);
+		render(advisrBrokerageWithBrokersAndReviews.data);
 		
 		// check if config param advisr-brokers-config is set. If set, iterate and search for input name assigned to broker id, set the input value as the value
 		let advisrBrokersConfig;
@@ -341,8 +342,8 @@ document.getElementById("defaultOpen").click();
 	} 
 	
 	async function fetchFromAdvisrApi(apikey) {
-		const url = `https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
-	//	const url = `https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
+		const url = `https://advisr.com.au/api/v2/brokerages`;
+		// const url = `https://advisr.advisrdev.com.au/api/v2/brokerages`;
 
 		var myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${apikey}`);

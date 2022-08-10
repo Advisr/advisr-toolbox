@@ -208,6 +208,9 @@ class Advisr_Toolbox_Public {
 	
 	}
 	function save_review_custom_pop() {
+        $advisr_toolbox= get_option('advisr-toolbox');
+        $apikey=$advisr_toolbox['apikey'];
+
 		//print_r($_POST[user_name]);
         $rating=$_POST['rating'];
         if (empty($rating)) {
@@ -226,7 +229,8 @@ class Advisr_Toolbox_Public {
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://advisr.com.au/api/v1/reviews",
+            CURLOPT_URL => "https://advisr.com.au/api/v2/reviews/submit",
+//            CURLOPT_URL => "https://advisr.advisrdev.com.au/api/v2/reviews/submit",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -238,6 +242,7 @@ class Advisr_Toolbox_Public {
             CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: application/json",
+                "authorization: Bearer ".$apikey,
             ),
         ));
 
@@ -268,7 +273,8 @@ class Advisr_Toolbox_Public {
 	}
 	
 	function save_massage_drop_user_custom_pop(){
-	
+        $advisr_toolbox= get_option('advisr-toolbox');
+        $apikey=$advisr_toolbox['apikey'];
         $fields = array(
             'user_id' => $_POST['reviewee_id'],
             'firstName' => $_POST['first_name'],
@@ -283,7 +289,8 @@ class Advisr_Toolbox_Public {
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://advisr.com.au/api/v1/leads",
+            CURLOPT_URL => "https://advisr.com.au/api/v2/leads/submit",
+//            CURLOPT_URL => "https://advisr.advisrdev.com.au/api/v2/leads/submit",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -295,6 +302,7 @@ class Advisr_Toolbox_Public {
             CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
                 "content-type: application/json",
+                "authorization: Bearer ".$apikey,
             ),
         ));
 
@@ -326,7 +334,8 @@ class Advisr_Toolbox_Public {
 	
 		$curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true",
+            CURLOPT_URL => "https://advisr.com.au/api/v2/brokerages",
+//            CURLOPT_URL => "https://advisr.advisrdev.com.au/api/v2/brokerages",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -348,8 +357,10 @@ class Advisr_Toolbox_Public {
            $response;
         }
         $array_result = json_decode($response, true);
+        $array_result = $array_result['data'];
+
         $reivew=$array_result['reviews'];
-        $reivew_slug=$array_result['slug'];
+        $reivew_slug=$array_result['profile_url'];
         $reivew_name=$array_result['name'];
         
         $html = '';
@@ -391,7 +402,7 @@ class Advisr_Toolbox_Public {
                         </div>
                     </div>';
 					$html.='<div class="add-review advisr-prefix-class-text-center advisr-prefix-class-text-dark">
-	    <a href="https://advisr.com.au/'.$reivew_slug.'#reviews" target="_blank" style="color:'.$slider_text_color.'">Leave '.$reivew_name.' a review</a></div>';
+	    <a href="'.$reivew_slug.'" target="_blank" style="color:'.$slider_text_color.'">Leave '.$reivew_name.' a review</a></div>';
             $html.=' </div>';
 					
             

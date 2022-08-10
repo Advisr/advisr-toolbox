@@ -26,7 +26,7 @@ class AdvisrTeamPage extends HTMLElement {
 			throw new Error(error);
 		}
 
-		this.render(this.advisrBrokerageWithBrokersAndReviews, this.teamMembers, this.advisrBrokersConfig);
+		this.render(this.advisrBrokerageWithBrokersAndReviews.data, this.teamMembers, this.advisrBrokersConfig);
 	}
 
 	sanitiseTeamMember(item) {
@@ -34,7 +34,7 @@ class AdvisrTeamPage extends HTMLElement {
 		return {
 			id: item.id || '',
 			name: item.name || '',
-			avatar_url: item.avatar_url || 'https://advisr.com.au/storage/users/default.png', // @TODO replace this further up the chain
+			avatar_url: item.avatar_url || 'https://d3euw9n7vkdwcc.cloudfront.net/tenantfa80d915-b3e8-4d6a-ac85-64abd7999c14/users/default-user.webp', // @TODO replace this further up the chain
 			mobile: item.mobile || '',
 			role: item.role || '',
 			profile_url: item.profile_url,
@@ -47,11 +47,26 @@ class AdvisrTeamPage extends HTMLElement {
 	}
 
 	render(advisrBrokerageWithBrokersAndReviews, teamMembers = [], advisrBrokersConfig) {
-		
-		if (typeof(advisrBrokersConfig) === 'string') {
-			advisrBrokersConfig = JSON.parse(advisrBrokersConfig);
+
+		function isJson(str) {
+			try {
+				JSON.parse(str);
+			} catch (e) {
+				return false;
+			}
+			return true;
 		}
-		if (typeof(advisrBrokersConfig) === 'string') {
+
+		if (!isJson(advisrBrokersConfig)) {
+			advisrBrokersConfig = [];
+			advisrBrokerageWithBrokersAndReviews.brokers.forEach(function(broker, index) {
+				let brokerTempOrder = {};
+				brokerTempOrder.id = 'advisr-order-' + broker.id;
+				brokerTempOrder.value = index + 1;
+				advisrBrokersConfig.push(brokerTempOrder);
+			});
+		} else {
+			advisrBrokersConfig = JSON.parse(advisrBrokersConfig);
 			advisrBrokersConfig = JSON.parse(advisrBrokersConfig);
 		}
 
@@ -168,7 +183,7 @@ membersHtml += `</div>`;
 							<div class="advisr-prefix-class team-member__modal-row row g-0 m-0">
 								<div class="advisr-prefix-class team-member__modal-col col-sm-6 col-md-5 col-lg-3 d-flex align-items-center">
 									<div class="advisr-prefix-class team-member__modal-image embed-responsive embed-responsive-1by1">
-										<img id="modalAvatar" src="https://advisr.com.au/storage/users/default.png" class="advisr-prefix-class image img-fluid embed-responsive-item">	
+										<img id="modalAvatar" src="https://d3euw9n7vkdwcc.cloudfront.net/tenantfa80d915-b3e8-4d6a-ac85-64abd7999c14/users/default-user.webp" class="advisr-prefix-class image img-fluid embed-responsive-item">	
 									</div>
 								</div>
 								<div class="advisr-prefix-class team-member__modal-card-col col-sm-6 col-md-7 col-lg-9">
@@ -550,7 +565,7 @@ jQuery("#authenticate_form .email_user.error").html(' ');
 					jQuery(".thank_you .heading").html("<strong>Hi, it seems like you've had a bad experience with "+name+"</strong><p class='custom_text'>To help resolve your concerns, "+name+" will be given the opportunity to reply. if you'd like to change any part of your review you can do that here<p>")
 				jQuery(".filed_custom").addClass("bad_reivews");
 				jQuery(".submit_button input.advisr-prefix-class.btn").val("Yes, i want to submit this reivew");
-				jQuery(".submit_button input.advisr-prefix-class.btn").after("<div class='policy_text'><p>By proceeding you agree to adhere to the <a target='_blank' href='https://advisr.com.au/advisr-review-guidelines'>Advisr Reviews Policy and terms of usage</a></p><div>");
+				jQuery(".submit_button input.advisr-prefix-class.btn").after("<div class='policy_text'><p>By proceeding you agree to adhere to the <a target='_blank' href='https://advisr.com.au/page/advisr-review-guidelines'>Advisr Reviews Policy and terms of usage</a></p><div>");
 				//jQuery(".customfiled").val('');
 				jQuery(".error").html('');
 				
@@ -638,7 +653,7 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 				<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user_msg"></textarea >
 				<span class="comment_user_msg error"></span></div>
 				<br>
-				<div class="filed_custom" style=" width: 100%;"><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a></label> 
+				<div class="filed_custom" style=" width: 100%;"><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/page/terms-and-conditions"> Terms and Conditions. </a></label> 
 				<span class="terms_condition error"></span> </div> <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
 				 
 			<div class="submit_button"><div class="loaderdiv"><span style="display: none;" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true" id="submit-review-spinner"></span><input type="submit" name="submit_massage" class="advisr-prefix-class btn btn-dark my-1 mx-2" value="Submit"></div></div>
@@ -895,7 +910,7 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 							<div class="text_area"><textarea rows="5" name="user_comment"  placeholder="Hi there, I would like help with insurance for.." class="customfiled comment_user_msg"></textarea >
 							<span class="comment_user_msg error"></span></div>
 							 <br>
-							 <div class="filed_custom" style=" width: 100%; "><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/privacy-policy/#TermsAndConditions"> Terms and Conditions. </a> </label> 
+							 <div class="filed_custom" style=" width: 100%; "><label>  <input type="checkbox" value="yes" name="terms_condition" id="terms_condition" class="customfiled" > I agree to the <a href="https://advisr.com.au/page/terms-and-conditions"> Terms and Conditions. </a> </label> 
 							<span class="terms_condition error"></span> </div>
 							  <input type="hidden" value="" name="reviewee_id" id="reviewee_id" class="customfiled" >
 							
@@ -1067,8 +1082,8 @@ jQuery("#memberModal3 .advisr-prefix-class.close_button.team-member__modal-heade
 	}
 
 	async fetchFromAdvisrApi(apikey) {
-		const url = `https://advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
-		//const url = `https://staging.advisr.com.au/api/v1/brokerages/4208?withBrokers=true&withReviews=true&recursiveReviews=true`;
+		const url = `https://advisr.com.au/api/v2/brokerages`;
+		// const url = `https://advisr.advisrdev.com.au/api/v2/brokerages`;
 
 		var myHeaders = new Headers();
 		myHeaders.append("Authorization", `Bearer ${apikey}`);
